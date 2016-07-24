@@ -41,7 +41,7 @@ return {
             {
                 procedure: 'log',
                 params: {
-                    message: params.envName
+                    message: "bb"
                 }
             }
         ]
