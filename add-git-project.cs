@@ -30,7 +30,13 @@ return {
             {
                 procedure: 'log',
                 params: {
-                    message: params
+                    message: params.session
+                }
+            },
+            {
+                procedure: 'log',
+                params: {
+                    message: params.envName
                 }
             }
         ]
