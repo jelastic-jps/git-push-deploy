@@ -16,7 +16,8 @@
         ]
       },
       "onAfterDeploy[nodeGroup:cp]": {
-        "call": "after-deploy"
+        "call": "after-deploy",
+        "log": "DEPLOYED"
       }
     },
     "onInstall": {
