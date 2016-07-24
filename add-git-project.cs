@@ -56,7 +56,7 @@ return {
             {
                 procedure: 'log',
                 params: {
-                    message: "e"
+                    message: "f"
                 }
             }
         ]
