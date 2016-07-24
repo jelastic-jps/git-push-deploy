@@ -7,7 +7,7 @@ var params = {
    type: "git",
    context: "test",
    url: "https://github.com/jelastic/HelloWorld.git",
-   branch "master",
+   branch: "master",
    keyId: 2117,
    login: "git",
    autoupdate: true,

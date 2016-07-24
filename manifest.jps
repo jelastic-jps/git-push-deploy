@@ -3,7 +3,7 @@
   "application": {
     "name": "Add Git Project Example",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
-    "description": "Example of automated CI deployment with git-push-deploy integration",
+    "description": "Example of continuous integration (CI) with git-push-deploy ",
     "env": {
       "topology": {
         "nodes": [
