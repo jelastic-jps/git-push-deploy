@@ -17,6 +17,7 @@ var params = {
    zdt: false
 }
 
+var method = jelastic.env.vcs + "";
 
 var resp = "aa";// jelastic.env.vcs.CreateProject(params);
 
@@ -30,7 +31,7 @@ return {
             {
                 procedure: 'log',
                 params: {
-                    message: jelastic.env.vcs.CreateProject
+                    message: method
                 }
             },
             {
