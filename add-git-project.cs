@@ -22,10 +22,10 @@ return {
     result : 0,
     respone: resp,
     onAfterReturn : {
-        call : , {
+        call : {
             procedure: 'log',
             params: {
-                message: result
+                message: resp
             }
         }
     }
