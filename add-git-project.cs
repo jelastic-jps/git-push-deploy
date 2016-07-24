@@ -28,12 +28,6 @@ return {
                 params: {
                     message: params
                 }
-            },
-            {
-                procedure: 'log',
-                params: {
-                    message: jelastic.env.vcs.CreateProject
-                }
             }
         ]
     }
