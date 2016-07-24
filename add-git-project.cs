@@ -3,7 +3,7 @@
 
 
 var params = {
-   envName: "${env.domain}",
+   envName: "${env.appid}",
    session: session,
    type: "git",
    context: "test",
@@ -56,7 +56,7 @@ return {
             {
                 procedure: 'log',
                 params: {
-                    message: "d"
+                    message: "e"
                 }
             }
         ]
