@@ -1,15 +1,14 @@
-
-//@auth
-
+//@auth 
+//@req(url,keyId)
 
 var params = {
    envName: "${env.appid}",
    session: session,
    type: "git",
    context: "ROOT",
-   url: "https://github.com/jelastic/HelloWorld.git",
+   url: url,
    branch: "master",
-   keyId: 2117,
+   keyId: keyId,
    login: "git",
    password: "",
    autoupdate: true,
@@ -56,7 +55,7 @@ return {
             {
                 procedure: 'log',
                 params: {
-                    message: "f"
+                    message: "j"
                 }
             }
         ]
