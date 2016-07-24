@@ -16,17 +16,25 @@ var params = {
    zdt: false
 }
 
-var resp = jelastic.env.vcs.CreateProject(params);
+var resp = "aa";// jelastic.env.vcs.CreateProject(params);
 
 return {
     result : 0,
     respone: resp,
     onAfterReturn : {
-        call : {
-            procedure: 'log',
-            params: {
-                message: resp
+        call : [
+            {
+                procedure: 'log',
+                params: {
+                    message: params
+                }
+            },
+            {
+                procedure: 'log',
+                params: {
+                    message: jelastic.env.vcs.CreateProject
+                }
             }
-        }
+        ]
     }
 };
