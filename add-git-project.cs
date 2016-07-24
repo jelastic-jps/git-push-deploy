@@ -6,7 +6,7 @@ var params = {
    envName: "${env.appid}",
    session: session,
    type: "git",
-   context: "test",
+   context: "ROOT",
    url: "https://github.com/jelastic/HelloWorld.git",
    branch: "master",
    keyId: 2117,
