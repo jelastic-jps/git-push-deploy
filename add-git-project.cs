@@ -1,6 +1,7 @@
 
 //@auth
 
+/*
 var params = {
    envName: "${env.domain}",
    session: session,
@@ -15,12 +16,13 @@ var params = {
    autoResolveConflict: true,
    zdt: false
 }
+*/
 
 var resp = "aa";// jelastic.env.vcs.CreateProject(params);
 
 return {
     result : 0,
-    respone: resp,
+    respone: "aa",
     onAfterReturn : {
         call : [
             {
