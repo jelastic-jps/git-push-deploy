@@ -1,0 +1,48 @@
+{
+  "jpsType": "update",
+  "application": {
+    "name": "Add Git Project Example",
+    "homepage": "https://github.com/jelastic-jps/git-push-deploy",
+    "description": "Example of automated CI deployment with git-push-deploy integration",
+    "env": {
+      "topology": {
+        "nodes": [
+          {
+            "cloudlets": 16,
+            "nodeGroup": "cp",
+            "nodeType": "apache2",
+            "engine": "python3.5"
+          }
+        ]
+      },
+      "onAfterDeploy[nodeGroup:cp]": {
+        "call": "after-deploy"
+      }
+    },
+    "onInstall": {
+      "execScript": [
+        {
+          "type": "js",
+          "script": "https://raw.githubusercontent.com/siruslan/git-push-deploy/master/add-git-project.cs",
+          "params": {
+            "greeting": "Hello World!"
+          }
+        }
+      ]
+    },
+    "procedures": [
+      {
+        "id": "after-deploy",
+        "onCall": {
+          "execCmd": {
+            "nodeGroup": "cp",
+            "commands": [
+              "echo 123 >>/var/log/test.log",
+              "echo 456 >>/var/log/test.log"
+            ]
+          }
+        }
+      }
+    ]
+  }
+}
