@@ -30,7 +30,7 @@ return {
             {
                 procedure: 'log',
                 params: {
-                    message: params.session
+                    message: jelastic.env.vcs.CreateProject
                 }
             },
             {
