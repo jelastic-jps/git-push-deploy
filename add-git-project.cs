@@ -17,7 +17,7 @@ var params = {
    zdt: false
 }
 
-var method = jelastic.env.vcs + "";
+var method = jelastic.env.vcs.CreateProject + "";
 
 var resp = "aa";// jelastic.env.vcs.CreateProject(params);
 
