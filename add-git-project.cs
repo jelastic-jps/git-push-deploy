@@ -28,7 +28,7 @@ return {
             {
                 procedure: 'log',
                 params: {
-                    message: params
+                    message: "params"
                 }
             }
         ]
