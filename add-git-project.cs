@@ -11,20 +11,35 @@ var params = {
    branch: "master",
    keyId: 2117,
    login: "git",
+   password: "",
    autoupdate: true,
    interval: 1,
    autoResolveConflict: true,
    zdt: false
 }
 
-var all = "jelastic.env.vcs.CreateProject="+jelastic.env.vcs.CreateProject + "   \n";
-for (var m in jelastic.env.vcs.CreateProject) {
-   all += m + "=" + jelastic.env.vcs.CreateProject[m] + "   \n"; 
+
+var resp = jelastic.env.vcs.CreateProject(
+   params.envName,
+   params.session,
+   params.type,
+   params.context,
+   params.url,
+   params.branch,
+   params.keyId,
+   params.login,
+   params.password,
+   params.autoupdate,
+   params.interval,
+   params.autoResolveConflict,
+   params.zdt
+);
+
+
+var all = "resp="+resp + "   \n";
+for (var m in resp) {
+   all += m + "=" + resp[m] + "   \n"; 
 }
-//var method = jelastic.env.vcs.CreateProject + "";
-
-var resp = "aa";// jelastic.env.vcs.CreateProject(params);
-
 
 
 return {
@@ -41,7 +56,7 @@ return {
             {
                 procedure: 'log',
                 params: {
-                    message: "c"
+                    message: "d"
                 }
             }
         ]
