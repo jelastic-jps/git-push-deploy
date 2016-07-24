@@ -30,7 +30,7 @@ return {
             {
                 procedure: 'log',
                 params: {
-                    message: "aaaaa"
+                    message: params
                 }
             }
         ]
