@@ -1,5 +1,5 @@
 //@auth 
-//@req(url,keyId)
+//@req(url, keyId)
 
 var params = {
    envName: "${env.appid}",
@@ -17,47 +17,19 @@ var params = {
    zdt: false
 }
 
+var resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.context, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
+return resp.result;
 
-var resp = jelastic.env.vcs.CreateProject(
-   params.envName,
-   params.session,
-   params.type,
-   params.context,
-   params.url,
-   params.branch,
-   params.keyId,
-   params.login,
-   params.password,
-   params.autoupdate,
-   params.interval,
-   params.autoResolveConflict,
-   params.zdt
-);
-
-
-var all = "resp="+resp + "   \n";
-for (var m in resp) {
-   all += m + "=" + resp[m] + "   \n"; 
-}
-
-
+/*
 return {
-    result : 0,
-    respone: "aa",
-    onAfterReturn : {
-        call : [
-            {
-                procedure: 'log',
-                params: {
-                    message: all
-                }
-            },
-            {
-                procedure: 'log',
-                params: {
-                    message: "j"
-                }
-            }
-        ]
-    }
-};
+   result : resp.result,
+   onAfterReturn : {
+      call : {
+         procedure: 'log',
+            params: {
+            message: "put your message"
+         }
+      }
+   }
+}
+*/
