@@ -25,7 +25,8 @@
           "type": "js",
           "script": "https://raw.githubusercontent.com/siruslan/git-push-deploy/master/add-git-project.cs",
           "params": {
-            "greeting": "Hello World!"
+            "url": "https://github.com/jelastic/HelloWorld.git",
+            "keyId" : 2117
           }
         }
       ]
