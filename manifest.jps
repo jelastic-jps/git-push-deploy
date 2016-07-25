@@ -10,7 +10,7 @@
           {
             "cloudlets": 16,
             "nodeGroup": "cp",
-            "nodeType": "apache2"
+            "nodeType": "apache2-python"
           }
         ],
         "engine": "python3.5"
