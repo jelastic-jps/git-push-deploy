@@ -1,4 +1,4 @@
- //@req(session, url, keyId)
+ //@req(session, url, keyId, login)
 
 var params = {
    envName: "${env.appid}",
@@ -8,7 +8,7 @@ var params = {
    url: url,
    branch: "master",
    keyId: keyId,
-   login: "git",
+   login: login,
    password: "",
    autoupdate: true,
    interval: 1,
