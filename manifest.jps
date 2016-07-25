@@ -27,6 +27,7 @@
           "script": "https://raw.githubusercontent.com/siruslan/git-push-deploy/master/add-git-project.cs",
           "params": {
             "url": "https://github.com/jelastic/test-private-repo.git",
+            "login": "siruslan",
             "keyId" : 2117
           }
         }
