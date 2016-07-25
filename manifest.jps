@@ -15,7 +15,7 @@
           }
         ]
       },
-      "onAfterDeploy[nodeGroup:cp]": {
+      "onAfterUpdateVcsProject": {
         "call": "after-deploy",
         "log": "DEPLOYED"
       }
