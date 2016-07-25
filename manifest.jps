@@ -10,10 +10,10 @@
           {
             "cloudlets": 16,
             "nodeGroup": "cp",
-            "nodeType": "apache2",
-            "engine": "python3.5"
+            "nodeType": "apache2"
           }
-        ]
+        ],
+        "engine": "python3.5"
       },
       "onAfterUpdateVcsProject": {
         "call": "after-deploy",
