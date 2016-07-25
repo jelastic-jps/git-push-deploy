@@ -1,7 +1,7 @@
 {
   "jpsType": "install",
   "application": {
-    "name": "Add Git Project Example",
+    "name": "Git-Push-Deploy Example",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
     "description": "Example of continuous integration (CI) with git-push-deploy ",
     "env": {
