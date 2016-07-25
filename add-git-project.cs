@@ -1,5 +1,4 @@
-//@auth 
-//@req(url, keyId)
+ //@req(session, url, keyId)
 
 var params = {
    envName: "${env.appid}",
