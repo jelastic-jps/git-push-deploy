@@ -16,7 +16,7 @@ var params = {
    zdt: false
 }
 
-var resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.context, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
+var resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.context, params.url, params.branch, params.keyId, params.login, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
 return resp;
 
 /*
