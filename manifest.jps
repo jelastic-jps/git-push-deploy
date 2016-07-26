@@ -28,7 +28,7 @@
           "params": {
             "url": "github.com/jelastic/test-private-repo.git",
             "login": "siruslan",
-            "keyId" : 2117
+            "keyId": 2117
           }
         }
       ]
@@ -41,7 +41,7 @@
             "nodeGroup": "cp",
             "commands": [
               "echo 123 >> ~/test.log",
-              "mkdir -p "/opt/repo/ROOT/.git/hooks/",
+              "mkdir -p /opt/repo/ROOT/.git/hooks/",
               "printf '#!/bin/bash\necho 456 >> ~/test.log' > /opt/repo/ROOT/.git/hooks/post-merge",
               "chmod +x /opt/repo/ROOT/.git/hooks/post-merge"
             ]
