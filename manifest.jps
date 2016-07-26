@@ -1,5 +1,5 @@
 {
-  "jpsType": "install",
+  "jpsType": "update",
   "application": {
     "name": "Git-Push-Deploy Example",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
@@ -28,7 +28,7 @@
           "params": {
             "url": "github.com:jelastic/test-private-repo.git",
             "login": "git",
-            "keyId": 2123
+            "keyId": 2124
           }
         }
       ]
