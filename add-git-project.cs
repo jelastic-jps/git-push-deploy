@@ -4,7 +4,7 @@ var params = {
    envName: "${env.appid}",
    session: session,
    type: "git",
-   context: "ROOT",
+   project: "ROOT",
    url: url,
    branch: "master",
    keyId: keyId,
@@ -16,7 +16,10 @@ var params = {
    zdt: false
 }
 
-var resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.context, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
+var resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.project, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
+if (resp.result == 0) {
+ resp = jelastic.env.vcs.Update(params.envName, params.session, params.project); 
+}
 return resp;
 
 /*
