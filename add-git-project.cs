@@ -17,9 +17,7 @@ var params = {
 }
 
 var resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.project, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
-if (resp.result == 0) {
- resp = jelastic.env.vcs.Update(params.envName, params.session, params.project); 
-}
+if (resp.result == 0) resp = jelastic.env.vcs.Update(params.envName, params.session, params.project); 
 return resp;
 
 /*
