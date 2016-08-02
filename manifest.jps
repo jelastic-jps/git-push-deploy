@@ -17,7 +17,7 @@
       },
       "onAfterUpdateVcsProject": {
         "call": "after-deploy",
-        "log": "DEPLOYED"
+        "log": "installed successfully"
       }
     },
     "onInstall": {
@@ -40,9 +40,8 @@
           "execCmd": {
             "nodeGroup": "cp",
             "commands": [
-              "echo 123 >> ~/test.log",
               "mkdir -p /opt/repo/ROOT/.git/hooks/",
-              "printf '#!/bin/bash\necho 456 >> ~/test.log\n' > /opt/repo/ROOT/.git/hooks/post-merge",
+              "printf '#!/bin/bash\nsudo /etc/init.d/cartridge reload >> /var/log/reload.log\n' > /opt/repo/ROOT/.git/hooks/post-merge",
               "chmod +x /opt/repo/ROOT/.git/hooks/post-merge"
             ]
           }
