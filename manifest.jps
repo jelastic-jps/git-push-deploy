@@ -14,28 +14,32 @@
           }
         ],
         "engine": "python3.5"
-      },
-      "onAfterUpdateVcsProject": {
-        "call": "after-deploy",
-        "log": "installed successfully"
       }
     },
-    "onInstall": {
-      "execScript": [
-        {
-          "type": "js",
-          "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/add-git-project.cs",
-          "params": {
-            "url": "github.com:jelastic-jps/test-private-repo.git",
-            "login": "git",
-            "keyId": 2227
+    "onInstall": [
+      {
+        "execScript": [
+          {
+            "type": "js",
+            "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/add-git-project.cs",
+            "params": {
+              "url": "github.com:jelastic-jps/test-private-repo.git",
+              "login": "git",
+              "keyId": 2227
+            }
           }
-        }
-      ]
-    },
+        ]
+      },
+      {
+        "call" : "after-deploy-hook"
+      },
+      {
+        "log": "installed successfully"
+      }
+    ],
     "procedures": [
       {
-        "id": "after-deploy",
+        "id": "after-deploy-hook",
         "onCall": {
           "execCmd": {
             "nodeGroup": "cp",
