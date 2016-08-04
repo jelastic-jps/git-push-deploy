@@ -1,5 +1,5 @@
 [![Git-Push-Deploy](https://jelastic.com/assets/img/jelastic-logo265.png)](../../../git-push-deploy)
-## Jelastic Git-Push-Deploy Add-on
+## Jelastic Git-Push-Deploy Add-on 
 
 This repository provides [Git-Push-Deploy](https://github.com/jelastic-jps/git-push-deploy) add-on for Jelastic Platform.
 
