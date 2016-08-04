@@ -1,12 +1,8 @@
 ## Jelastic Git-Push-Deploy Add-on 
 
-This repository provides [Git-Push-Deploy](https://github.com/jelastic-jps/git-push-deploy) add-on for Jelastic Platform.
+[![Deploy](https://raw.githubusercontent.com/sych74/PokemonGo-Map-in-Cloud/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/manifest.jps) 
 
-**Git-Push-Deploy** is an example of automated CI with git integration.
-
-**Type of nodes this add-on can be applied to**: 
-- Application server (cp)
-- Apache 2 with Python engine.
+This repository provides an example of automated CI with git integration.
 
 ### What it can be used for?
 
@@ -17,6 +13,12 @@ With a help of this JPS add-on, Git-Push-Deploy is installed on app server avail
 [![Git-Push-Deploy](https://docs.google.com/drawings/d/1WHDD_uj96olWKjI2ukcxcBKlHNsL4YUifAfQ_WIE5fk/pub?w=528&h=322)](../../../git-push-deploy)
 
 #### How to start using:
+
+**Fork it and customize**: 
+- Update the link to private repository 
+- Insert your private key ID (keyId) - see below 
+- Add your "post-merge" hook 
+- Change aplication server or entire topology 
 
 **How to get private ssh key id:**
 
