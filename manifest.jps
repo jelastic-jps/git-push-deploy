@@ -1,5 +1,5 @@
 {
-  "jpsType": "update",
+  "jpsType": "install",
   "application": {
     "name": "Git-Push-Deploy Example",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
