@@ -24,9 +24,9 @@
       "execScript": [
         {
           "type": "js",
-          "script": "https://raw.githubusercontent.com/siruslan/git-push-deploy/master/add-git-project.cs",
+          "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/add-git-project.cs",
           "params": {
-            "url": "github.com:jelastic/test-private-repo.git",
+            "url": "github.com:jelastic-jps/test-private-repo.git",
             "login": "git",
             "keyId": 2124
           }
