@@ -11,7 +11,7 @@ This repository provides [Git-Push-Deploy](https://github.com/jelastic-jps/git-p
 
 ### What it can be used for?
 
-With a help of our JPS add-on, Git-Push-Deploy is installed on app server available in the environment to provide possibility to create/update the project in automatic mode from Git repository after changes pushed.
+With a help of this JPS add-on, Git-Push-Deploy is installed on app server available in the environment to provide possibility to connect and update the project in automatic mode from Git repository after changes pushed.
 
 **Process workflow deploy**
 
