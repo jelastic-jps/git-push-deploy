@@ -15,7 +15,7 @@ With a help of our bookmarklet, Git-Push-Deploy is installed on app server avail
 
 **Process workflow deploy**
 
-[![Git-Push-Deploy](https://docs.google.com/drawings/d/1WHDD_uj96olWKjI2ukcxcBKlHNsL4YUifAfQ_WIE5fk/pub?w=589&h=148)](../../../git-push-deploy)
+[![Git-Push-Deploy](https://docs.google.com/drawings/d/1WHDD_uj96olWKjI2ukcxcBKlHNsL4YUifAfQ_WIE5fk/pub?w=528&h=322)](../../../git-push-deploy)
 
 #### How to start using:
 
