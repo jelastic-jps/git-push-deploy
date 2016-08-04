@@ -12,12 +12,12 @@ With a help of this JPS add-on, Git-Push-Deploy is installed on app server avail
 
 [![Git-Push-Deploy](https://docs.google.com/drawings/d/1WHDD_uj96olWKjI2ukcxcBKlHNsL4YUifAfQ_WIE5fk/pub?w=528&h=322)](../../../git-push-deploy)
 
-#### How to start using:
+### How To Use
 
 **Fork it and customize**: 
 - Update the link to private repository 
-- Insert your private key ID (keyId) - see below 
-- Add your "post-merge" hook 
+- Insert your private ssh key id (keyId) - see below 
+- Modify "post-merge" hook for custom actions
 - Change aplication server or entire topology 
 
 **How to get private ssh key id:**
