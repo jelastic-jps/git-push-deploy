@@ -31,8 +31,8 @@ With a help of this JPS add-on, Git-Push-Deploy is installed on app server avail
 ```
 JApp.Ajax.get("Management.Account.GetSSHKeys", {appid:GPlatform.APP_CLUSTER_APPID, isPrivate:true}, function(oResp) {console.log(Ext.each(oResp.keys, function(key) {console.log(key.title, key.id);} ))})
 ```
-**How to set Private ssh key id:**
-- Copy your keyId and past it in [manifest.jps](manifest.jps)
+**How to set private ssh key id:**
+- Copy your keyId and insert it in [manifest.jps](manifest.jps)
 
 
 ---
