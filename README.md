@@ -25,7 +25,7 @@ With a help of our JPS add-on, Git-Push-Deploy is installed on app server availa
 - Add your Private key following this instruction https://docs.jelastic.com/ssh-add-key
 - Open Developer Tools -> Console 
 
-<img src="https://raw.githubusercontent.com/siruslan/git-push-deploy/master/images/how-get-private-keyid.png" width="500">
+<img src="https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/how-get-private-keyid.png" width="500">
 
 - Execute the command below in the javascript console
 
@@ -39,7 +39,7 @@ JApp.Ajax.get("Management.Account.GetSSHKeys", {appid:GPlatform.APP_CLUSTER_APPI
 
 In order to get this solution instantly deployed, click the "Get It Hosted Now" button, specify your email address within the widget, choose one of the [Jelastic Public Cloud providers](https://jelastic.cloud) and press Install.
 
-[![GET IT HOSTED](https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fgit-push-deploy%2Fraw%2Fmaster%2Fmanifest.jps)
+<a href="https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fgit-push-deploy%2Fraw%2Fmaster%2Fmanifest.jps" target="_blank"><img src="https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png" alt="GET IT HOSTED" /></a>
 
 To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../../raw/master/manifest.jps) within your dashboard ([detailed instruction](https://docs.jelastic.com/environment-export-import#import)).
 
