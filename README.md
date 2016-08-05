@@ -1,23 +1,22 @@
-[![Git-Push-Deploy](https://jelastic.com/assets/img/jelastic-logo265.png)](../../../git-push-deploy)
 ## Jelastic Git-Push-Deploy Add-on 
 
-This repository provides [Git-Push-Deploy](https://github.com/jelastic-jps/git-push-deploy) add-on for Jelastic Platform.
+[![Deploy](https://raw.githubusercontent.com/sych74/PokemonGo-Map-in-Cloud/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/manifest.jps) 
 
-**Git-Push-Deploy** is an example of automated CI with git integration.
-
-**Type of nodes this add-on can be applied to**: 
-- Application server (cp)
-- Apache 2 with Python engine.
+This repository provides an example of automated CI with git integration.
 
 ### What it can be used for?
 
-With a help of our JPS add-on, Git-Push-Deploy is installed on app server available in the environment to provide possibility to create/update the project in automatic mode from Git repository after changes pushed.
-
-**Process workflow deploy**
+With a help of this JPS add-on, Git-Push-Deploy is installed on app server available in the environment to provide possibility to connect and update the project in automatic mode from Git repository after changes pushed.
 
 [![Git-Push-Deploy](https://docs.google.com/drawings/d/1WHDD_uj96olWKjI2ukcxcBKlHNsL4YUifAfQ_WIE5fk/pub?w=528&h=322)](../../../git-push-deploy)
 
-#### How to start using:
+### How To Use
+
+**Fork and customize**: 
+- Update the link to private repository 
+- Insert your private ssh key id (keyId) - see below 
+- Modify "post-merge" hook for custom actions
+- Change aplication server or entire topology 
 
 **How to get private ssh key id:**
 
@@ -32,14 +31,17 @@ With a help of our JPS add-on, Git-Push-Deploy is installed on app server availa
 ```
 JApp.Ajax.get("Management.Account.GetSSHKeys", {appid:GPlatform.APP_CLUSTER_APPID, isPrivate:true}, function(oResp) {console.log(Ext.each(oResp.keys, function(key) {console.log(key.title, key.id);} ))})
 ```
-**How to set Private ssh key id:**
-- Copy your keyId and past it in [manifest.jps](manifest.jps)
+**How to set private ssh key id:**
+- Copy your keyId and insert it in [manifest.jps](manifest.jps)
+
+
+---
 
 ### Deployment
 
 In order to get this solution instantly deployed, click the "Get It Hosted Now" button, specify your email address within the widget, choose one of the [Jelastic Public Cloud providers](https://jelastic.cloud) and press Install.
 
-<a href="https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fgit-push-deploy%2Fraw%2Fmaster%2Fmanifest.jps" target="_blank"><img src="https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png" alt="GET IT HOSTED" /></a>
+<a href="https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fgit-push-deploy%2Fraw%2Fmaster%2Fmanifest.jps" target="_blank"><img src="https://raw.githubusercontent.com/jelastic-jps/jpswiki/master/images/getithosted.png" alt="Deploy" /></a>
 
 To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../../raw/master/manifest.jps) within your dashboard ([detailed instruction](https://docs.jelastic.com/environment-export-import#import)).
 
