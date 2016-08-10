@@ -19,7 +19,7 @@ var params = {
 
 SshKeyResponse = jelastic.users.account.GetSSHKeys(appid, session, true);
 if (SshKeyResponse.result != 0) return SshKeyResponse;
-if (SshKeyResponse.keys != null && SshKeyResponse.keys.length > 0) return SshKeyResponse.keys[0].id;
+if (SshKeyResponse.keys != null && SshKeyResponse.keys.length > 0) params.keyId = SshKeyResponse.keys[0].id;
 else
 return {
     result: 81,
