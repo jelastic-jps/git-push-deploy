@@ -8,6 +8,7 @@
       "topology": {
         "nodes": [
           {
+            "count": 1,
             "cloudlets": 16,
             "nodeGroup": "cp",
             "nodeType": "apache2-python"
@@ -26,7 +27,8 @@
               "url": "github.com:jelastic-jps/test-private-repo.git",
               "login": "git",
               "password": null
-            }
+            },
+            "user": "root"
           }
         ]
       },
@@ -43,6 +45,7 @@
         "onCall": {
           "execCmd": {
             "nodeGroup": "cp",
+            "user": "root",
             "commands": [
               "mkdir -p /opt/repo/ROOT/.git/hooks/",
               "printf '#!/bin/bash\nsudo /etc/init.d/cartridge reload >> /var/log/reload.log\n' > /opt/repo/ROOT/.git/hooks/post-merge",
