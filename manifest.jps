@@ -1,5 +1,6 @@
 {
   "jpsType": "install",
+  "jpsVersion": "0.6",
   "application": {
     "name": "Git-Push-Deploy Example",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
