@@ -25,7 +25,7 @@
             "params": {
               "url": "github.com:jelastic-jps/test-private-repo.git",
               "login": "git",
-              "keyId": 2227
+              "password": null
             }
           }
         ]
