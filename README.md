@@ -18,22 +18,10 @@ With a help of this JPS add-on, Git-Push-Deploy is installed on app server avail
 - Modify "post-merge" hook for custom actions
 - Change aplication server or entire topology 
 
-**How to get private ssh key id:**
+**How to set Private ssh key:**
 
 - Go to Dev Dashboard
-- Add your Private key following this instruction https://docs.jelastic.com/ssh-add-key
-- Open Developer Tools -> Console 
-
-<img src="https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/how-get-private-keyid.png" width="500">
-
-- Execute the command below in the javascript console
-
-```
-JApp.Ajax.get("Management.Account.GetSSHKeys", {appid:GPlatform.APP_CLUSTER_APPID, isPrivate:true}, function(oResp) {console.log(Ext.each(oResp.keys, function(key) {console.log(key.title, key.id);} ))})
-```
-**How to set private ssh key id:**
-- Copy your keyId and insert it in [manifest.jps](manifest.jps)
-
+- Add your Private key following this [Instruction](https://docs.jelastic.com/ssh-add-key)
 
 ---
 
@@ -41,7 +29,7 @@ JApp.Ajax.get("Management.Account.GetSSHKeys", {appid:GPlatform.APP_CLUSTER_APPI
 
 In order to get this solution instantly deployed, click the "Deploy" button, specify your email address within the widget, choose one of the [Jelastic Public Cloud providers](https://jelastic.cloud) and press Install.
 
-<a href="https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fgit-push-deploy%2Fraw%2Fmaster%2Fmanifest.jps" target="_blank"><img src="https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png" alt="Deploy" /></a>
+[![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fgit-push-deploy%2Fraw%2Fmaster%2Fmanifest.jps)
 
 To deploy this package to Jelastic Private Cloud, import [this JPS manifest](../../raw/master/manifest.jps) within your dashboard ([detailed instruction](https://docs.jelastic.com/environment-export-import#import)).
 
