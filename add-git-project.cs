@@ -8,7 +8,7 @@ var params = {
    project: "ROOT",
    url: url,
    branch: "master",
-   keyId: "",
+   keyId: "AUTODETECTED BELLOW",
    login: login,
    password: password,
    autoupdate: true,
@@ -17,29 +17,22 @@ var params = {
    zdt: false
 }
 
-var resp;
-SshKeyResponse = jelastic.users.account.GetSSHKeys(appid, session, true);
-if (SshKeyResponse.result != 0) return SshKeyResponse;
-if (SshKeyResponse.keys != null && SshKeyResponse.keys.length > 0)
-{
-    for (i = 0; i < SshKeyResponse.keys.length; i++) {
-        params.keyId = SshKeyResponse.keys[i].id;
-        resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.project, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
-        if (resp.result == 0)
-        {
-            resp = jelastic.env.vcs.Update(params.envName, params.session, params.project);
-            if (resp.result == 0) break;
-            else
-                jelastic.env.vcs.DeleteProject(params.envName, params.session, params.project);
-        }
-    }  
-    return resp;
+var resp = jelastic.users.account.GetSSHKeys(appid, session, true);
+if (resp.result != 0 || resp.keys == null) return resp;
+
+if (resp.keys.length == 0) {
+ return {
+  result: 81,
+  keyId: "private ssh key was not found, please follow the intstruction to add a new private ssh key https://docs.jelastic.com/ssh-add-key"
+ }
 }
-else
-return {
-    result: 81,
-    keyId: "Private SSH keys was not found"
-};
+
+//getting the first private key   
+params.keyId = resp.keys[0].id;
+resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.project, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
+if (resp.result != 0) return resp;
+resp = jelastic.env.vcs.Update(params.envName, params.session, params.project);
+return resp;
 
 /*
 return {
