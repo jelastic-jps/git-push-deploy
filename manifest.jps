@@ -12,10 +12,10 @@
             "count": 1,
             "cloudlets": 16,
             "nodeGroup": "cp",
-            "nodeType": "apache2-python"
+            "nodeType": "apache2"
           }
         ],
-        "engine": "python3.5"
+        "engine": "php5.6"
       }
     },
     "onInstall": [
