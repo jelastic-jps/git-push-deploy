@@ -8,7 +8,7 @@ var params = {
    project: "ROOT",
    url: url,
    branch: "master",
-   keyId: "AUTODETECTED BELLOW",
+   keyId: "WILL BE AUTODETECTED BELLOW",
    login: login,
    password: password,
    autoupdate: true,
