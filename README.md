@@ -2,7 +2,7 @@
 
 [![Deploy](https://github.com/jelastic-jps/git-push-deploy/raw/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https%3A%2F%2Fgithub.com%2Fjelastic-jps%2Fgit-push-deploy%2Fraw%2Fmaster%2Fmanifest.jps) 
 
-This repository provides an example of automated CI with git integration.
+This repository provides an example of automated CI with private git repository integration and authentication via private ssh key.
 
 ### What it can be used for?
 
@@ -13,15 +13,11 @@ With a help of this JPS add-on, Git-Push-Deploy is installed on app server avail
 ### How To Use
 
 **Fork and customize**: 
-- Update the link to private repository 
-- Insert your private ssh key id (keyId) - see below 
+- Add your private ssh key to Dev Dashboard by following this [instruction](https://docs.jelastic.com/ssh-add-key)
+- Add your public ssh key to your private git repository by following this [instruction](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
+- Update the link to your private git repository in the [manifest](manifest.jps)  
 - Modify "post-merge" hook for custom actions
 - Change aplication server or entire topology 
-
-**How to set Private ssh key:**
-
-- Go to Dev Dashboard
-- Add your Private key following this [Instruction](https://docs.jelastic.com/ssh-add-key)
 
 ---
 
