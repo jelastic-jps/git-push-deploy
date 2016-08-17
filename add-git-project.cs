@@ -1,4 +1,4 @@
- //@req(session, appid, url, login, password, branch)
+ //@req(session, appid, url, branch)
 
 var params = {
    appId: appid,
@@ -9,8 +9,8 @@ var params = {
    url: url,
    branch: branch,
    keyId: "WILL BE AUTODETECTED BELLOW",
-   login: login,
-   password: password,
+   login: "git",
+   password: null,
    autoupdate: true,
    interval: 1,
    autoResolveConflict: true,
