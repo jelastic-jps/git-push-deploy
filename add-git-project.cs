@@ -1,4 +1,4 @@
- //@req(session, appid, url, login, password)
+ //@req(session, appid, url, login, password, branch)
 
 var params = {
    appId: appid,
