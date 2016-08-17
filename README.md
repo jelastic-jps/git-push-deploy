@@ -14,10 +14,10 @@ With a help of this JPS add-on, Git-Push-Deploy is installed on app server avail
 
 **Fork and customize**: 
 - Add your private ssh key to Dev Dashboard by following this [instruction](https://docs.jelastic.com/ssh-add-key). Private key should be without password protection.
-- Add your public ssh key to your private git repository by following this [instruction](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/)
-- Update the link to your private git repository in the [manifest](manifest.jps)  
-- Modify "post-merge" hook for custom actions inside "after-deploy-hook" procedure in the same manifest
-- Change aplication server or entire topology inside "topology" section in the manifest 
+- Add your public ssh key to your private git repository by following this [instruction](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/).
+- Update the link to your private git repository in the [manifest](manifest.jps).
+- Modify "post-merge" hook for custom actions inside "after-deploy-hook" procedure in the same manifest.
+- Change aplication server or entire topology inside "topology" section in the manifest.
 
 ---
 
