@@ -7,7 +7,7 @@ var params = {
    type: "git",
    project: "ROOT",
    url: url,
-   branch: "master",
+   branch: branch,
    keyId: "WILL BE AUTODETECTED BELLOW",
    login: login,
    password: password,
