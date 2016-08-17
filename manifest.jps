@@ -25,7 +25,7 @@
             "type": "js",
             "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/add-git-project.cs",
             "params": {
-              "url": "github.com:jelastic-jps/test-private-repo.git",
+              "url": "https://github.com/WordPress/WordPress.git",
               "branch": "master"
             },
             "user": "root"
