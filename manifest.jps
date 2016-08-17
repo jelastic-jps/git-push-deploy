@@ -26,6 +26,7 @@
             "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/add-git-project.cs",
             "params": {
               "url": "github.com:jelastic-jps/test-private-repo.git",
+              "branch": "master",
               "login": "git",
               "password": null
             },
