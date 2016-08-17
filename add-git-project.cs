@@ -8,27 +8,14 @@ var params = {
    project: "ROOT",
    url: url,
    branch: branch,
-   keyId: "WILL BE AUTODETECTED BELLOW",
-   login: "git",
+   keyId: null,
+   login: null,
    password: null,
    autoupdate: true,
    interval: 1,
    autoResolveConflict: true,
    zdt: false
 }
-
-var resp = jelastic.users.account.GetSSHKeys(appid, session, true);
-if (resp.result != 0 || resp.keys == null) return resp;
-
-if (resp.keys.length == 0) {
- return {
-  result: 81,
-  keyId: "private ssh key was not found, please follow the intstruction to add a new private ssh key https://docs.jelastic.com/ssh-add-key"
- }
-}
-
-//getting the first private key   
-params.keyId = resp.keys[0].id;
 
 //create and update the project 
 resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.project, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
