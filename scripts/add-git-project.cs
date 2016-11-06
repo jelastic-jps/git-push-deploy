@@ -51,8 +51,7 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   project: params.project, 
   gitUser: gitUser, 
   repoName: repoName, 
-  token: token,
-  hookDomain: "${env.domain}"
+  token: token
 });
 if (resp.result != 0) return resp;
 return resp.response;
