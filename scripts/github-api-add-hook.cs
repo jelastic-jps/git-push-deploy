@@ -12,9 +12,6 @@ import java.io.BufferedReader;
 var client = new HttpClient();
 
 
-jelastic.marketplace.console.WriteLog("git api - gitUser = " + gitUser + " token = " + token);
-
-
 //Authentication
 var creds = new UsernamePasswordCredentials(gitUser, token);
 client.getParams().setAuthenticationPreemptive(true);
@@ -48,4 +45,15 @@ while ((line = br.readLine()) != null) {
 
 post.releaseConnection();
 
-return JSONUtils.toJSON(response);
+resp = JSONUtils.toJSON(response);
+resp.onAfterReturn = {
+      call : {
+         procedure: 'log',
+            params: {
+               message: "git api - gitUser = " + gitUser = " + token" + token
+         }
+      }
+   }
+
+return resp;
+
