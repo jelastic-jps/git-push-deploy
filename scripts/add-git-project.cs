@@ -54,23 +54,8 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   token: token
 });
 
-return {result: 0, response: {"aaa":resp, "bbb": "test"}};
-
-println(resp)
-   
-return resp;   
 if (resp.result != 0) return resp;
 resp = resp.response;
-return resp;
-
-resp.onAfterReturn = {
-      call : {
-         procedure: 'log',
-            params: {
-               message: "1 - gitUser = " + gitUser + " token = " + token
-         }
-      }
-   }
 
 return resp;
 
