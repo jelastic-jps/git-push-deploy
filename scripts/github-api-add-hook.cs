@@ -47,8 +47,8 @@ post.releaseConnection();
 
 var resp = eval("(" + response + ")");
 
-if (resp.errors) {
-    resp.error = resp.errors[0].message;
+if (resp.errors || resp.message) {
+    resp.error = resp.errors ? resp.errors[0].message : resp.message;
     resp.result = 99;
 } else {
     resp.response = resp;
