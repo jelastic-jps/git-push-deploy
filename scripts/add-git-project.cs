@@ -52,7 +52,8 @@ return jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   gitUser: gitUser, 
   repo: repo, 
   token: token
-});
+}).response;
+
 /*
 return {
    result : resp.result,
