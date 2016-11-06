@@ -11,17 +11,16 @@ import java.io.BufferedReader;
 
 var client = new HttpClient();
 
-
 //Authentication
 var creds = new UsernamePasswordCredentials(gitUser, token);
 client.getParams().setAuthenticationPreemptive(true);
 client.getState().setCredentials(AuthScope.ANY, creds);
 
-
+//api post request
 var api = "https://api.github.com/repos/"+gitUser+"/"+repo+"/hooks";
 var post = new PostMethod(api);
 
-//Hook request params
+//hook configs
 var params = {
     "name": "web",
     "active": true,
@@ -46,7 +45,7 @@ while ((line = br.readLine()) != null) {
 
 post.releaseConnection();
 
-resp = {result: 0,  response: {"api": api, "json": JSONUtils.toJSON(response) } };
+resp = {result: 0,  response: {"type": typeof JSONUtils.toJSON(response), "json": JSONUtils.toJSON(response).message } };
 resp.onAfterReturn = {
       call : {
          procedure: 'log',
