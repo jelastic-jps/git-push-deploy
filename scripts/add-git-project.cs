@@ -50,7 +50,7 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   baseUrl: baseUrl, 
   project: params.project, 
   gitUser: gitUser, 
-  repo: repoName, 
+  repoName: repoName, 
   token: token
 });
 
