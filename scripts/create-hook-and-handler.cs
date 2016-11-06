@@ -1,5 +1,5 @@
 //@auth
-//@req(baseUrl, project, gitUser, repo, token)
+//@req(baseUrl, envName, project, gitUser, repo, token)
 
 import com.hivext.api.core.utils.Transport;
 import com.hivext.api.utils.Random;
@@ -11,14 +11,16 @@ var scriptBody = new Transport().get(url);
 //inject token
 var scriptToken = Random.getPswd(64);
 scriptBody = scriptBody.replace("${TOKEN}", scriptToken + "");
-scriptBody = scriptBody.replace("${ENV_NAME}", "${env.envName}");
-scriptBody = scriptBody.replace("${PROJECT}}", project + "");
+scriptBody = scriptBody.replace("${ENV_NAME}", envName + "");
+scriptBody = scriptBody.replace("${PROJECT}", project + "");
+
+var scriptName = envName + "-url-hook-handler";
 
 //delete the script if it exists already
-jelastic.dev.scripting.DeleteScript(scriptName);
+var resp = jelastic.dev.scripting.DeleteScript(scriptName);
+if (resp.result != 0) return resp;
 
 //create a new script 
-var scriptName = "${env.envName}-url-hook-handler";
 var resp = jelastic.dev.scripting.CreateScript(scriptName, "js", scriptBody);
 if (resp.result != 0) return resp;
 
