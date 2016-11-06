@@ -1,4 +1,4 @@
-//@req(gitUser, token, repoName, url, secret)
+//@req(gitUser, repoUser, token, repoName, url, secret)
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -17,7 +17,7 @@ client.getParams().setAuthenticationPreemptive(true);
 client.getState().setCredentials(AuthScope.ANY, creds);
 
 //api post request
-var api = "https://api.github.com/repos/" + gitUser + "/" + repoName + "/hooks";
+var api = "https://api.github.com/repos/" + repoUser + "/" + repoName + "/hooks";
 var post = new PostMethod(api);
 
 //hook configs
