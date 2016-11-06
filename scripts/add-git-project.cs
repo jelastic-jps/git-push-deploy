@@ -1,6 +1,5 @@
  //@req(repo, baseUrl, branch, token)
 
-repo = repo.trim();
 if (!repo.endsWith(".git")) repo += ".git";
 
 var params = {
