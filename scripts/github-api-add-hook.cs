@@ -1,4 +1,4 @@
-//@req(gitUser, repoName, token, url)
+//@req(gitUser, token, repoName, url, secret)
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -27,6 +27,7 @@ var params = {
     "events": ["push", "pull_request"],
     "config": {
         "url": url,
+        "secret": secret,
         "content_type": "json"
     }
 };
