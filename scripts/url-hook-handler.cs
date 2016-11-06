@@ -4,7 +4,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.crypto.Mac;
 
 var hubSignature = window.location.headers["X-Hub-Signature"];
-if (hubSignature == hmacSha1(json, token)) {
+if (hubSignature == "sha1=" + hmacSha1(json, token)) {
     return jelastic.env.vcs.Update("env-0448488", signature, "ROOT");
 } else {
     return {
