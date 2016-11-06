@@ -6,29 +6,29 @@
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
     "description": "Example of continuous integration (CI) with git-push-deploy ",
     "settings": {
-			"fields": [{
-				"name": "user",
-				"caption": "GitHub User",
-				"type": "string",
-				"inputType": "string",
-				"default": "sych74",
-				"required": "true"
-			}, {
-				"name": "repo",
-				"caption": "Repo URL",
-				"type": "string",
-				"inputType": "string",
-				"default": "https://github.com/sych74/test",
-				"required": "true"
-			}, {
-				"name": "token",
-				"caption": "Auth Token",
-				"type": "string",
-				"inputType": "string",
-				"default": "5beb41eaf3c71d4e9d78d5988dbd8e5fb056a36e",
-				"required": "true"
-			}]
-		},
+	"fields": [{
+		"name": "user",
+		"caption": "GitHub User",
+		"type": "string",
+		"inputType": "string",
+		"default": "sych74",
+		"required": "true"
+	}, {
+		"name": "repo",
+		"caption": "Repo URL",
+		"type": "string",
+		"inputType": "string",
+		"default": "https://github.com/sych74/test",
+		"required": "true"
+	}, {
+		"name": "token",
+		"caption": "Auth Token",
+		"type": "string",
+		"inputType": "string",
+		"default": "5beb41eaf3c71d4e9d78d5988dbd8e5fb056a36e",
+		"required": "true"
+	}]
+    },
     "env": {
       "topology": {
         "nodes": [
