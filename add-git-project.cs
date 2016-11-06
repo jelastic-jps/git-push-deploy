@@ -1,4 +1,4 @@
- //@req(url, branch)
+ //@req(url, branch, token)
 
 var params = {
    appId: appid,
@@ -16,13 +16,32 @@ var params = {
    autoResolveConflict: true,
    zdt: false
 }
+var arr = url.split("/");
+var repo = arr.pop().split(".").shift(); 
+var user = arr.pop();
 
 //create and update the project 
 resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.project, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
 if (resp.result != 0) return resp;
 resp = jelastic.env.vcs.Update(params.envName, params.session, params.project);
-return resp;
+if (resp.result != 0) return resp;
 
+//add web hook to GitHub via API
+url = baseUrl + "/scripts/create-hook-and-handler.cs";
+scriptBody = new Transport().get(url);
+
+
+return jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
+  user: user, 
+  repo: repo, 
+  token: token, 
+  url: hookurl,
+  baseUrl:baseUrl, 
+  project: params.project, 
+  user: user, 
+  repo: repo, 
+  token: token
+});
 /*
 return {
    result : resp.result,
