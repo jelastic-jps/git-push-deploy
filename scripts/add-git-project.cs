@@ -48,7 +48,6 @@ return jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   user: user, 
   repo: repo, 
   token: token, 
-  url: hookurl,
   baseUrl: baseUrl, 
   project: params.project, 
   user: user, 
