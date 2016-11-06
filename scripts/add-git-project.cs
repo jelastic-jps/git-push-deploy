@@ -44,8 +44,6 @@ if (resp.result != 0) return resp;
 url = baseUrl + "/scripts/create-hook-and-handler.cs";
 scriptBody = new Transport().get(url);
 
-return {result: 0, response: "1 - gitUser = " + gitUser + " token = " + token};
-
 resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   envName: "${env.envName}",
   token: token, 
@@ -55,6 +53,8 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   repo: repo, 
   token: token
 });
+
+return {result: 0, response: resp};
 
 println(resp)
    
