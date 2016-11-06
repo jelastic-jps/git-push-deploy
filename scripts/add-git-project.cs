@@ -56,8 +56,9 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   token: token
 });
 
-print(resp)
+println(resp)
    
+return resp;   
 if (resp.result != 0) return resp;
 resp = resp.response;
 return resp;
