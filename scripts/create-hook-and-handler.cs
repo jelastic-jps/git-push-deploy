@@ -1,5 +1,5 @@
 //@auth
-//@req(baseUrl, project, user, repo, token, hookurl)
+//@req(baseUrl, project, user, repo, token)
 
 import com.hivext.api.core.utils.Transport;
 import com.hivext.api.utils.Random;
