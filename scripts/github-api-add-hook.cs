@@ -45,13 +45,13 @@ while ((line = br.readLine()) != null) {
 
 post.releaseConnection();
 
-return  "git api - gitUser = " + gitUser = " + token" + token;
+return {result: 0,  "git api - gitUser = " + gitUser + " token = " + token;
 resp = JSONUtils.toJSON(response);
 resp.onAfterReturn = {
       call : {
          procedure: 'log',
             params: {
-               message: "git api - gitUser = " + gitUser = " + token" + token
+               message: "git api - gitUser = " + gitUser + " token = " + token
          }
       }
    }
