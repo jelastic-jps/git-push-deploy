@@ -1,6 +1,6 @@
  //@req(repo, baseUrl, branch, token)
 
-if (!repo.endsWith(".git")) repo += ".git";
+if (repo.indexOf(".git") == repo.length - 4) repo += ".git";
 
 var params = {
    appId: appid,
