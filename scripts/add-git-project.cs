@@ -63,7 +63,7 @@ resp.onAfterReturn = {
       call : {
          procedure: 'log',
             params: {
-               message: "1 - gitUser = " + gitUser + " token = " + token"
+               message: "1 - gitUser = " + gitUser + " token = " + token
          }
       }
    }
