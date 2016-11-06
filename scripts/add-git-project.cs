@@ -54,20 +54,4 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   token: token
 });
 
-if (resp.result != 0) return resp;
 return resp.response;
-
-
-/*
-return {
-   result : resp.result,
-   onAfterReturn : {
-      call : {
-         procedure: 'log',
-            params: {
-            message: "put your message"
-         }
-      }
-   }
-}
-*/
