@@ -1,3 +1,4 @@
+//@req(user, repo, token, url)
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -10,7 +11,7 @@ import java.io.BufferedReader;
 
 var client = new HttpClient();
 
-//Au thentication
+//Authentication
 var creds = new UsernamePasswordCredentials(user, token);
 client.getParams().setAuthenticationPreemptive(true);
 client.getState().setCredentials(AuthScope.ANY, creds);
