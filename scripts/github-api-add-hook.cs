@@ -18,7 +18,8 @@ client.getParams().setAuthenticationPreemptive(true);
 client.getState().setCredentials(AuthScope.ANY, creds);
 
 
-var post = new PostMethod("https://api.github.com/repos/"+gitUser+"/"+repo+"/hooks");
+var api = "https://api.github.com/repos/"+gitUser+"/"+repo+"/hooks";
+var post = new PostMethod(api);
 
 //Hook request params
 var params = {
@@ -45,8 +46,7 @@ while ((line = br.readLine()) != null) {
 
 post.releaseConnection();
 
-return {result: 0,  response: "git api - gitUser = " + gitUser + " token = " + token};
-resp = JSONUtils.toJSON(response);
+resp = {result: 0,  response: {"api": api, "json": JSONUtils.toJSON(response) } };
 resp.onAfterReturn = {
       call : {
          procedure: 'log',
