@@ -54,4 +54,4 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   token: token
 });
 
-return resp.response;
+return resp;
