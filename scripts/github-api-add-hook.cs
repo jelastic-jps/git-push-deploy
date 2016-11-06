@@ -31,9 +31,8 @@ var params = {
 };
 
 var requestEntity = new StringRequestEntity(JSONUtils.jsonStringify(params), "application/json", "UTF-8");
-
-
 post.setRequestEntity(requestEntity);
+
 var status = client.executeMethod(post), 
     br = new BufferedReader(new InputStreamReader(post.getResponseBodyAsStream())),
     response = "",
