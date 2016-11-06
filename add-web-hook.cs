@@ -1,4 +1,3 @@
-//r e q(user, repo, token, url)
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
