@@ -1,8 +1,8 @@
- //@req(session, appid, url, branch)
+ //@req(url, branch)
 
 var params = {
    appId: appid,
-   envName: "${env.appid}",
+   envName: "${env.envName}",
    session: session,
    type: "git",
    project: "ROOT",
