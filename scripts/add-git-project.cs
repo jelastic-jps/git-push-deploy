@@ -1,6 +1,8 @@
 //@auth
 //@req(jpsRepo, projectRepo, branch, token)
 
+import com.hivext.api.core.utils.Transport;
+
 var baseUrl = jpsRepo;
 var repo = projectRepo;
 
