@@ -52,7 +52,10 @@ if (resp.errors || resp.message) {
     resp.result = 99;
 } else {
     resp = {
-        response: {id: resp.id},
+        response: {
+            id: resp.id, 
+            result: 0
+        },
         result: 0
     }
 }
