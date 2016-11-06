@@ -8,9 +8,6 @@ import com.hivext.api.utils.Random;
 var url = baseUrl + "/scripts/url-hook-handler.cs";
 var scriptBody = new Transport().get(url);
 
-//inject token
-var scriptToken = Random.getPswd(64);
-scriptBody = scriptBody.replace("${TOKEN}", scriptToken + "");
 scriptBody = scriptBody.replace("${ENV_NAME}", envName + "");
 scriptBody = scriptBody.replace("${PROJECT}", project + "");
 
@@ -33,13 +30,14 @@ scriptBody = new Transport().get(url);
 
 //get app hook domain
 var domain = jelastic.dev.apps.GetApp(appid).hosting.domain;
-var hookurl = "http://" + domain +"/"+scriptName+"?&token=" + scriptToken;
+var hookurl = "http://" + domain +"/"+scriptName;
 
 resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   gitUser: gitUser, 
   repoName: repoName, 
   token: token, 
-  url: hookurl
+  url: hookurl,
+  secret: Random.getPswd(64)
 });
 if (resp.result != 0) return resp;
 return resp.response;
