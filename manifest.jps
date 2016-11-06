@@ -23,10 +23,11 @@
         "execScript": [
           {
             "type": "js",
-            "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/add-git-project.cs",
+            "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/w/o-auth/scripts/add-git-project.cs",
             "params": {
-              "url": "https://github.com/WordPress/WordPress.git",
-              "branch": "master"
+              "url": "https://github.com/sych74/test.git",
+              "branch": "master",
+              "token": "${settings.token}"
             },
             "user": "root"
           }
