@@ -15,7 +15,7 @@
 		"required": "true"
 	}, {
 		"name": "repo",
-		"caption": "Repo URL",
+		"caption": "GitHub Repo URL",
 		"type": "string",
 		"inputType": "string",
 		"default": "https://github.com/sych74/test",
