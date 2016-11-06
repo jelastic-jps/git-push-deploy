@@ -60,6 +60,7 @@ print(resp)
    
 if (resp.result != 0) return resp;
 resp = resp.response;
+return resp;
 
 resp.onAfterReturn = {
       call : {
