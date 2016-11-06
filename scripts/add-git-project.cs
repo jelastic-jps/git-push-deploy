@@ -53,6 +53,4 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   repoName: repoName, 
   token: token
 });
-
-if (resp.error != 0) return resp;
-return resp.response;
+return resp;
