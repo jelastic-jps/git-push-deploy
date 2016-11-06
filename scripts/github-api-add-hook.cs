@@ -1,5 +1,4 @@
 //@req(gitUser, repo, token, url)
-
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
@@ -17,7 +16,7 @@ client.getParams().setAuthenticationPreemptive(true);
 client.getState().setCredentials(AuthScope.ANY, creds);
 
 //api post request
-var api = "https://api.github.com/repos/"+gitUser+"/"+repo+"/hooks";
+var api = "https://api.github.com/repos/" + gitUser + "/" + repo + "/hooks";
 var post = new PostMethod(api);
 
 //hook configs
@@ -34,7 +33,7 @@ var params = {
 var requestEntity = new StringRequestEntity(JSONUtils.jsonStringify(params), "application/json", "UTF-8");
 post.setRequestEntity(requestEntity);
 
-var status = client.executeMethod(post), 
+var status = client.executeMethod(post),
     br = new BufferedReader(new InputStreamReader(post.getResponseBodyAsStream())),
     response = "",
     line;
@@ -45,15 +44,9 @@ while ((line = br.readLine()) != null) {
 
 post.releaseConnection();
 
-resp = {result: 0,  response: {"type": typeof JSONUtils.toJSON(response), "json": JSONUtils.toJSON(response).message } };
-resp.onAfterReturn = {
-      call : {
-         procedure: 'log',
-            params: {
-               message: "git api - gitUser = " + gitUser + " token = " + token
-         }
-      }
-   }
+resp = {
+    result: 0,
+    response: eval("(" + response + ")")
+};
 
 return resp;
-
