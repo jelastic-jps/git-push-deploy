@@ -11,7 +11,7 @@ import java.io.BufferedReader;
 
 var client = new HttpClient();
 
-//Authentication
+//Au thentication
 var creds = new UsernamePasswordCredentials(user, token);
 client.getParams().setAuthenticationPreemptive(true);
 client.getState().setCredentials(AuthScope.ANY, creds);
