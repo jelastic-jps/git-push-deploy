@@ -1,5 +1,5 @@
  //@req(repo, baseUrl, branch, token)
-
+return {resul: -1, response: "a" + repo}
 if (repo.indexOf(".git") == repo.length - 4) repo += ".git";
 
 var params = {
