@@ -25,7 +25,8 @@ if (resp.result != 0) return resp;
 //get app domain
 var domain = jelastic.dev.apps.GetApp(appid).hosting.domain;
 
-url = baseUrl + "/scripts/add-web-hook.cs";
+//add web hook to GitHub via API
+url = baseUrl + "/scripts/github-api-add-hook.cs";
 scriptBody = new Transport().get(url);
 
 var hookurl = "http://${this.domain}/"+scriptName+"?&token=" + scriptToken;
@@ -37,9 +38,6 @@ return jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   url: hookurl
 });
 
-return {
-  result: 0
-}
 /*
 return {
     result: 0,
