@@ -28,9 +28,15 @@ var arr = repo.split("/");
 var repo = arr.pop().split(".").shift(); 
 var user = arr.pop();
 
+//Remove previous version 
+resp = jelastic.env.vcs.DeleteProject(params.envName, params.session, params.project);
+if (resp.result != 0) return resp;
+
 //create and update the project 
 resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.project, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
 if (resp.result != 0) return resp;
+
+//pull update
 resp = jelastic.env.vcs.Update(params.envName, params.session, params.project);
 if (resp.result != 0) return resp;
 
