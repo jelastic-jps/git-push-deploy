@@ -30,7 +30,6 @@ if (resp.result != 0) return resp;
 url = baseUrl + "/scripts/create-hook-and-handler.cs";
 scriptBody = new Transport().get(url);
 
-
 return jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   user: user, 
   repo: repo, 
