@@ -30,7 +30,7 @@ var gitUser = arr.pop();
 
 //Remove previous version 
 resp = jelastic.env.vcs.DeleteProject(params.envName, params.session, params.project);
-if (resp.result != 0) return resp;
+if (resp.result != 0 && resp.result != 2500) return resp;
 
 //create and update the project 
 resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.project, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
