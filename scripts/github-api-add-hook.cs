@@ -45,6 +45,7 @@ while ((line = br.readLine()) != null) {
 
 post.releaseConnection();
 
+return  "git api - gitUser = " + gitUser = " + token" + token;
 resp = JSONUtils.toJSON(response);
 resp.onAfterReturn = {
       call : {
