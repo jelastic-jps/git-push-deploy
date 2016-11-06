@@ -1,5 +1,5 @@
 //@auth
-//@req(baseUrl, envName, project, gitUser, repo, token)
+//@req(baseUrl, envName, project, gitUser, repoName, token)
 
 import com.hivext.api.core.utils.Transport;
 import com.hivext.api.utils.Random;
@@ -35,7 +35,7 @@ var hookurl = "http://${this.domain}/"+scriptName+"?&token=" + scriptToken;
 
 resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   gitUser: gitUser, 
-  repo: repo, 
+  repoName: repoName, 
   token: token, 
   url: hookurl
 });
