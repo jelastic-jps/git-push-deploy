@@ -1,5 +1,5 @@
 //@auth
-//@req(jpsRepo, projectRepo, branch, token)
+//@req(jpsRepo, gitUser, token, projectRepo, branch)
 
 import com.hivext.api.core.utils.Transport;
 
@@ -26,7 +26,7 @@ var params = {
 }
 var arr = repo.split("/");
 var repoName = arr.pop().split(".").shift(); 
-var gitUser = arr.pop();
+var repoUser = arr.pop();
 
 //Remove previous version 
 resp = jelastic.env.vcs.DeleteProject(params.envName, params.session, params.project);
@@ -50,6 +50,7 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   baseUrl: baseUrl, 
   project: params.project, 
   gitUser: gitUser, 
+  repoUser: repoUser, 
   repoName: repoName, 
   token: token
 });
