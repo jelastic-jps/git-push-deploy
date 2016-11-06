@@ -38,7 +38,7 @@ return jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   repo: repo, 
   token: token, 
   url: hookurl
-}).response;
+});
 
 /*
 return {
