@@ -40,18 +40,3 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   url: hookurl
 });
 return resp;
-
-/*
-return {
-    result: 0,
-    onAfterReturn : {
-        call : {
-            procedure : next,
-            params : {
-                domain : domain,
-                token : token
-            }
-        }
-    }
-}
-*/
