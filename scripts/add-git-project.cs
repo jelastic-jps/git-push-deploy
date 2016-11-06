@@ -25,7 +25,7 @@ var params = {
    zdt: false
 }
 var arr = repo.split("/");
-var repo = arr.pop().split(".").shift(); 
+var repoName = arr.pop().split(".").shift(); 
 var gitUser = arr.pop();
 
 //Remove previous version 
@@ -50,7 +50,7 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   baseUrl: baseUrl, 
   project: params.project, 
   gitUser: gitUser, 
-  repo: repo, 
+  repo: repoName, 
   token: token
 });
 
