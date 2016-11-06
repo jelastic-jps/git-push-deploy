@@ -1,5 +1,5 @@
 //@auth
-//@req(baseUrl, envName, project, gitUser, repoName, token)
+//@req(baseUrl, envName, project, gitUser, repoName, token, hookDomain)
 
 import com.hivext.api.core.utils.Transport;
 import com.hivext.api.utils.Random;
@@ -31,7 +31,7 @@ var domain = jelastic.dev.apps.GetApp(appid).hosting.domain;
 url = baseUrl + "/scripts/github-api-add-hook.cs";
 scriptBody = new Transport().get(url);
 
-var hookurl = "http://${this.domain}/"+scriptName+"?&token=" + scriptToken;
+var hookurl = "http://" + hookDomain +"/"+scriptName+"?&token=" + scriptToken;
 
 resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   gitUser: gitUser, 
