@@ -42,4 +42,4 @@ resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   url: hookurl
 });
 if (resp.result != 0) return resp;
-return resp.response;
+return resp;
