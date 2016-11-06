@@ -26,7 +26,7 @@ var params = {
 }
 var arr = repo.split("/");
 var repo = arr.pop().split(".").shift(); 
-var user = arr.pop();
+var gitUser = arr.pop();
 
 //Remove previous version 
 resp = jelastic.env.vcs.DeleteProject(params.envName, params.session, params.project);
@@ -45,12 +45,10 @@ url = baseUrl + "/scripts/create-hook-and-handler.cs";
 scriptBody = new Transport().get(url);
 
 return jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
-  user: user, 
-  repo: repo, 
   token: token, 
   baseUrl: baseUrl, 
   project: params.project, 
-  user: user, 
+  gitUser: gitUser, 
   repo: repo, 
   token: token
 });
