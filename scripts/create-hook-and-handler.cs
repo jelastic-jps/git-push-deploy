@@ -18,7 +18,7 @@ var scriptName = envName + "-url-hook-handler";
 
 //delete the script if it exists already
 var resp = jelastic.dev.scripting.DeleteScript(scriptName);
-if (resp.result != 0) return resp;
+if (resp.result != 0 && resp.result != 1702) return resp;
 
 //create a new script 
 var resp = jelastic.dev.scripting.CreateScript(scriptName, "js", scriptBody);
