@@ -21,7 +21,7 @@ var resp = jelastic.dev.scripting.DeleteScript(scriptName);
 if (resp.result != 0 && resp.result != 1702) return resp;
 
 //create a new script 
-var resp = jelastic.dev.scripting.CreateScript(scriptName, "js", scriptBody);
+resp = jelastic.dev.scripting.CreateScript(scriptName, "js", scriptBody);
 if (resp.result != 0) return resp;
 
 //get app domain
@@ -33,12 +33,14 @@ scriptBody = new Transport().get(url);
 
 var hookurl = "http://${this.domain}/"+scriptName+"?&token=" + scriptToken;
 
-return jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
+resp = jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   gitUser: gitUser, 
   repo: repo, 
   token: token, 
   url: hookurl
 });
+if (resp.result != 0) return resp;
+return resp.response;
 
 /*
 return {
