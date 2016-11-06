@@ -1,7 +1,10 @@
 //@auth
-//@req(repo, baseUrl, branch, token)
+//@req(jpsRepo, projectRepo, branch, token)
 
-return {resul: -1, response: "a" + repo + " base = " +  baseUrl}
+var baseUrl = jpsRepo;
+var repo = projectRepo;
+
+return {resul: -1, response: "a = " + repo + " base = " +  baseUrl}
 if (repo.indexOf(".git") == repo.length - 4) repo += ".git";
 
 var params = {
