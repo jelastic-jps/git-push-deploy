@@ -1,4 +1,7 @@
- //@req(url, branch, token)
+ //@req(repo, baseUrl, branch, token)
+
+repo = repo.trim();
+if (!repo.endsWith(".git")) repo += ".git";
 
 var params = {
    appId: appid,
@@ -6,7 +9,7 @@ var params = {
    session: session,
    type: "git",
    project: "ROOT",
-   url: url,
+   url: repo,
    branch: branch,
    keyId: null,
    login: null,
@@ -16,7 +19,7 @@ var params = {
    autoResolveConflict: true,
    zdt: false
 }
-var arr = url.split("/");
+var arr = repo.split("/");
 var repo = arr.pop().split(".").shift(); 
 var user = arr.pop();
 
@@ -35,7 +38,7 @@ return jelastic.dev.scripting.EvalCode(scriptBody, "js", null, {
   repo: repo, 
   token: token, 
   url: hookurl,
-  baseUrl:baseUrl, 
+  baseUrl: baseUrl, 
   project: params.project, 
   user: user, 
   repo: repo, 
