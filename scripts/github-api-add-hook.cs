@@ -51,8 +51,10 @@ if (resp.errors || resp.message) {
     resp.error = resp.errors ? resp.errors[0].message : resp.message;
     resp.result = 99;
 } else {
-    resp.response = resp;
-    resp.result = 0;
+    resp = {
+        response: {id: resp.id},
+        result: 0
+    }
 }
 
 return resp;
