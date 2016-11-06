@@ -1,5 +1,5 @@
 {
-  "jpsType": "install",
+  "jpsType": "update",
   "jpsVersion": "0.8",
   "application": {
     "name": "Git-Push-Deploy Example",
@@ -15,7 +15,7 @@
 		"required": "true"
 	}, {
 		"name": "repo",
-		"caption": "GitHub Repo URL",
+		"caption": "Repo URL",
 		"type": "string",
 		"inputType": "string",
 		"default": "https://github.com/sych74/test",
@@ -25,7 +25,7 @@
 		"caption": "Auth Token",
 		"type": "string",
 		"inputType": "string",
-		"default": "5beb41eaf3c71d4e9d78d5988dbd8e5fb056a36e",
+		"default": "",
 		"required": "true"
 	}]
     },
@@ -47,13 +47,13 @@
         "execScript": [
           {
             "type": "js",
-            "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/w/o-auth/scripts/add-git-project.cs",
+            "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/w/o-auth/scripts/add-git-project.cs?r6076754",
             "params": {
-              "url": "${settings.repo}",
+              "projectRepo": "${settings.repo}", 
+              "jpsRepo": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/w/o-auth", 
               "branch": "master",
               "token": "${settings.token}"
-            },
-            "user": "root"
+            }
           }
         ]
       },
