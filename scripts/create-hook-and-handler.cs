@@ -10,9 +10,9 @@ var scriptBody = new Transport().get(url);
 
 //inject token
 var scriptToken = Random.getPswd(64);
-scriptBody = scriptBody.replace("${TOKEN}", scriptToken);
+scriptBody = scriptBody.replace("${TOKEN}", scriptToken + "");
 scriptBody = scriptBody.replace("${ENV_NAME}", "${env.envName}");
-scriptBody = scriptBody.replace("${PROJECT}}", project);
+scriptBody = scriptBody.replace("${PROJECT}}", project + "");
 
 //delete the script if it exists already
 jelastic.dev.scripting.DeleteScript(scriptName);
