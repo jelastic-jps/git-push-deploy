@@ -5,7 +5,7 @@ import com.hivext.api.core.utils.Transport;
 import com.hivext.api.utils.Random;
 
 //reading script from URL
-var url = baseUrl + "/url-hook-handler.cs";
+var url = baseUrl + "/scripts/url-hook-handler.cs";
 var scriptBody = new Transport().get(url);
 
 //inject token
@@ -23,7 +23,7 @@ if (resp.result != 0) return resp;
 //get app domain
 var domain = jelastic.dev.apps.GetApp(appid).hosting.domain;
 
-url = baseUrl + "/add-web-hook.cs";
+url = baseUrl + "/scripts/add-web-hook.cs";
 scriptBody = new Transport().get(url);
 
 var hookurl = "http://${this.domain}/"+scriptName+"?&token=" + scriptToken;
