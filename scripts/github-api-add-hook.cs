@@ -1,4 +1,5 @@
 //@req(gitUser, repoName, token, url)
+
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.httpclient.UsernamePasswordCredentials;
@@ -53,6 +54,5 @@ if (resp.errors) {
     resp.response = resp;
     resp.result = 0;
 }
-
 
 return resp;
