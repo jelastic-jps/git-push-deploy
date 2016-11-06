@@ -1,3 +1,4 @@
+//@url('/${SCRIPT_URL')
 //@req(token)
 
 if (token == "${TOKEN}") {
