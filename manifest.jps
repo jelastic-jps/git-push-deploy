@@ -47,11 +47,11 @@
         "execScript": [
           {
             "type": "js",
-            "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/w/o-auth/scripts/add-git-project.cs",
+            "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/1.0-w/o-auth/scripts/add-git-project.cs",
             "params": {
               "gitUser": "${settings.user}",
               "projectRepo": "${settings.repo}", 
-              "jpsRepo": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/w/o-auth", 
+              "jpsRepo": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/1.0-w/o-auth", 
               "branch": "master",
               "token": "${settings.token}"
             }
