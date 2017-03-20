@@ -3,7 +3,7 @@
     "jpsVersion": "0.99",
     "id": "git-push-deploy",
     "name": "Git-Push-Deploy",
-    "homepage": "https://github.com/jelastic-jps/git-push-deploy-with-maven",
+    "homepage": "https://github.com/jelastic-jps/git-push-deploy",
     "description": "Example of Continuous Integration (CI) Pipeline with Maven",
     "nodes": {
         "count": 1,
@@ -57,7 +57,7 @@
         }]
     },
     "globals": {
-        "basePath": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy-with-maven/master/"
+        "basePath": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/"
     },
     "onInstall": {
         "script": "${globals.basePath}/scripts/check-deployment-type.cs?_r=${fn.random}",
