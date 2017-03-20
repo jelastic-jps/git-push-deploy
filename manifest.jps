@@ -1,65 +1,86 @@
 {
-  "jpsType": "install",
-  "jpsVersion": "0.6",
-  "application": {
-    "name": "Git-Push-Deploy Example",
-    "homepage": "https://github.com/jelastic-jps/git-push-deploy",
-    "description": "Example of continuous integration (CI) with git-push-deploy ",
-    "env": {
-      "topology": {
-        "nodes": [
-          {
-            "count": 1,
-            "cloudlets": 16,
-            "nodeGroup": "cp",
-            "nodeType": "apache2"
-          }
-        ],
-        "engine": "php5.6"
-      }
+    "jpsType": "update",
+    "jpsVersion": "0.99",
+    "id": "git-push-deploy",
+    "name": "Git-Push-Deploy",
+    "homepage": "https://github.com/jelastic-jps/git-push-deploy-with-maven",
+    "description": "Example of Continuous Integration (CI) Pipeline with Maven",
+    "nodes": {
+        "count": 1,
+        "cloudlets": 16,
+        "nodeGroup": "build",
+        "nodeType": "maven3"
     },
-    "onInstall": [
-      {
-        "execScript": [
-          {
-            "type": "js",
-            "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/add-git-project.cs",
-            "params": {
-              "url": "github.com:jelastic-jps/test-private-repo.git",
-              "branch": "master"
+    "engine": "java8",
+    "settings": {
+        "fields": [{
+            "name": "gitRepo",
+            "caption": "Git Repo Url",
+            "type": "string",
+            "default": "https://github.com/sych74/HelloWorld.git",
+            "required": "true"
+        }, {
+            "name": "gitBranch",
+            "caption": "Branch",
+            "type": "string",
+            "default": "master",
+            "required": "true"
+        }, {
+            "name": "gitUser",
+            "caption": "User",
+            "type": "string",
+            "default": "sych74",
+            "required": "true"
+        }, {
+            "name": "gitToken",
+            "caption": "Token",
+            "type": "string",
+            "default": "dd97d1521c6cdb9b946d935d31a05f7e8a588386",
+            "required": "true"
+        }, {
+            "name": "deployType",
+            "type": "hidden",
+            "values": {
+                "native": "Certified containers - deployment via API",
+                "custom": "Custom containers - deployment via volume mount + restart"
             },
-            "user": "root"
-          }
-        ]
-      },
-      {
-        "call" : "after-deploy-hook"
-      },
-      {
-        "log": "installed successfully"
-      }
-    ],
-    "procedures": [
-      {
-        "id": "after-deploy-hook",
-        "onCall": {
-          "execCmd": {
-            "nodeGroup": "cp",
-            "user": "root",
-            "commands": [
-              "mkdir -p /opt/repo/ROOT/.git/hooks/",
-              "printf '#!/bin/bash\nsudo /etc/init.d/cartridge reload >> /var/log/reload.log\n' > /opt/repo/ROOT/.git/hooks/post-merge",
-              "chmod +x /opt/repo/ROOT/.git/hooks/post-merge"
-            ]
-          }
+            "showIf": {
+                "custom": [{
+                    "name": "deployPathCustom",
+                    "caption": "Mount Path",
+                    "type": "string",
+                    "default": "/opt/payara/deployments"
+                }]
+            },
+            "default": "native",
+            "required": "true"
+        }]
+    },
+    "globals": {
+        "basePath": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy-with-maven/master/"
+    },
+    "onInstall": {
+        "script": "${globals.basePath}/scripts/check-deployment-type.cs?_r=${fn.random}",
+        "next": "jps"
+    },
+    "actions": {
+        "jps": {
+            "install": {
+                "envName": "${env.envName}-ci-cd",
+                "jps": "${globals.basePath}/addons/${this.addon}.jps?_r=${fn.random}",
+                "settings": {
+                    "gitUser": "${settings.gitUser}",
+                    "gitRepo": "${settings.gitRepo}",
+                    "gitToken": "${settings.gitToken}",
+                    "gitBranch": "${settings.gitBranch}",
+                    "deployType": "${settings.deployType}",
+                    "targetEnv": "${env.envName}",
+                    "basePath": "${settings.path}"
+                }
+            }
         }
-      },
-      {
-        "id": "log",
-        "onCall": {
-          "log": "${this.message}"
-        }
-      }
-    ]
-  }
+    },
+    "success": {
+        "text": "CI/CD pipeline has been successfully integrated!<br/>Open url of the target environment <u><a href='http://${settings.targetEnv}'>${settings.targetEnv}</a></u> and go to the context defined in your pom.xml at &lt;artifactId&gt;.<br/>If someshing does not work check the logs, there are more details to analyze."
+    }
 }

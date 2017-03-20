@@ -1,0 +1,56 @@
+{
+    "jpsType": "update",
+    "id": "vcs-addon",
+    "name": "vcs-addon",
+    "description": "Add VCS Project",
+    "globals": {
+        "scriptName": "git-push-redeploy",
+        "basePath": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy-with-maven/master/scripts"
+    },
+    "onInstall": [
+        "add-vcs-project",
+        "create-redeploy-script"
+    ],
+    "onBeforeDelete": "delete-redeploy-script",
+    "actions": {
+        "create-redeploy-script": {
+            "script": "${globals.basePath}/create-redeploy-script.cs?r_${fn.random}",
+            "url": "${globals.basePath}/redeploy.cs",
+            "targetEnv": "${env.envName}",
+            "nodeGroup": "cp",
+            "next": "setup-hooks"
+        },
+        "setup-hooks": [{
+            "web-hook": {
+                "token": "${this.token}",
+                "host": "${this.host}",
+                "appid": "${this.appid}"
+            }
+        }],
+        "web-hook": {
+            "script": "${globals.basePath}/add-web-hook.cs?r_${fn.random}",
+            "user": "${settings.gitUser}",
+            "repo": "${settings.gitRepo}",
+            "token": "${settings.gitToken}",
+            "callbackUrl": "${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=rebuild&appid=${this.appid}",
+            "scriptName": "${globals.scriptName}",
+            "act": "${this.act}"
+        },
+        "add-vcs-project": {
+            "script": "${globals.basePath}/add-vcs-project.cs?r_${fn.random}",
+            "url": "${settings.gitRepo}",
+            "branch": "${settings.gitBranch}",
+            "user": "${settings.gitUser}",
+            "token": "${settings.gitToken}"           
+        },
+        "delete-redeploy-script": [{
+            "jelastic.dev.scripting.DeleteScript": {
+                "name": "${env.envName}-${globals.scriptName}"
+            }
+        }, {
+            "web-hook": {
+                "act": "delete"
+            }
+        }]
+    }
+}
