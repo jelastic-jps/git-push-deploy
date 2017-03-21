@@ -29,13 +29,13 @@
             "name": "gitUser",
             "caption": "User",
             "type": "string",
-            "default": "sych74",
+            "default": "",
             "required": "true"
         }, {
             "name": "gitToken",
             "caption": "Token",
             "type": "string",
-            "default": "dd97d1521c6cdb9b946d935d31a05f7e8a588386",
+            "default": "",
             "required": "true"
         }, {
             "name": "deployType",
