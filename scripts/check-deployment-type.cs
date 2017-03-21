@@ -6,6 +6,9 @@ for (i = 0; i < nodes.length; i++){
   if (nodes[i].nodeGroup == 'cp') {
     engine = nodes[i].activeEngine
     addon = engine ? (engine.type == 'java' ? 'maven' : 'vcs') : 'mount'
+      
+    if (addon == 'mount') return {result:99, error: 'deploy to custom containers are not implemented yet', type: 'warning'}
+    
     resp = {
       result: 0, 
       onAfterReturn: {}
