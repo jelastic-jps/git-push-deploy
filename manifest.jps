@@ -57,7 +57,7 @@
         }]
     },
     "globals": {
-        "basePath": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/"
+        "basePath": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master"
     },
     "onInstall": {
         "script": "${globals.basePath}/scripts/check-deployment-type.cs?_r=${fn.random}",
