@@ -12,9 +12,9 @@
         "nodeType": "maven3"
     },
     "engine": "java8",
+    "baseUrl": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy-with-maven/master/scripts",
     "globals": {
         "scriptName": "git_push_redeploy",
-        "basePath": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy-with-maven/master/scripts",
         "hooksLog": "/var/log/maven/hooks.log"
     },
     "onInstall": [
@@ -25,8 +25,8 @@
     "onBeforeDelete": "delete-redeploy-script",
     "actions": {
         "create-redeploy-script": {
-            "script": "${globals.basePath}/create-redeploy-script.cs?r_${fn.random}",
-            "url": "${globals.basePath}/redeploy.cs",
+            "script": "${baseUrl}/create-redeploy-script.cs?r_${fn.random}",
+            "url": "${baseUrl}/redeploy.cs",
             "targetEnv": "${settings.targetEnv}",
             "nodeGroup": "cp",
             "next": "setup-hooks"
@@ -47,7 +47,7 @@
             }
         }],
         "web-hook": {
-            "script": "${globals.basePath}/add-web-hook.cs?r_${fn.random}",
+            "script": "${baseUrl}/add-web-hook.cs?r_${fn.random}",
             "user": "${settings.gitUser}",
             "repo": "${settings.gitRepo}",
             "token": "${settings.gitToken}",
@@ -56,7 +56,7 @@
             "act": "${this.act}"
         },
         "add-build-project": {
-            "script": "${globals.basePath}/add-build-project.cs?r_${fn.random}",
+            "script": "${baseUrl}/add-build-project.cs?r_${fn.random}",
             "name": "${globals.scriptName}",
             "url": "${settings.gitRepo}",
             "branch": "${settings.gitBranch}",
@@ -75,7 +75,7 @@
         }],
         "mount-deploy-volume": {
             "if ('${settings.deployType}' == 'custom')": {
-                "script": "${globals.basePath}/add-deploy-mount.cs?07",
+                "script": "${baseUrl}/add-deploy-mount.cs?07",
                 "pathFrom": "/var/lib/jelastic/PROJECTS/${globals.scriptName}/target",
                 "pathTo": "${settings.deployPathCustom}"
             }
