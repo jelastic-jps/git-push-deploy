@@ -3,9 +3,9 @@
     "id": "vcs-addon",
     "name": "vcs-addon",
     "description": "Add VCS Project",
+    "baseUrl": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/scripts",
     "globals": {
-        "scriptName": "git-push-redeploy",
-        "basePath": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy-with-maven/master/scripts"
+        "scriptName": "git-push-redeploy"
     },
     "onInstall": [
         "add-vcs-project",
@@ -14,8 +14,8 @@
     "onBeforeDelete": "delete-redeploy-script",
     "actions": {
         "create-redeploy-script": {
-            "script": "${globals.basePath}/create-redeploy-script.cs?r_${fn.random}",
-            "url": "${globals.basePath}/redeploy.cs",
+            "script": "${baseUrl}/create-redeploy-script.cs?r_${fn.random}",
+            "url": "${baseUrl}/redeploy.cs",
             "targetEnv": "${env.envName}",
             "nodeGroup": "cp",
             "next": "setup-hooks"
@@ -28,7 +28,7 @@
             }
         }],
         "web-hook": {
-            "script": "${globals.basePath}/add-web-hook.cs?r_${fn.random}",
+            "script": "${baseUrl}/add-web-hook.cs?r_${fn.random}",
             "user": "${settings.gitUser}",
             "repo": "${settings.gitRepo}",
             "token": "${settings.gitToken}",
@@ -37,7 +37,7 @@
             "act": "${this.act}"
         },
         "add-vcs-project": {
-            "script": "${globals.basePath}/add-vcs-project.cs?r_${fn.random}",
+            "script": "${baseUrl}/add-vcs-project.cs?r_${fn.random}",
             "url": "${settings.gitRepo}",
             "branch": "${settings.gitBranch}",
             "user": "${settings.gitUser}",
