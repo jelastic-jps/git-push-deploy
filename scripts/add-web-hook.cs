@@ -60,8 +60,6 @@ var params = {
     }
 };
 
-'http://${this.domain}'
-
 var newHook = eval("(" + exec(post, params) + ")");
 return {
     result: 0, 
