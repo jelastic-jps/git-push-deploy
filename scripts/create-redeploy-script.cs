@@ -28,9 +28,9 @@ var nodes = resp.nodes;
 var build = false;
 for (var i = 0; i < nodes.length; i++) {
    if (nodes[i].nodeGroup == nodeGroup) {
-       var engine = nodes[i].activeEngine;
-       certified = engine ? true : false;
-       if (engine && engine.type == "java") build = true;
+       type = nodes[i].engineType || (nodes[i].activeEngine || {}).type
+       certified = type ? true : false;
+       if (type == "java") build = true;
        break;
    }
 }
