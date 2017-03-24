@@ -41,7 +41,8 @@
             "url": "${settings.gitRepo}",
             "branch": "${settings.gitBranch}",
             "user": "${settings.gitUser}",
-            "token": "${settings.gitToken}"           
+            "token": "${settings.gitToken}",
+            "type": "${settings.type}"
         },
         "delete-redeploy-script": [{
             "jelastic.dev.scripting.DeleteScript": {
