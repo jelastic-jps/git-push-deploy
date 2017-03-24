@@ -13,7 +13,7 @@ for (i = 0; i < nodes.length; i++){
       result: 0, 
       onAfterReturn: {}
     }
-    resp.onAfterReturn[next] = {addon: addon};
+    resp.onAfterReturn[next] = {addon: addon, type: type};
     resp.onAfterReturn = [resp.onAfterReturn];
     resp.onAfterReturn.push({
       "showMessage": {
