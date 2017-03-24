@@ -18,7 +18,7 @@ for (i = 0; i < nodes.length; i++){
     resp.onAfterReturn.push({
       "showMessage": {
         type: type
-      }
+      };
     return resp
   }
 }
