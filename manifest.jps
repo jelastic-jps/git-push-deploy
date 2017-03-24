@@ -77,7 +77,8 @@
                     "gitBranch": "${settings.gitBranch}",
                     "deployType": "${settings.deployType}",
                     "targetEnv": "${env.envName}",
-                    "basePath": "${settings.path}"
+                    "basePath": "${settings.path}",
+                    "type": "${this.type}"
                 }
             }
         },
