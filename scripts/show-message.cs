@@ -6,12 +6,12 @@ if (type == "java") {
   return {
     type: successText,
     message: javaLang,
-    email: javaLang"
+    email: javaLang
   }
 }
 
 return {
     type: successText,
     message: otherLangs,
-    email: otherLangs"
+    email: otherLangs
 };
