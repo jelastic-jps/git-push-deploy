@@ -1,4 +1,4 @@
-//@req(user, token, url, branch)
+//@req(user, token, url, branch, type)
 
 var params = {
    session: session,
@@ -9,7 +9,7 @@ var params = {
    login: user,
    password: token,
    keyId: null,
-   context: "ROOT",
+   context: type == "ruby" ? "production" : "ROOT",
    autoupdate: true,
    interval: 1,
    autoResolveConflict: true,
