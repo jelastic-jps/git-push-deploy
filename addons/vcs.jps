@@ -29,12 +29,14 @@
         }],
         "web-hook": {
             "script": "${baseUrl}/add-web-hook.cs?r_${fn.random}",
-            "user": "${settings.gitUser}",
-            "repo": "${settings.gitRepo}",
-            "token": "${settings.gitToken}",
-            "callbackUrl": "${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=rebuild&appid=${this.appid}",
-            "scriptName": "${globals.scriptName}",
-            "act": "${this.act}"
+            "params" : {
+                "user": "${settings.gitUser}",
+                "repo": "${settings.gitRepo}",
+                "token": "${settings.gitToken}",
+                "callbackUrl": "${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=rebuild&appid=${this.appid}",
+                "scriptName": "${globals.scriptName}",
+                "act": "${this.act}"
+            }
         },
         "add-vcs-project": {
             "script": "${baseUrl}/add-vcs-project.cs?r_${fn.random}",
