@@ -80,7 +80,7 @@
             }
         },
         "showMessage": {
-            "script": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/scripts/show-message.cs?_r=${fn.random}",
+            "script": "${globals.basePath}/scripts/show-message.cs?_r=${fn.random}",
             "params": {
                 "javaLang": "CI/CD pipeline has been successfully integrated!<br/>Open url of the target environment <u><a href='http://${settings.targetEnv}' target='_blank'>${settings.targetEnv}</a></u> and go to the context defined in your pom.xml at &lt;artifactId&gt;.<br/>If someshing does not work check the logs, there are more details to analyze.",
                 "otherLangs" : "CI/CD pipeline has been successfully integrated!<br/>Open url of the target environment <u><a href='http://${settings.targetEnv}' target='_blank'>${settings.targetEnv}</a></u>.<br/>If someshing does not work check the logs, there are more details to analyze.",
