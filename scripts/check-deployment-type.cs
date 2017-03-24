@@ -7,7 +7,7 @@ for (i = 0; i < nodes.length; i++){
     type = nodes[i].engineType || (nodes[i].activeEngine || {}).type;
     addon = type ? (type == 'java' ? 'maven' : 'vcs') : 'mount'
       
-    if (addon == 'mount') return {result:99, error: 'deploy to custom containers are not implemented yet', type: 'warning'}
+    if (addon == 'mount') return {result:99, error: 'deploy to custom containers is not implemented yet', type: 'warning'}
     
     resp = {
       result: 0, 
