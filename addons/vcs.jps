@@ -38,11 +38,13 @@
         },
         "add-vcs-project": {
             "script": "${baseUrl}/add-vcs-project.cs?r_${fn.random}",
-            "url": "${settings.gitRepo}",
-            "branch": "${settings.gitBranch}",
-            "user": "${settings.gitUser}",
-            "token": "${settings.gitToken}",
-            "type": "${settings.type}"
+            "params": {
+                "url": "${settings.gitRepo}",
+                "branch": "${settings.gitBranch}",
+                "user": "${settings.gitUser}",
+                "token": "${settings.gitToken}",
+                "type": "${settings.type}"
+            }
         },
         "delete-redeploy-script": [{
             "jelastic.dev.scripting.DeleteScript": {
