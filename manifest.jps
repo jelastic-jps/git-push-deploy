@@ -61,7 +61,9 @@
     },
     "onInstall": {
         "script": "${globals.basePath}/scripts/check-deployment-type.cs?_r=${fn.random}",
-        "next": "jps"
+        "next": "jps",
+        "javaLang": "CI/CD pipeline has been successfully integrated!<br/>Open url of the target environment <u><a href='http://${env.domain}' target='_blank'>${env.domain}</a></u> and go to the context defined in your pom.xml at &lt;artifactId&gt;.<br/>If someshing does not work check the logs, there are more details to analyze.",
+        "otherLangs" : "CI/CD pipeline has been successfully integrated!<br/>Open url of the target environment <u><a href='http://${env.domain}' target='_blank'>${env.domain}</a></u>.<br/>If someshing does not work check the logs, there are more details to analyze."
     },
     "actions": {
         "jps": {
@@ -80,12 +82,7 @@
             }
         },
         "showMessage": {
-            "script": "${globals.basePath}/scripts/show-message.cs?_r=${fn.random}",
-            "params": {
-                "javaLang": "CI/CD pipeline has been successfully integrated!<br/>Open url of the target environment <u><a href='http://${env.domain}' target='_blank'>${env.domain}</a></u> and go to the context defined in your pom.xml at &lt;artifactId&gt;.<br/>If someshing does not work check the logs, there are more details to analyze.",
-                "otherLangs" : "CI/CD pipeline has been successfully integrated!<br/>Open url of the target environment <u><a href='http://${env.domain}' target='_blank'>${env.domain}</a></u>.<br/>If someshing does not work check the logs, there are more details to analyze.",
-                "type": "${this.type}"
-            }
+            "script": "return {type: 'success', message: '${this.lang}', email: '${this.lang}'}"
         }
     }
 }
