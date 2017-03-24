@@ -16,11 +16,11 @@ var params = {
    zdt: true
 }
 
-resp = jelastic.env.vcs.DeleteProject(params.envName, params.session, params.context);
-if (resp.result != 0 && resp.result != 2500) return resp;
-
 resp = jelastic.env.control.RemoveApp(params.envName, params.session, params.context);
 if (resp.result != 0 && resp.result != 2313) return resp;
+
+resp = jelastic.env.vcs.DeleteProject(params.envName, params.session, params.context);
+if (resp.result != 0 && resp.result != 2500) return resp;
 
 //create and update the project 
 resp = jelastic.env.vcs.CreateProject(params.envName, params.session, params.type, params.context, params.url, params.branch, params.keyId, params.login, params.password, params.autoupdate, params.interval, params.autoResolveConflict, params.zdt);
