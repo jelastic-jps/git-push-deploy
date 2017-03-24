@@ -1,4 +1,4 @@
-//@req(next)
+//@req(next, javaLang, otherLangs)
 
 var lang = '';
 nodes = jelastic.env.control.GetEnvInfo('${env.envName}', session).nodes
@@ -15,7 +15,7 @@ for (i = 0; i < nodes.length; i++){
     resp.onAfterReturn.push(o)
     resp.onAfterReturn.push({
       "showMessage": {
-        lang: type == 'java' ? '${this.javaLang}' : '${this.otherLangs}'
+        lang: type == 'java' ? javaLang : otherLangs
       }
     })
     return resp
