@@ -44,7 +44,7 @@ if (token == "${TOKEN}") {
                 if (build) {
                     resp = jelastic.env.build.BuildProject(buildEnv, signature, nodeId, projectId);
                 } else {
-                    return {result: 99, error: 'deploy to non-certified containers is implemented yet', type: 'warning'}
+                    return {result: 99, error: 'deploy to non-certified containers is not implemented yet', type: 'warning'}
                 }
             }
         return resp; 
