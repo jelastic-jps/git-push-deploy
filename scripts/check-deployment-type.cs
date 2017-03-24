@@ -10,19 +10,14 @@ for (i = 0; i < nodes.length; i++){
       
     if (addon == 'mount') return {result:99, error: 'deploy to custom containers is not implemented yet', type: 'warning'}
     
-    resp = {
-      result: 0, 
-      onAfterReturn: {}
-    }
-    resp.onAfterReturn[next] = {addon: addon, type: type};
-    resp.onAfterReturn = [resp.onAfterReturn];
-    type == 'java' ? lang = '${this.javaLang}' : lang = '${this.otherLangs}'; 
-    
+    resp = {result: 0, onAfterReturn: []}
+    o = {}, o[next] = {addon: addon, type: type}
+    resp.onAfterReturn.push(o)
     resp.onAfterReturn.push({
       "showMessage": {
-        lang: lang
+        lang: type == 'java' ? '${this.javaLang}' : '${this.otherLangs}'
       }
-    });
+    })
     return resp
   }
 }
