@@ -1,5 +1,6 @@
 //@req(next)
 
+var lang = '';
 nodes = jelastic.env.control.GetEnvInfo('${env.envName}', session).nodes
 addon = 'unknown'
 for (i = 0; i < nodes.length; i++){
@@ -15,13 +16,14 @@ for (i = 0; i < nodes.length; i++){
     }
     resp.onAfterReturn[next] = {addon: addon, type: type};
     resp.onAfterReturn = [resp.onAfterReturn];
+    type == 'java' ? lang = '${this.javaLang}' : lang = '${this.otherLangs}'; 
+    
     resp.onAfterReturn.push({
       "showMessage": {
-        type: type
+        lang: lang
       }
     });
     return resp
   }
 }
 return {result: 99, error: 'nodeGroup [cp] is not present in the topology', type: 'warning'}
-
