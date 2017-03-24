@@ -19,6 +19,7 @@ for (i = 0; i < nodes.length; i++){
       "showMessage": {
         type: type
       }
+    });
     return resp
   }
 }
