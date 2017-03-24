@@ -83,7 +83,7 @@
             }
         },
         "showMessage": {
-            "script": "return {type: 'success', message: '${this.lang}', email: '${this.lang}'}"
+            "script": "return {type: 'success', message: \"${this.lang}\", email: \"${this.lang}\"}"
         }
     }
 }
