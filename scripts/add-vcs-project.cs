@@ -9,7 +9,7 @@ var params = {
    login: user,
    password: token,
    keyId: null,
-   context: type == "ruby" ? "production" : "ROOT",
+   context: type == "ruby" ? "development" : "ROOT",
    autoupdate: true,
    interval: 1,
    autoResolveConflict: true,
