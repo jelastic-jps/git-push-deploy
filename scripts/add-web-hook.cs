@@ -85,8 +85,8 @@ function exec(method, params) {
             response = response + line;
         }
     } else {
-        error = method.getStatusLine();
-        if (status == 401) error += ": Double check that user '" + user + "' with token '" + token + "' has access to repo '" + origRepo +"'";
+        error = "ERROR: " + method.getStatusLine();
+        if (status == 401) error += ". Double check that user '" + user + "' with token '" + token + "' has access to repo '" + origRepo +"'";
         result = 99;
         type = "error";
         response = null;
