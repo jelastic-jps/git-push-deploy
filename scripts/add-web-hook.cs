@@ -19,6 +19,7 @@ client.getParams().setAuthenticationPreemptive(true);
 client.getState().setCredentials(AuthScope.ANY, creds);
 
 //Parsing repo url
+var origRepo = repo;
 var domain = "github.com";
 if (repo.indexOf(".git") > -1) repo = repo.split(".git")[0];
 if (repo.indexOf("/") > -1) {
@@ -28,16 +29,18 @@ if (repo.indexOf("/") > -1) {
     user = arr.pop();
     domain = arr.pop() || domain;
 }
-
 //Get list of hooks
 var get = new GetMethod("https://api." + domain + "/repos/" + user + "/" + repo + "/hooks");
-var hooks = eval("(" + exec(get) + ")");
-
+var resp = eval("(" + exec(get) + ")");
+if (resp.result != 0) return resp;
+var hooks = resp.response;
+   
 //Clear previous hooks
 for (var i = 0; i < hooks.length; i++) {
     if (hooks[i].config.url.indexOf(scriptName) != -1) {
         var del = new DeleteMethod("https://api." + domain + "/repos/" + user + "/" + repo + "/hooks/" + hooks[i].id);
-        exec(del);
+        resp = exec(del);
+        if (resp.result != 0) return resp;
     }
 }
 
@@ -60,7 +63,9 @@ var params = {
     }
 };
 
-var newHook = eval("(" + exec(post, params) + ")");
+resp = eval("(" + exec(post, params) + ")");
+if (resp.result != 0) return resp;
+var newHook = resp.response;
 return {
     result: 0, 
     hook: newHook
@@ -72,15 +77,19 @@ function exec(method, params) {
         method.setRequestEntity(requestEntity);
     }
     var status = client.executeMethod(method),
-        response = "";
+        response = "", result = 0, type = null;
     if (status == 200 || status == 201) {
         var br = new BufferedReader(new InputStreamReader(method.getResponseBodyAsStream())),
             line;
         while ((line = br.readLine()) != null) {
             response = response + line;
         }
+    } else {
+        response = method.getStatusLine();
+        if (status == 401) response += ": Double check that user '" + user + "' with token '" + token + "' has access to repo '" + origRepo +"'";
+        result = 99;
+        type = "error";
     }
     method.releaseConnection();
-    return response;
+    return {result:result, response: response, type: type};
 }
-
