@@ -77,7 +77,7 @@ function exec(method, params) {
         method.setRequestEntity(requestEntity);
     }
     var status = client.executeMethod(method),
-        response = "", result = 0, type = null;
+        response = "", result = 0, type = null, error = null;
     if (status == 200 || status == 201) {
         var br = new BufferedReader(new InputStreamReader(method.getResponseBodyAsStream())),
             line;
@@ -85,11 +85,12 @@ function exec(method, params) {
             response = response + line;
         }
     } else {
-        response = method.getStatusLine();
-        if (status == 401) response += ": Double check that user '" + user + "' with token '" + token + "' has access to repo '" + origRepo +"'";
+        error = method.getStatusLine();
+        if (status == 401) error += ": Double check that user '" + user + "' with token '" + token + "' has access to repo '" + origRepo +"'";
         result = 99;
         type = "error";
+        response = null;
     }
     method.releaseConnection();
-    return {result:result, response: response, type: type};
+    return {result:result, response: response, type: type, error: error};
 }
