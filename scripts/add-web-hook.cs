@@ -31,9 +31,10 @@ if (repo.indexOf("/") > -1) {
 }
 //Get list of hooks
 var get = new GetMethod("https://api." + domain + "/repos/" + user + "/" + repo + "/hooks");
-var resp = eval("(" + exec(get) + ")");
+var resp = exec(get);
 if (resp.result != 0) return resp;
-var hooks = resp.response;
+var hooks = eval("(" + resp.response + ")");
+
    
 //Clear previous hooks
 for (var i = 0; i < hooks.length; i++) {
@@ -63,9 +64,10 @@ var params = {
     }
 };
 
-resp = eval("(" + exec(post, params) + ")");
+resp = exec(post, params);
 if (resp.result != 0) return resp;
-var newHook = resp.response;
+var newHook = eval("(" + resp.response + ")");
+
 return {
     result: 0, 
     hook: newHook
