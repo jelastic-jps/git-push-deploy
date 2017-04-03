@@ -95,8 +95,8 @@
     "onInstall": {
         "script": "${globals.basePath}/scripts/check-deployment-type.cs?_r=${fn.random}",
         "next": "jps",
-        "javaLang": "CI/CD pipeline has been successfully integrated!<br/>Open url of the target environment <u><a href='http://${env.domain}' target='_blank'>${env.domain}</a></u> and go to the context defined in your pom.xml at &lt;artifactId&gt;.<br/>If someshing does not work check the logs, there are more details to analyze.",
-        "otherLangs" : "CI/CD pipeline has been successfully integrated!<br/>Open url of the target environment <u><a href='http://${env.domain}' target='_blank'>${env.domain}</a></u>.<br/>If someshing does not work check the logs, there are more details to analyze."
+        "javaLang": "${globals.basePath}/scripts/java-success-text.md",
+        "otherLangs" : "${globals.basePath}/scripts/other-langs-success-text.md"
     },
     "actions": {
         "jps": {
