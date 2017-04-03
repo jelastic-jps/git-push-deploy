@@ -41,7 +41,7 @@ for (var i = 0; i < hooks.length; i++) {
     if (hooks[i].config.url.indexOf(scriptName) != -1) {
         var del = new DeleteMethod("https://api." + domain + "/repos/" + user + "/" + repo + "/hooks/" + hooks[i].id);
         resp = exec(del);
-        if (resp.result != 0) return resp;
+        if (resp.result != 0 && resp.result != 204) return resp;
     }
 }
 
