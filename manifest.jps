@@ -50,7 +50,7 @@
             "type": "string",
             "default": "",
             "required": "true",
-            "regex": "^https?:\\/\\/(github\\.com|raw\\.githubusercontent\\.com)\/.+(\/(blob|raw))?\/.+$",
+            "regex": "^https?:\\/\\/(github\\.com\\/).+(\\.git)$",
             "regexText": "Only GitHub URL"
         }, {
             "name": "gitBranch",
