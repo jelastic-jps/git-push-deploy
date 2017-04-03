@@ -51,7 +51,9 @@
             "caption": "Git Repo Url",
             "type": "string",
             "default": "",
-            "required": "true"
+            "required": "true",
+            "regex": "^https?:\\/\\/(github\\.com|githubusercontent\\.com)\/.+\/(blob|raw)\/.+$",
+            "regexText": "Only GitHub URL"
         }, {
             "name": "gitBranch",
             "caption": "Branch",
