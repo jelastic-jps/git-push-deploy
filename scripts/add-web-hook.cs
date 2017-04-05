@@ -94,5 +94,5 @@ function exec(method, params) {
         response = null;
     }
     method.releaseConnection();
-    return {result:result, response: response, type: type, error: error};
+    return {result:result, response: response, type: type, message: error};
 }
