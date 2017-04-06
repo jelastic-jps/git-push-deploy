@@ -1,6 +1,6 @@
 //@req(user, token, url, branch, type)
 
-context = type == "ruby" ? ["development", "test", "production"] : ["ROOT"];
+contexts = type == "ruby" ? ["development", "test", "production"] : ["ROOT"];
     
 p = {
     session: session,
@@ -11,7 +11,7 @@ p = {
     login: user,
     password: token,
     keyId: null,
-    context: context[0],
+    context: contexts[0],
     autoupdate: true,
     interval: 1,
     autoResolveConflict: true,
@@ -21,11 +21,11 @@ p = {
 //removing already deployed app/project in context
 //specifically for ruby -> removing all contexts (development, test and production), 
 //because ruby supports only one context at a time  
-for (i = 0; i < context.length; i++) {
-    resp = jelastic.env.control.RemoveApp(p.envName, p.session, context[i]);
+for (i = 0; i < contexts.length; i++) {
+    resp = jelastic.env.control.RemoveApp(p.envName, p.session, contexts[i]);
     if (resp.result != 0 && resp.result != 2313) return resp;
 
-    resp = jelastic.env.vcs.DeleteProject(p.envName, p.session, context[i]);
+    resp = jelastic.env.vcs.DeleteProject(p.envName, p.session, contexts[i]);
     if (resp.result != 0 && resp.result != 2500) return resp;
 }
 
