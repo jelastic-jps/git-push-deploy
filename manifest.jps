@@ -96,7 +96,7 @@
         "script": "${globals.basePath}/scripts/check-deployment-type.cs?_r=${fn.random}",
         "next": "jps",
         "javaLang": "${globals.basePath}/scripts/java-success-text.md",
-        "otherLangs" : "${globals.basePath}/scripts/other-langs-success-text.md"
+        "successText" : "${globals.basePath}/scripts/other-langs-success-text.md"
     },
     "actions": {
         "jps": {
