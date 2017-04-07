@@ -113,7 +113,7 @@ function exec(method, params) {
         }
     } else {
         error = "ERROR: " + method.getStatusLine();
-        if (status == 401) error += ". Double check that user '" + user + "' with token '" + token + "' has access to repo '" + origRepo + "'";
+        if (status == 401) error = "Wrong username or/and token. Please, double check your entries.";
         result = status;
         type = "error";
         response = null;
