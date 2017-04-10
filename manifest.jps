@@ -51,7 +51,7 @@
             "default": "",
             "required": "true",
             "regex": "^https?:\\/\\/.+$",
-            "regexText": "Incorrect URL. Link to GitHub repository is required."
+            "regexText": "Incorrect URL. Link to Git repository is required."
         }, {
             "name": "gitBranch",
             "caption": "Branch",
