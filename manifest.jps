@@ -74,8 +74,7 @@
             "type": "displayfield",
             "name": "note",
             "hideLabel": true,
-            "cls": "warning-lower",
-            "markup": "Note that the already deployed projects within chosen server ROOT will be rewritten",
+            "markup": "<div class='warning-lower' style='color:#b7c3da'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
             "width": 600,
             "height": 20
         }, {
