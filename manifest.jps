@@ -77,7 +77,7 @@
             "cls": "warning-lower",
             "markup": "Note that the already deployed projects within chosen server ROOT will be rewritten",
             "width": 600,
-            "height": 15
+            "height": 20
         }, {
             "name": "deployType",
             "type": "hidden",
