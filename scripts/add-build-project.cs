@@ -1,6 +1,16 @@
 //@auth
 //@req(name, url, branch, targetEnv, login, password)
 
+
+//git repo url normalization
+url = url.replace(/^\s+|\s+$/gm, '');
+var ind = url.lastIndexOf(".git");
+if (ind == -1 || ind != url.length - 4) {
+   ind = url.lastIndexOf("/");
+   if (ind > -1 && ind == url.length - 1) url = url.substring(0, ind);
+   url += ".git";
+}
+
 targetEnv = targetEnv.toString().split(".")[0];
 var params = {
    name: name,
