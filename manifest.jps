@@ -76,7 +76,7 @@
             "hideLabel": true,
             "markup": "<div class='warning-lower' style='color:#b7c3da; height:20px;'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
             "width": 600,
-            "height": 20
+            "height": 26
         }, {
             "name": "deployType",
             "type": "hidden",
