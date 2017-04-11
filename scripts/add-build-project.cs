@@ -1,7 +1,6 @@
 //@auth
 //@req(name, url, branch, targetEnv, login, password)
 
-
 //git repo url normalization
 url = url.replace(/^\s+|\s+$/gm, '');
 var ind = url.lastIndexOf(".git");
