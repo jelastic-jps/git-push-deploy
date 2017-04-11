@@ -102,7 +102,7 @@
     "onInstall": {
         "script": "${globals.basePath}/scripts/check-deployment-type.cs?_r=${fn.random}",
         "next": "jps",
-        "successText" : "${globals.basePath}/scripts/success-text.md"
+        "successText" : "${globals.basePath}/text/success-text.md"
     },
     "actions": {
         "jps": {
