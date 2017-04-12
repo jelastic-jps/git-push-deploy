@@ -4,7 +4,10 @@
     "id": "git-push-deploy",
     "name": "Git-Push-Deploy",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
-    "description": "Example of Continuous Integration (CI) Pipeline with Maven<div class='warning-lower' style='color:#b7c3da'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
+    "description": {
+      	  "text": "<span>The very base Continuous Integration and Continuous Delivery (CI/CD) pipeline to automatically pull    and deploy application code from source GitHub/GitLab repository upon commit.</span><div>Supported stacks: All certified Java, PHP, Ruby, Python and Node.js application servers.</div> <div class='warning-lower' style='color:#b7c3da'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
+        "short": "Simple CI/CD pipeline for Git projects."
+        },
     "logo": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/ci-cd-icon.png",
     "targetNodes": {
     "nodeType": [
@@ -52,7 +55,7 @@
             "default": "",
             "required": "true",
             "regex": "^https?:\\/\\/.+$",
-            "regexText": "Incorrect URL. Link to Git repository is required."
+            "regexText": "Incorrect URL. HTTPS link to Git repository is required."
         }, {
             "name": "gitBranch",
             "caption": "Branch",
@@ -116,6 +119,6 @@
         }
     },
     "success": {
-        "text": "<h3>CI/CD pipeline has been successfully integrated!</h3><p>Open URL of the target environment <b><a href=\"${env.protocol}://${env.domain}\" target=\"_blank\">${env.protocol}://${env.domain}</a></b>. If something does not work as expected please check the logs for more details to analyze or submit a question to <a href=\"https://stackoverflow.com/questions/tagged/jelastic\" target=\"_blank\">community</a>.</p>"
+        "text": "<h3>CI/CD pipeline has been successfully integrated!</h3><p>Open URL of the target environment <b><a href=\"${env.protocol}://${env.domain}\" target=\"_blank\">${env.protocol}://${env.domain}</a></b>. </br>If something does not work as expected, please check the logs for more details to analyze or submit a question to <a href=\"https://stackoverflow.com/questions/tagged/jelastic\" target=\"_blank\">community</a>.</p>"
     }
 }
