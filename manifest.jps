@@ -4,7 +4,7 @@
     "id": "git-push-deploy",
     "name": "Git-Push-Deploy",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
-    "description": "Example of Continuous Integration (CI) Pipeline with Maven<div class='warning-lower' style='color:#b7c3da; height:24px; padding-top:5px;'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
+    "description": "Example of Continuous Integration (CI) Pipeline with Maven<div class='warning-lower' style='color:#b7c3da';><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
     "logo": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/ci-cd-icon.png",
     "targetNodes": {
     "nodeType": [
