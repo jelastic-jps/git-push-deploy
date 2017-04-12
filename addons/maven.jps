@@ -12,7 +12,7 @@
         "nodeType": "maven3"
     },
     "engine": "java8",
-    "baseUrl": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/scripts",
+    "baseUrl": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/4.10/scripts",
     "globals": {
         "scriptName": "git_push_redeploy",
         "hooksLog": "/var/log/maven/hooks.log"
