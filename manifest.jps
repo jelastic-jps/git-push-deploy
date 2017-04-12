@@ -107,7 +107,7 @@
     },
     "actions": {
         "jps": {
-            "install": {
+            "installJps": {
                 "envName": "${env.envName}-git-push-${fn.random(100)}",
                 "jps": "${globals.basePath}/addons/${this.addon}.jps?_r=${fn.random}",
                 "settings": {
