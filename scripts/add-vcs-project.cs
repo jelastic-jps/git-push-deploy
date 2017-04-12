@@ -1,5 +1,14 @@
 //@req(user, token, url, branch, type)
 
+//git repo url normalization
+url = url.replace(/^\s+|\s+$/gm, '');
+var ind = url.lastIndexOf(".git");
+if (ind == -1 || ind != url.length - 4) {
+   ind = url.lastIndexOf("/");
+   if (ind > -1 && ind == url.length - 1) url = url.substring(0, ind);
+   url += ".git";
+}
+
 contexts = type == "ruby" ? ["development", "test", "production"] : ["ROOT"];
     
 p = {
