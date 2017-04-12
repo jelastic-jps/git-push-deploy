@@ -5,6 +5,7 @@
     "name": "maven-build-addon",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
     "description": "Maven3 Node",
+    "success": "Installation is successfull",
     "nodes": {
         "count": 1,
         "cloudlets": 16,
