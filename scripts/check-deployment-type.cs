@@ -1,4 +1,4 @@
-//@req(next, successText)
+//@req(next)
 
 nodes = jelastic.env.control.GetEnvInfo('${env.envName}', session).nodes
 addon = 'unknown'
@@ -12,11 +12,7 @@ for (i = 0; i < nodes.length; i++){
     resp = {result: 0, onAfterReturn: []}
     o = {}, o[next] = {addon: addon, type: type}
     resp.onAfterReturn.push(o)
-    resp.onAfterReturn.push({
-      "showMessage": {
-        lang: successText
-      }
-    })
+
     return resp
   }
 }
