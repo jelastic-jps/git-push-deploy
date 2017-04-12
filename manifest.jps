@@ -5,7 +5,7 @@
     "name": "Git-Push-Deploy Add-On",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
     "description": {
-      	"text": "<span>Simple <b>Continuous Integration</b> and <b>Continuous Delivery</b> (CI/CD) pipeline to automatically pull and deploy application code from source GitHub/GitLab repository upon commit.</span><div><u>Supported stacks:</u> All certified Java, PHP, Ruby, Python and Node.js application servers.</div> <div class='warning-lower' style='color:#b7c3da'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
+      	"text": "<span>Simple Continuous Integration and Continuous Delivery (<b>CI/CD</b>) pipeline to automatically pull and deploy application code from source GitHub/GitLab repository upon commit.</span><div>Supported stacks: All certified Java, PHP, Ruby, Python and Node.js application servers.</div> <div class='warning-lower' style='color:#b7c3da'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
         "short": "Simple CI/CD pipeline for Git projects."
         },
     "logo": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/ci-cd-icon.png",
