@@ -3,7 +3,7 @@
     "id": "vcs-addon",
     "name": "vcs-addon",
     "description": "Add VCS Project",
-    "baseUrl": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/scripts",
+    "baseUrl": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/4.10/scripts",
     "globals": {
         "scriptName": "git-push-redeploy"
     },
