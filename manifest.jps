@@ -119,6 +119,6 @@
         }
     },
     "success": {
-        "text": "<h3>CI/CD pipeline has been successfully integrated!</h3><p>Open URL of the target environment <b><a href='${env.protocol}://${env.domain}' target='_blank' rel='noopener noreferrer'>${env.protocol}://${env.domain}</a></b>. If something does not work as expected please check the logs for more details to analyze or submit a question to <a href='https://stackoverflow.com/questions/tagged/jelastic' target='_blank' rel='noopener noreferrer'>community</a>.</p>"
+        "text": "<h3>CI/CD pipeline has been successfully integrated!</h3><p>Open URL of the target environment <b><a href=\"${env.protocol}://${env.domain}\" target=\"_blank\">${env.protocol}://${env.domain}</a></b>. If something does not work as expected please check the logs for more details to analyze or submit a question to <a href=\"https://stackoverflow.com/questions/tagged/jelastic\" target=\"_blank\">community</a>.</p>"
     }
 }
