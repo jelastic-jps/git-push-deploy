@@ -24,17 +24,6 @@ if (token == "${TOKEN}") {
             resp;
             if (certified) {
                 if (build){                    
-                    var module = "/usr/lib/jelastic/modules/maven.module";
-                    var host = window.location.host.replace(/cs|app/, "core");
-                    var cmd = ['url="https://' + host + '/JElastic/environment/build/rest/builddeploy?envName=\\$ENVIRONMENT&projectName=\\$PROJECT_NAME"', 
-                           'cmd="parseArguments \\"\\$@\\"; [[ \\${SESSION:0:4} = \'lds:\' ]] && { readProjectConfig; echo \\$(curl -fsSL \\"$url\\"); writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+deploy\\"; return 0; }"', 
-                           'sed -i "/SESSION:0:/d" ' + module, 'sed -i "/doBuild()/a  $cmd" ' + module];
-
-                    resp = jelastic.env.control.ExecCmdById(buildEnv, signature, nodeId, toJSON([{
-                        "command": cmd.join("\n")
-                    }]) + "", true, "root");
-                    if (resp.result != 0) return resp;
-                    
                     resp = jelastic.env.build.BuildProject(buildEnv, signature, nodeId, projectId);
                     //resp = jelastic.env.build.BuildDeployProject(buildEnv, signature, nodeId, projectId, delay);
                 } else {
