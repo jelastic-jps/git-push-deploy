@@ -24,7 +24,7 @@ Before applying the package, please consider the following points:
 - The solution is proven for use with GitHub and GitLab repositories
 - For a proper package installation, some preliminary Git repository configurations are required: 
   - generated and remembered *Personal Access Token* that corresponds to your Git account
-  - for integration with *Java-powered* app, the appropriate repository root should contain a **_pom.xml_** file with the following content as an obligatory basis (where all values except of *modelVersion* are optional):
+  - for integration with *Java-powered* app, the appropriate repository root should contain a **_pom.xml_** file with the following content as an obligatory basis (where *groupId*, *artifactId* and *version* values are optional):
 
 ```xml
 <project
