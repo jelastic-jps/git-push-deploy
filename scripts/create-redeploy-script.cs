@@ -35,32 +35,6 @@ for (var i = 0; i < nodes.length; i++) {
    }
 }
 
-function compareVersions(sVersion1, sVersion2) {
-    var VERSION_SEPARATOR = ".",
-        aVersion1Parts = sVersion1.split(VERSION_SEPARATOR),
-        aVersion2Parts = sVersion2.split(VERSION_SEPARATOR),
-        nLength1 = aVersion1Parts.length,
-        nLength2 = aVersion2Parts.length,
-        nMaxLength = Math.max(nLength1, nLength2),
-        nResult = 0,
-        i,
-        n;
-
-    for (i = 0, n = nMaxLength; i < n; i += 1) {
-        aVersion1Parts[i] = parseInt(aVersion1Parts[i], 10) || 0;
-        aVersion2Parts[i] = parseInt(aVersion2Parts[i], 10) || 0;
-
-        nResult = aVersion1Parts[i] - aVersion2Parts[i];
-
-        if (nResult !== 0) {
-            nResult = nResult > 0 ? 1 : -1;
-            break;
-        }
-    }
-
-    return nResult;
-}
-
 scriptBody = scriptBody.replace("${CERTIFIED}", certified.toString());
 scriptBody = scriptBody.replace("${BUILD}", build.toString());
 
@@ -89,7 +63,6 @@ if (resp.result != 0) return resp;
 var version = jelastic.system.service.GetVersion().version.split("-").shift();
 var host;
 if (compareVersions(version, '4.10') == -1){
-// if (version < '4.10'){
    var domain = jelastic.dev.apps.GetApp(appid).hosting.domain.replace(/[A-Za-z0-9]{32}./, '');
    host = 'http://' + domain;
 } else {
@@ -109,3 +82,12 @@ return {
         }
     }
 }
+
+
+function compareVersions(a, b) {
+  a = a.split("."), b = b.split(".")
+  for (var i = 0; i < Math.max(a.length, b.length); i++) {x = parseInt(a[i], 10) || 0; y = parseInt(b[i], 10) || 0; if (x != y) return x > y ? 1 : -1 }
+  return 0;
+}
+
+
