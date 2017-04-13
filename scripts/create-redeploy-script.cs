@@ -63,7 +63,7 @@ if (resp.result != 0) return resp;
 var version = jelastic.system.service.GetVersion().version.split("-").shift();
 var host;
 if (compareVersions(version, '4.10') == -1){
-   var domain = jelastic.dev.apps.GetApp(appid).hosting.domain.replace(/[A-Za-z0-9]{32}./, '');
+   var domain = window.location.host;
    host = 'http://' + domain;
 } else {
    host = 'https://' + window.location.host.replace('app.', 'cs.');
