@@ -27,11 +27,20 @@ Before applying the package, please consider the following points:
   - for integration with *Java-powered* app, the appropriate repository root should contain a **_pom.xml_** file with the following content as an obligatory basis (where all values except of *modelVersion* are optional):
 
 ```xml
-<project>
-<modelVersion>4.0.0</modelVersion>
-<groupId>com.mycompany.app</groupId>
-<artifactId>my-app</artifactId>
-<version>1</version>
+<project
+    xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>jelastic</groupId>
+    <artifactId>helloworld</artifactId>
+    <version>0.1-SNAPSHOT</version>
+    <packaging>war</packaging>
+    <name>${project.artifactId}</name>
+    <url>http://maven.apache.org</url>
+    <build>
+        <finalName>${project.artifactId}</finalName>
+    </build>
 </project>
 ```
 - The used [Platform](https://jelastic.cloud/) should run Jelastic version 4.9.5 or higher 
