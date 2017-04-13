@@ -32,9 +32,9 @@ Before applying the package, please consider the following points:
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>jelastic</groupId>
-    <artifactId>helloworld</artifactId>
-    <version>0.1-SNAPSHOT</version>
+    <groupId>com.mycompany.app</groupId>
+    <artifactId>my-app</artifactId>
+    <version>1.0</version>
     <packaging>war</packaging>
     <name>${project.artifactId}</name>
     <url>http://maven.apache.org</url>
