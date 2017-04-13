@@ -114,7 +114,8 @@
                     "targetEnv": "${env.envName}",
                     "basePath": "${settings.path}",
                     "type": "${this.type}"
-                }
+                },
+                "region": "${env.hardwareNodeGroup}"
             }
         }
     },
