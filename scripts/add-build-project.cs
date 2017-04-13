@@ -39,6 +39,7 @@ if (!isNaN(projectId)) {
 //add and build new project 
 var resp = jelastic.env.build.AddProject(params.envName, params.session, params.nodeId, params.name, params.type, params.url, params.keyId, params.login, params.password, params.env, params.context, params.branch, params.autoupdate, params.interval, params.autoResolveConflict);
 if (resp.result != 0) return resp;
+projectId = resp.id;
 
 //--- temporary fix to JE-31670
 var module = "/usr/lib/jelastic/modules/maven.module";
@@ -56,6 +57,6 @@ if (resp.result != 0) return resp;
 //github triggers first build automatically after we add a webhook 
 //calling build action manually for non-github repos
 if (url.indexOf("github.com") == -1) {
-   resp = jelastic.env.build.BuildProject(params.envName, params.session, params.nodeId, resp.id);
+   resp = jelastic.env.build.BuildProject(params.envName, params.session, params.nodeId, projectId);
 }
 return resp;
