@@ -86,7 +86,7 @@ return {
 
 function compareVersions(a, b) {
   a = a.split("."), b = b.split(".")
-  for (var i = 0; i < Math.max(a.length, b.length); i++) {x = parseInt(a[i], 10) || 0; y = parseInt(b[i], 10) || 0; if (x != y) return x > y ? 1 : -1 }
+  for (var i = 0, l = Math.max(a.length, b.length); i < l; i++) {x = parseInt(a[i], 10) || 0; y = parseInt(b[i], 10) || 0; if (x != y) return x > y ? 1 : -1 }
   return 0;
 }
 
