@@ -1,4 +1,4 @@
-## Automated Simple CI/CD Pipeline for Git Projects
+## Simple Automated CI/CD Pipeline for Git Projects
 
 This Git-Push-Deploy solution enables automatic delivery of updates within your Git application sources directly to the cloud. The package can be applied as an add-on to any **Java**, **PHP**, **Ruby**, **Node.js** and **Python** project, run on top of the following certified stack templates:
 - *Java* - Tomcat 6/7/8/9, TomEE, GlassFish 3/4, Jetty 6/8/9, WildFly 8/9/10, JBoss AS 7, SmartFoxServer 2X, Spring Boot 1.x
@@ -27,17 +27,12 @@ Before applying the package, please consider the following points:
   - for integration with *Java-powered* app, the appropriate repository root should contain a **_pom.xml_** file with the following content as an obligatory basis (where *groupId*, *artifactId* and *version* values are optional):
 
 ```xml
-<project
-    xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project>
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.mycompany.app</groupId>
     <artifactId>my-app</artifactId>
     <version>1.0</version>
     <packaging>war</packaging>
-    <name>${project.artifactId}</name>
-    <url>http://maven.apache.org</url>
     <build>
         <finalName>${project.artifactId}</finalName>
     </build>
