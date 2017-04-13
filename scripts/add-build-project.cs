@@ -54,9 +54,6 @@ resp = jelastic.env.control.ExecCmdById(params.envName, params.session, params.n
 if (resp.result != 0) return resp;
 //---
 
-//github triggers first build automatically after we add a webhook 
-//calling build action manually for non-github repos
-if (url.indexOf("github.com") == -1) {
-   resp = jelastic.env.build.BuildProject(params.envName, params.session, params.nodeId, projectId);
-}
+var delay = getParam("delay") || 30;
+resp = jelastic.env.build.BuildDeployProject(params.envName, params.session, params.nodeId, projectId, delay);
 return resp;
