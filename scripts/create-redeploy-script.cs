@@ -61,12 +61,12 @@ if (resp.result != 0) return resp;
 
 //get app host
 var version = jelastic.system.service.GetVersion().version.split("-").shift();
-var host;
+var host,
+    domain = window.location.host;
 if (compareVersions(version, '4.10') == -1){
-   var domain = window.location.host;
    host = 'http://' + domain;
 } else {
-   host = 'https://' + window.location.host.replace('app.', 'cs.');
+   host = 'https://' + domain.replace('app.', 'cs.');
 }
 if (window.location.host) 
 return {
