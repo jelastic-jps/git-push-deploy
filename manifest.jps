@@ -4,7 +4,10 @@
     "id": "git-push-deploy",
     "name": "Git-Push-Deploy",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
-    "description": "Example of Continuous Integration (CI) Pipeline with Maven<br>",
+    "description": {
+      	"text": "<span>Simple <b>CI/CD Pipeline</b> to automatically pull and deploy application code from source GitHub/GitLab repository upon commit.</span><div>Can be applied to any certified Java, PHP, Ruby, Python or Node.js application server.</div> <div class='warning-lower' style='color:#b7c3da'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
+        "short": "Simple CI/CD pipeline for Git projects."
+    },
     "logo": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/4.10/images/ci-cd-icon.png",
     "targetNodes": {
     "nodeType": [
