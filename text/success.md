@@ -1,4 +1,4 @@
 ### CI/CD pipeline has been successfully integrated!
 
-Open URL of the target environment **[${env.domain}](${env.protocol}://${env.domain})**.
-If something does not work as expected please check the logs for more details to analyze or submit a question to [community](https://stackoverflow.com/questions/tagged/jelastic).
+Open your target environment URL **[${env.domain}](${env.protocol}://${env.domain})** to access your application.
+If something does not work as expected, please check the logs for more details or submit a question to [Jelastic community](https://stackoverflow.com/questions/tagged/jelastic).
