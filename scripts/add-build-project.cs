@@ -47,10 +47,13 @@ var host = window.location.host.replace(/cs|app/, "core");
 if (deployType == "mount"){
    //copy app archive to mountPath
    var cmd = [
-     'cmd="echo OK; fi; if [ true ] ; then cp \\${APPROOT}/\\${PROJECT_NAME}/target/*.* '
+     'cmd="cp \\${APPROOT}/\\${PROJECT_NAME}/target/*.* '
       + mountPath + '/' + params.context +'.war >> \\${LOG_DIR}/\\${PROJECT_NAME}_build.log; writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+auto-deploy\\"; return 0; "', 
      'sed -i "/auto-deploy/d" ' + module, 
-     'sed -i "/Build success/i  $cmd" ' + module
+     'sed -i "/Build success/i $cmd" ' + module,
+     'cmd="SKIP_UPLOAD=\\"true\\""',
+     'sed -i "/\$SKIP_UPLOAD/i $cmd" ' + module
+      $SKIP_UPLOAD
    ];
    resp = execCmd(params.envName, params.session, params.nodeId, cmd);
    if (resp.result != 0) return resp;
