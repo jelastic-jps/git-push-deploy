@@ -5,7 +5,7 @@ var mountFrom = "${nodes.build.first.id}";
 var envName = "${settings.targetEnv}".split(".")[0];
 var mountTo = "cp";
 
-resp = jelastic.env.control.ExecCmdById(envName, session, "${nodes.build.cp.id}", toJSON([{
+resp = jelastic.env.control.ExecCmdById(envName, session, "${nodes."+mountTo+".first.id}", toJSON([{
        "command": "echo ${WEBROOT:-$Webroot_Path}"
    }]) + "", true, "root");
 if (resp.result != 0) return resp;
