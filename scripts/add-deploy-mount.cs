@@ -1,10 +1,11 @@
 //@auth 
-//@req(pathFrom, nodeId)
+//@req(pathFrom, nodeId, nodeGroup)
 
 var mountFrom = "${nodes.build.first.id}";
 var envName = "${settings.targetEnv}".split(".")[0];
-var mountTo = "cp";
+var mountTo = nodeGroup;
 
+//getting app deployment directory 
 resp = jelastic.env.control.ExecCmdById(envName, session, nodeId, toJSON([{
        "command": "echo ${WEBROOT:-$Webroot_Path}"
    }]) + "", true, "root");
