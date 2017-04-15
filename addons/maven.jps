@@ -32,14 +32,6 @@
             "next": "setup-hooks"
         },
         "setup-hooks": [{
-            "if ('${settings.deployType}' == 'custom')": {
-                "cmd[maven3]": [
-                    "sed -i '/hook.log/d' /usr/lib/jelastic/modules/maven.module",
-                    "sed -i '/:publish/i  echo -n \"$(date) -> \" >> ${globals.hooksLog} && { wget -qO- \"${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=redeploy&appid=${this.appid}\" >> ${globals.hooksLog}; echo >> ${globals.hooksLog}; } || ' /usr/lib/jelastic/modules/maven.module"
-                ],
-                "user": "root"
-            }
-        }, {
             "web-hook": {
                 "token": "${this.token}",
                 "host": "${this.host}",
@@ -51,7 +43,7 @@
             "user": "${settings.gitUser}",
             "repo": "${settings.gitRepo}",
             "token": "${settings.gitToken}",
-            "callbackUrl": "${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=rebuild&appid=${this.appid}",
+            "callbackUrl": "${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=rebuild&appid=${this.appid}&deployType=${settings.deployType}",
             "scriptName": "${globals.scriptName}",
             "act": "${this.act}"
         },
@@ -74,10 +66,10 @@
             }
         }],
         "mount-deploy-volume": {
-            "if ('${settings.deployType}' == 'custom')": {
+            "if ('${settings.deployType}' == 'mount')": {
                 "script": "${globals.baseUrl}/add-deploy-mount.cs?07",
                 "pathFrom": "/var/lib/jelastic/PROJECTS/${globals.scriptName}/target",
-                "pathTo": "${settings.deployPathCustom}"
+                "pathTo": "${settings.autoDeployPath}"
             }
         }
     }
