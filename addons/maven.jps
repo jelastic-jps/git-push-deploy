@@ -55,7 +55,7 @@
             "login": "${settings.gitUser}",
             "password": "${settings.gitToken}",
             "deployType": "${settings.deployType}",
-             "pathTo": "${settings.autoDeployPath}"
+            "buildPath": "/var/lib/jelastic/PROJECTS/${globals.scriptName}/target"
         },
         "delete-redeploy-script": [{
             "jelastic.dev.scripting.DeleteScript": {
