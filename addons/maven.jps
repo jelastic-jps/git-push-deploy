@@ -15,7 +15,7 @@
     "globals": {
         "scriptName": "git_push_redeploy",
         "hooksLog": "/var/log/maven/hooks.log",
-        "baseUrl": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/scripts"
+        "baseUrl": "${settings.baseUrl}/scripts"
     },
     "onInstall": [
         "add-build-project",
@@ -68,7 +68,7 @@
         }],
         "mount-deploy-volume": {
             "if ('${settings.deployType}' == 'mount')": {
-                "script": "${globals.baseUrl}/add-deploy-mount.cs?07",
+                "script": "${globals.baseUrl}/add-deploy-mount.cs?_r=${fn.random}",
                 "pathFrom": "/var/lib/jelastic/PROJECTS/${globals.scriptName}/target",
                 "pathTo": "${settings.autoDeployPath}"
             }
