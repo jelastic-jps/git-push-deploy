@@ -16,5 +16,5 @@ var resp = jelastic.env.file.RemoveMountPointByGroup(envName, session, mountTo, 
 if (resp.result != 0) return resp;
 
 //resp = jelastic.env.control.AddDockerVolumeByGroup('${env.envName}', session, mountTo, volume); 
-resp = jelastic.env.file.AddMountPointByGroup(envName, session, mountTo, pathTo, 'nfs', null, pathFrom, mountFrom, 'auto-deploy', false); 
+resp = jelastic.env.file.AddMountPointByGroup(envName, session, mountTo, pathTo, 'nfs', null, pathFrom, mountFrom, 'auto-deploy-folder', false); 
 return resp;
