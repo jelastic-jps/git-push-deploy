@@ -71,7 +71,6 @@
             "if ('${settings.deployType}' == 'mount')": {
                 "script": "${settings.baseUrl}/scripts/add-deploy-mount.cs?_r=${fn.random}",
                 "pathFrom": "${globals.mountPath}",
-                "nodeId": "${settings.nodeId}",
                 "nodeGroup": "${settings.nodeGroup}"
             }
         }
