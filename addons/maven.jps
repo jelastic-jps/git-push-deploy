@@ -56,8 +56,7 @@
             "login": "${settings.gitUser}",
             "password": "${settings.gitToken}",
             "deployType": "${settings.deployType}",
-            "mountPath": "${globals.mountPath}",
-            "nodeId": "${settings.nodeId}"
+            "mountPath": "${globals.mountPath}"
         },
         "delete-redeploy-script": [{
             "jelastic.dev.scripting.DeleteScript": {
@@ -71,7 +70,9 @@
         "mount-deploy-volume": {
             "if ('${settings.deployType}' == 'mount')": {
                 "script": "${settings.baseUrl}/scripts/add-deploy-mount.cs?_r=${fn.random}",
-                "pathFrom": "${globals.mountPath}"
+                "pathFrom": "${globals.mountPath}",
+                "nodeId": "${settings.nodeId}",
+                "nodeGroup": "${settings.nodeGroup}"
             }
         }
     }
