@@ -54,7 +54,8 @@
             "targetEnv": "${settings.targetEnv}",
             "login": "${settings.gitUser}",
             "password": "${settings.gitToken}",
-            "deployType": "${settings.deployType}"
+            "deployType": "${settings.deployType}",
+             "pathTo": "${settings.autoDeployPath}"
         },
         "delete-redeploy-script": [{
             "jelastic.dev.scripting.DeleteScript": {
