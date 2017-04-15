@@ -1,5 +1,5 @@
 //@auth
-//@req(name, url, branch, targetEnv, login, password, deployType)
+//@req(name, url, branch, targetEnv, login, password, deployType, pathFrom)
 
 //git repo url normalization
 url = url.replace(/^\s+|\s+$/gm, '');
@@ -45,10 +45,12 @@ var module = "/usr/lib/jelastic/modules/maven.module";
 var host = window.location.host.replace(/cs|app/, "core");
 
 if (deployType == "mount"){
-   //copy build archive to /auto-deploy-folder
-   var cmd = [ 
-     'cmd="echo \\"cp \\${APPROOT}/\\${PROJECT_NAME}/target/*.* '+ params.context +'.war >> \\${LOG_DIR}/\\${PROJECT_NAME}_build.log\\"; writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+auto-deploy\\"; return 0; "', 
-     'sed -i "/auto-deploy/d" ' + module, 'sed -i "/Building /a  $cmd" ' + module];
+   //copy build archive to auto deploy folder (pathFrom)
+   var cmd = [
+     'cmd="cp \\${APPROOT}/\\${PROJECT_NAME}/target/*.* '+ pathFrom + '/' + params.context +'.war >> \\${LOG_DIR}/\\${PROJECT_NAME}_build.log; writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+auto-deploy\\"; return 0; "', 
+     'sed -i "/auto-deploy/d" ' + module, 
+     'sed -i "/Build success/a  $cmd" ' + module
+   ];
    resp = execCmd(params.envName, params.session, params.nodeId, cmd);
    if (resp.result != 0) return resp;
    
