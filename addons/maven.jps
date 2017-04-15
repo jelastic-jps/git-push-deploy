@@ -56,7 +56,8 @@
             "login": "${settings.gitUser}",
             "password": "${settings.gitToken}",
             "deployType": "${settings.deployType}",
-            "mountPath": "${globals.mountPath}"
+            "mountPath": "${globals.mountPath}",
+            "nodeId": "${settings.nodeId}"
         },
         "delete-redeploy-script": [{
             "jelastic.dev.scripting.DeleteScript": {
