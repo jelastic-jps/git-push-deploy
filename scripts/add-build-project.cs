@@ -1,5 +1,5 @@
 //@auth
-//@req(name, url, branch, targetEnv, login, password)
+//@req(name, url, branch, targetEnv, login, password, deployType)
 
 //git repo url normalization
 url = url.replace(/^\s+|\s+$/gm, '');
@@ -36,24 +36,29 @@ if (!isNaN(projectId)) {
    if (resp.result != 0) return resp;
 }
 
-//add and build new project 
-var resp = jelastic.env.build.AddProject(params.envName, params.session, params.nodeId, params.name, params.type, params.url, params.keyId, params.login, params.password, params.env, params.context, params.branch, params.autoupdate, params.interval, params.autoResolveConflict);
-if (resp.result != 0) return resp;
-projectId = resp.id;
+if (deployType == "mount"){
+   //for deploy via mount just build is enough 
+   resp = jelastic.env.build.BuildProject(params.envName, params.session, params.nodeId, projectId);
+} else {
+   //add and build new project 
+   var resp = jelastic.env.build.AddProject(params.envName, params.session, params.nodeId, params.name, params.type, params.url, params.keyId, params.login, params.password, params.env, params.context, params.branch, params.autoupdate, params.interval, params.autoResolveConflict);
+   if (resp.result != 0) return resp;
+   projectId = resp.id;
 
-//--- temporary fix to JE-31670
-var module = "/usr/lib/jelastic/modules/maven.module";
-var host = window.location.host.replace(/cs|app/, "core");
-var cmd = ['url="https://' + host + '/JElastic/environment/build/rest/builddeploy?envName=\\$ENVIRONMENT&projectName=\\$PROJECT_NAME"', 
-  'cmd="parseArguments \\"\\$@\\"; [[ \\${SESSION:0:4} = \'lds:\' ]] && { readProjectConfig; echo \\$(curl -fsSL \\"$url\\"); writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+deploy\\"; return 0; }"', 
-  'sed -i "/SESSION:0:/d" ' + module, 'sed -i "/doBuild()/a  $cmd" ' + module];
+   //--- temporary fix to JE-31670
+   var module = "/usr/lib/jelastic/modules/maven.module";
+   var host = window.location.host.replace(/cs|app/, "core");
+   var cmd = ['url="https://' + host + '/JElastic/environment/build/rest/builddeploy?envName=\\$ENVIRONMENT&projectName=\\$PROJECT_NAME"', 
+     'cmd="parseArguments \\"\\$@\\"; [[ \\${SESSION:0:4} = \'lds:\' ]] && { readProjectConfig; echo \\$(curl -fsSL \\"$url\\"); writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+deploy\\"; return 0; }"', 
+     'sed -i "/SESSION:0:/d" ' + module, 'sed -i "/doBuild()/a  $cmd" ' + module];
 
-resp = jelastic.env.control.ExecCmdById(params.envName, params.session, params.nodeId, toJSON([{
-   "command": cmd.join("\n")
-}]) + "", true, "root");
-if (resp.result != 0) return resp;
-//---
+   resp = jelastic.env.control.ExecCmdById(params.envName, params.session, params.nodeId, toJSON([{
+      "command": cmd.join("\n")
+   }]) + "", true, "root");
+   if (resp.result != 0) return resp;
+   //---
 
-var delay = getParam("delay") || 30;
-resp = jelastic.env.build.BuildDeployProject(params.envName, params.session, params.nodeId, projectId, delay);
+   var delay = getParam("delay") || 30;
+   resp = jelastic.env.build.BuildDeployProject(params.envName, params.session, params.nodeId, projectId, delay);
+}
 return resp;
