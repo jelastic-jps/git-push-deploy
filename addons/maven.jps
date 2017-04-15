@@ -43,7 +43,7 @@
             "user": "${settings.gitUser}",
             "repo": "${settings.gitRepo}",
             "token": "${settings.gitToken}",
-            "callbackUrl": "${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=rebuild&appid=${this.appid}&deployType=${settings.deployType}",
+            "callbackUrl": "${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=rebuild&appid=${this.appid}",
             "scriptName": "${globals.scriptName}",
             "act": "${this.act}"
         },
@@ -54,7 +54,8 @@
             "branch": "${settings.gitBranch}",
             "targetEnv": "${settings.targetEnv}",
             "login": "${settings.gitUser}",
-            "password": "${settings.gitToken}"
+            "password": "${settings.gitToken}",
+            "deployType": "${settings.deployType}"
         },
         "delete-redeploy-script": [{
             "jelastic.dev.scripting.DeleteScript": {
