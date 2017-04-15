@@ -14,8 +14,7 @@
     "engine": "java8",
     "globals": {
         "scriptName": "git_push_redeploy",
-        "hooksLog": "/var/log/maven/hooks.log",
-        "baseUrl": "${settings.baseUrl}/scripts"
+        "hooksLog": "/var/log/maven/hooks.log"
     },
     "onInstall": [
         "add-build-project",
@@ -25,8 +24,8 @@
     "onBeforeDelete": "delete-redeploy-script",
     "actions": {
         "create-redeploy-script": {
-            "script": "${globals.baseUrl}/create-redeploy-script.cs?r_${fn.random}",
-            "url": "${globals.baseUrl}/redeploy.cs",
+            "script": "${settings.baseUrl}/scripts/create-redeploy-script.cs?r_${fn.random}",
+            "url": "${settings.baseUrl}/scripts/redeploy.cs",
             "targetEnv": "${settings.targetEnv}",
             "nodeGroup": "cp",
             "next": "setup-hooks"
@@ -39,7 +38,7 @@
             }
         }],
         "web-hook": {
-            "script": "${globals.baseUrl}/add-web-hook.cs?r_${fn.random}",
+            "script": "${settings.baseUrl}/scripts/add-web-hook.cs?r_${fn.random}",
             "user": "${settings.gitUser}",
             "repo": "${settings.gitRepo}",
             "token": "${settings.gitToken}",
@@ -48,7 +47,7 @@
             "act": "${this.act}"
         },
         "add-build-project": {
-            "script": "${globals.baseUrl}/add-build-project.cs?r_${fn.random}",
+            "script": "${settings.baseUrl}/scripts/add-build-project.cs?r_${fn.random}",
             "name": "${globals.scriptName}",
             "url": "${settings.gitRepo}",
             "branch": "${settings.gitBranch}",
@@ -68,7 +67,7 @@
         }],
         "mount-deploy-volume": {
             "if ('${settings.deployType}' == 'mount')": {
-                "script": "${globals.baseUrl}/add-deploy-mount.cs?_r=${fn.random}",
+                "script": "${settings.baseUrl}/scripts/add-deploy-mount.cs?_r=${fn.random}",
                 "pathFrom": "/var/lib/jelastic/PROJECTS/${globals.scriptName}/target",
                 "pathTo": "${settings.autoDeployPath}"
             }
