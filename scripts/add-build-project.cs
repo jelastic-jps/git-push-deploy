@@ -53,7 +53,6 @@ if (deployType == "mount"){
      'sed -i "/Build success/i $cmd" ' + module,
      'cmd="SKIP_UPLOAD=\\"true\\""',
      'sed -i "/\$SKIP_UPLOAD/i $cmd" ' + module
-      $SKIP_UPLOAD
    ];
    resp = execCmd(params.envName, params.session, params.nodeId, cmd);
    if (resp.result != 0) return resp;
