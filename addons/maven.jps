@@ -62,8 +62,7 @@
             "branch": "${settings.gitBranch}",
             "targetEnv": "${settings.targetEnv}",
             "login": "${settings.gitUser}",
-            "password": "${settings.gitToken}",
-            "pathTo": "${settings.deployPathCustom}"
+            "password": "${settings.gitToken}"
         },
         "delete-redeploy-script": [{
             "jelastic.dev.scripting.DeleteScript": {
