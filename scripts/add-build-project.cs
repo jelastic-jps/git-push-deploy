@@ -49,7 +49,7 @@ if (deployType == "mount"){
    var cmd = [
      'cmd="cp \\${APPROOT}/\\${PROJECT_NAME}/target/*.* '+ mountPath + '/' + params.context +'.war >> \\${LOG_DIR}/\\${PROJECT_NAME}_build.log; writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+auto-deploy\\"; return 0; "', 
      'sed -i "/auto-deploy/d" ' + module, 
-     'sed -i "/Build success/a  $cmd" ' + module
+     'sed -i "/Build success/i  $cmd" ' + module
    ];
    resp = execCmd(params.envName, params.session, params.nodeId, cmd);
    if (resp.result != 0) return resp;
