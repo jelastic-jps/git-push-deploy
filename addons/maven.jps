@@ -68,7 +68,7 @@
         "mount-deploy-volume": {
             "if ('${settings.deployType}' == 'mount')": {
                 "script": "${settings.baseUrl}/scripts/add-deploy-mount.cs?_r=${fn.random}",
-                "pathFrom": "/var/lib/jelastic/PROJECTS/${globals.scriptName}/target",
+                "pathFrom": "/auto-deploy-folder",
                 "pathTo": "${settings.autoDeployPath}"
             }
         }
