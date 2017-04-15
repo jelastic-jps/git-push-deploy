@@ -36,14 +36,15 @@ if (!isNaN(projectId)) {
    if (resp.result != 0) return resp;
 }
 
+//add and build new project 
+var resp = jelastic.env.build.AddProject(params.envName, params.session, params.nodeId, params.name, params.type, params.url, params.keyId, params.login, params.password, params.env, params.context, params.branch, params.autoupdate, params.interval, params.autoResolveConflict);
+if (resp.result != 0) return resp;
+projectId = resp.id;
+
 if (deployType == "mount"){
    //for deploy via mount just build is enough 
    resp = jelastic.env.build.BuildProject(params.envName, params.session, params.nodeId, projectId);
 } else {
-   //add and build new project 
-   var resp = jelastic.env.build.AddProject(params.envName, params.session, params.nodeId, params.name, params.type, params.url, params.keyId, params.login, params.password, params.env, params.context, params.branch, params.autoupdate, params.interval, params.autoResolveConflict);
-   if (resp.result != 0) return resp;
-   projectId = resp.id;
 
    //--- temporary fix to JE-31670
    var module = "/usr/lib/jelastic/modules/maven.module";
