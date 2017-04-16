@@ -11,14 +11,16 @@ var resp = jelastic.env.control.GetEnvInfo(envName, session);
 if (resp.result != 0) return resp;
 
 var nodes = resp.nodes;
-
+var autoDeploy = true; 
+       
 for (var i = 0, l = nodes.length; i < l; i++) {
        if (nodes[i].nodeGroup == nodeGroup) {
               type = nodes[i].nodeType;
               if (type == "glassfish3") {
-                     autoDeployFolder="/opt/"+type+"/glassfish/domains/domain1/autodeploy";
+                     autoDeploy = false;
+                     //autoDeployFolder="/opt/"+type+"/glassfish/domains/domain1/autodeploy";
               } else if (type == "springboot") {
-                     return {result:0, response: "hot-redeploy via mount volume is not supported for [" + type + "]"}
+                     autoDeploy = false;
               } else {
                      var cmd = [
                          "f=/etc/jelastic/metainf.conf; [[ -f $f ]] && source $f",
@@ -41,10 +43,13 @@ for (var i = 0, l = nodes.length; i < l; i++) {
        }
 }
 
-if (!autoDeployFolder) {
-   return {result: 99, type: "error", message: "autodeploy folder is not defined for nodeType=" + type}
+if (!autoDeploy) {
+   return {result: 0, response: "autodeploy/hot-redeploy is not supported for [" + type + "]"}
 }
-//---
+
+if (!autoDeployFolder) {
+   return {result: 99, type: "error", message: "autodeploy folder is not defined for [" + type + "]"}
+}
 
 var resp = jelastic.env.file.RemoveMountPointByGroup(envName, session, mountTo, autoDeployFolder);
 if (resp.result != 0) return resp;
