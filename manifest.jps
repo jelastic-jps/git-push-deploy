@@ -5,41 +5,41 @@
     "name": "Git-Push-Deploy Add-On",
     "homepage": "https://github.com/jelastic-jps/git-push-deploy",
     "description": {
-      	"text": "<span>Simple <b>CI/CD Pipeline</b> to automatically pull and deploy application code from source GitHub/GitLab repository upon commit.</span><div>Can be applied to any certified Java, PHP, Ruby, Python or Node.js application server.</div> <div class='warning-lower' style='color:#b7c3da'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
+        "text": "<span>Simple <b>CI/CD Pipeline</b> to automatically pull and deploy application code from source GitHub/GitLab repository upon commit.</span><div>Can be applied to any certified Java, PHP, Ruby, Python or Node.js application server.</div> <div class='warning-lower' style='color:#b7c3da'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div>",
         "short": "Simple CI/CD pipeline for Git projects."
-        },
+    },
     "logo": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/ci-cd-icon.png",
     "targetNodes": {
-    "nodeType": [
-      "apache",
-      "apache2",
-      "apache2-ruby",
-      "apache2-python",
-      "glassfish3",
-      "glassfish4",
-      "jboss7",
-      "jetty6",
-      "jetty8",
-      "jetty9",
-      "nginxphp-dockerized",
-      "nginxphp",
-      "nginxphp",
-      "nginx-ruby",
-      "nodejs",
-      "smartfox-server",
-      "springboot",
-      "tomcat",
-      "tomcat7",
-      "tomcat85",
-      "tomcat6",
-      "tomcat9",
-      "tomee-dockerized",
-      "tomee",
-      "wildfly10",
-      "wildfly",
-      "wildfly9"
-    ]
-  },
+        "nodeType": [
+            "apache",
+            "apache2",
+            "apache2-ruby",
+            "apache2-python",
+            "glassfish3",
+            "glassfish4",
+            "jboss7",
+            "jetty6",
+            "jetty8",
+            "jetty9",
+            "nginxphp-dockerized",
+            "nginxphp",
+            "nginxphp",
+            "nginx-ruby",
+            "nodejs",
+            "smartfox-server",
+            "springboot",
+            "tomcat",
+            "tomcat7",
+            "tomcat85",
+            "tomcat6",
+            "tomcat9",
+            "tomee-dockerized",
+            "tomee",
+            "wildfly10",
+            "wildfly",
+            "wildfly9"
+        ]
+    },
     "nodes": {
         "count": 1,
         "cloudlets": 16,
@@ -52,7 +52,7 @@
             "name": "gitRepo",
             "caption": "Git Repo Url",
             "type": "string",
-            "default": "",
+            "default": "https://github.com/sych74/HelloWorld/",
             "required": "true",
             "regex": "^https?:\\/\\/.+$",
             "regexText": "Incorrect URL. HTTPS link to Git repository is required."
@@ -66,45 +66,38 @@
             "name": "gitUser",
             "caption": "User",
             "type": "string",
-            "default": "",
+            "default": "sych74",
             "required": "true"
         }, {
             "name": "gitToken",
             "caption": "Token",
             "type": "string",
-            "default": "",
+            "default": "0c48c86e91db3016aba5b3ee4891dee0a565c63d",
             "required": "true"
         }, {
             "name": "deployType",
-            "type": "hidden",
+            "type": "list",
+            "caption": "Deploy via",
             "values": {
-                "native": "Certified containers - deployment via API",
-                "custom": "Custom containers - deployment via volume mount + restart"
+                "mount": "Mount Volume",
+                "api": "Native API"
             },
-            "showIf": {
-                "custom": [{
-                    "name": "deployPathCustom",
-                    "caption": "Mount Path",
-                    "type": "string",
-                    "default": "/opt/payara/deployments"
-                }]
-            },
-            "default": "native",
+            "default": "mount",
             "required": "true"
         }]
     },
     "globals": {
-        "basePath": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master"
+        "baseUrl": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/mount"
     },
     "onInstall": {
-        "script": "${globals.basePath}/scripts/check-deployment-type.cs?_r=${fn.random}",
+        "script": "${globals.baseUrl}/scripts/check-deployment-type.cs?_r=${fn.random}",
         "next": "jps"
     },
     "actions": {
         "jps": {
             "installJps": {
                 "envName": "${env.envName}-git-push-${fn.random(100)}",
-                "jps": "${globals.basePath}/addons/${this.addon}.jps?_r=${fn.random}",
+                "jps": "${globals.baseUrl}/addons/${this.addon}.jps?_r=${fn.random}",
                 "settings": {
                     "gitUser": "${settings.gitUser}",
                     "gitRepo": "${settings.gitRepo}",
@@ -112,8 +105,9 @@
                     "gitBranch": "${settings.gitBranch}",
                     "deployType": "${settings.deployType}",
                     "targetEnv": "${env.envName}",
-                    "basePath": "${settings.path}",
-                    "type": "${this.type}"
+                    "baseUrl": "${globals.baseUrl}",
+                    "type": "${this.type}",
+                    "nodeGroup": "cp"
                 },
                 "region": "${env.hardwareNodeGroup}"
             }
