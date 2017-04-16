@@ -33,7 +33,7 @@ for (var i = 0, l = nodes.length; i < l; i++) {
                      if (type.indexOf("glassfish") > -1) {
                         webroot = webroot.replace("webapps", "glassfish/domains/domain1/autodeploy")    
                      }
-                     autoDeployFolder = webroot;                     
+                     autoDeployFolder = webroot.replace("//", "/");                     
               }
               /*
               type = nodes[i].nodeType;
