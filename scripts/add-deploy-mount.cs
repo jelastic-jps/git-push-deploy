@@ -17,6 +17,8 @@ for (var i = 0, l = nodes.length; i < l; i++) {
               type = nodes[i].nodeType;
               if (type == "glassfish3") {
                      autoDeployFolder="/opt/"+type+"/glassfish/domains/domain1/autodeploy";
+              } else if (type == "springboot") {
+                     return {result:0, response: "hot-redeploy via mount volume is not supported for [" + type + "]"}
               } else {
                      var cmd = [
                          "f=/etc/jelastic/metainf.conf; [[ -f $f ]] && source $f",
@@ -34,19 +36,7 @@ for (var i = 0, l = nodes.length; i < l; i++) {
                         webroot = webroot.replace("webapps", "glassfish/domains/domain1/autodeploy")    
                      }
                      autoDeployFolder = webroot.replace("//", "/");                     
-              }
-              /*
-              type = nodes[i].nodeType;
-              if (type.indexOf("tomcat") > -1) {
-                     autoDeployFolder = "/opt/tomcat/webapps";
-              } else if (type == "glassfish4") {
-                     autoDeployFolder="/opt/repo/versions/"+nodes[i].version+"/glassfish/domains/domain1/autodeploy";
-              } if (type == "glassfish3") {
-                     autoDeployFolder="/opt/"+type+"/glassfish/domains/domain1/autodeploy";
-              } if (type == "wildfly10") {
-                     autoDeployFolder="/opt/repo/versions/"+nodes[i].version+"/standalone/deployments";
-              }*/
-              
+              }              
               break;
        }
 }
