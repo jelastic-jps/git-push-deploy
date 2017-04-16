@@ -44,9 +44,10 @@ projectId = resp.id;
 var module = "/usr/lib/jelastic/modules/maven.module";
 var host = window.location.host.replace(/cs|app/, "core");
 
+var cmd;
 if (deployType == "mount"){
    //copy app archive to mountPath and skip deployment via API
-   var cmd = [
+   cmd = [
      'cmd="cp \\${APPROOT}/\\${PROJECT_NAME}/target/*.* '
       + mountPath + '/' + params.context +'.war >> \\${LOG_DIR}/\\${PROJECT_NAME}_build.log; writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+auto-deploy\\"; return 0; "', 
      'sed -i "/auto-deploy/d" ' + module, 
@@ -54,10 +55,9 @@ if (deployType == "mount"){
      'cmd="SKIP_UPLOAD=\\"true\\""',
      'sed -i "/\\$SKIP_UPLOAD/i $cmd" ' + module
    ];
-  
 } else {
    //--- temporary fix to JE-31670
-   var cmd = ['url="https://' + host + '/JElastic/environment/build/rest/builddeploy?envName=\\$ENVIRONMENT&projectName=\\$PROJECT_NAME"', 
+   cmd = ['url="https://' + host + '/JElastic/environment/build/rest/builddeploy?envName=\\$ENVIRONMENT&projectName=\\$PROJECT_NAME"', 
      'cmd="parseArguments \\"\\$@\\"; [[ \\${SESSION:0:4} = \'lds:\' ]] && { readProjectConfig; echo \\$(curl -fsSL \\"$url\\"); writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+deploy\\"; return 0; }"', 
      'sed -i "/SESSION:0:/d" ' + module, 'sed -i "/doBuild()/a  $cmd" ' + module];
 }
