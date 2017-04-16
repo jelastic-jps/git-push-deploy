@@ -7,9 +7,31 @@ var mountTo = nodeGroup;
 
 //TODO:move autoDeployFolder deterination logic to jem
 var autoDeployFolder, type;
-var nodes = jelastic.env.control.GetEnvInfo(envName, session).nodes;
+var resp = jelastic.env.control.GetEnvInfo(envName, session);
+if (resp.result != 0) return resp;
+
+var nodes = resp.nodes;
+
 for (var i = 0, l = nodes.length; i < l; i++) {
        if (nodes[i].nodeGroup == nodeGroup) {
+              var cmd = [
+                  "source /etc/jelastic/metainf.conf > /dev/null 2>&1",
+                  "source /var/lib/jelastic/libs/envinfo.lib > /dev/null 2>&1",
+                  "source /etc/jelastic/environment > /dev/null 2>&1",
+                  "echo ${WEBROOT:-$Webroot_Path}"
+              ];
+              resp = jelastic.env.control.ExecCmdById(envName, session, nodes[i].id, toJSON([{
+                     "command": cmd.join("\n")
+              }]) + "", true, "root");
+              if (resp.result != 0) return resp;
+              
+              var webroot = resp.responses[0].out;
+              type = nodes[i].nodeType;
+              if (type.indexOf("glassfish") > -1) {
+                 webroot = webroot.replace("webapps", "glassfish/domains/domain1/autodeploy")    
+              }
+              autoDeployFolder = webroot;
+              /*
               type = nodes[i].nodeType;
               if (type.indexOf("tomcat") > -1) {
                      autoDeployFolder = "/opt/tomcat/webapps";
@@ -19,7 +41,8 @@ for (var i = 0, l = nodes.length; i < l; i++) {
                      autoDeployFolder="/opt/"+type+"/glassfish/domains/domain1/autodeploy";
               } if (type == "wildfly10") {
                      autoDeployFolder="/opt/repo/versions/"+nodes[i].version+"/standalone/deployments";
-              }
+              }*/
+              
               break;
        }
 }
