@@ -76,7 +76,7 @@
             "required": "true"
         }, {
             "name": "deployType",
-            "type": "hidden",
+            "type": "list",
             "caption": "Deploy via",
             "values": {
                 "mount": "Mount Volume",
@@ -105,6 +105,7 @@
                     "gitBranch": "${settings.gitBranch}",
                     "targetEnv": "${env.envName}",
                     "baseUrl": "${globals.baseUrl}",
+                    "deployType": "${settings.deployType}",
                     "type": "${this.type}",
                     "nodeGroup": "cp"
                 },
