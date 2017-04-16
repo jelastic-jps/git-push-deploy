@@ -52,7 +52,7 @@
             "name": "gitRepo",
             "caption": "Git Repo Url",
             "type": "string",
-            "default": "https://github.com/sych74/HelloWorld/",
+            "default": "",
             "required": "true",
             "regex": "^https?:\\/\\/.+$",
             "regexText": "Incorrect URL. HTTPS link to Git repository is required."
@@ -66,13 +66,13 @@
             "name": "gitUser",
             "caption": "User",
             "type": "string",
-            "default": "sych74",
+            "default": "",
             "required": "true"
         }, {
             "name": "gitToken",
             "caption": "Token",
             "type": "string",
-            "default": "0c48c86e91db3016aba5b3ee4891dee0a565c63d",
+            "default": "",
             "required": "true"
         }, {
             "name": "deployType",
