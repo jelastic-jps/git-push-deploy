@@ -76,7 +76,7 @@
             "required": "true"
         }, {
             "name": "deployType",
-            "type": "list",
+            "type": "hidden",
             "caption": "Deploy via",
             "values": {
                 "mount": "Mount Volume",
@@ -103,7 +103,6 @@
                     "gitRepo": "${settings.gitRepo}",
                     "gitToken": "${settings.gitToken}",
                     "gitBranch": "${settings.gitBranch}",
-                    "deployType": "${settings.deployType}",
                     "targetEnv": "${env.envName}",
                     "baseUrl": "${globals.baseUrl}",
                     "type": "${this.type}",
