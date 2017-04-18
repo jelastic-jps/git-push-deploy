@@ -1,7 +1,7 @@
 ## Simple Automated CI/CD Pipeline for Git Projects
 
 This Git-Push-Deploy solution enables automatic delivery of updates within your Git application sources directly to the cloud. The package can be applied as an add-on to any **Java**, **PHP**, **Ruby**, **Node.js** and **Python** project, run on top of the following certified stack templates:
-- *Java* - Tomcat 6/7/8/9, TomEE, GlassFish 3/4, Jetty 6/8/9, WildFly 8/9/10, JBoss AS 7, SmartFoxServer 2X, Spring Boot 1.x
+- *Java* - Tomcat 6/7/8/9, TomEE, GlassFish 3/4, Jetty 6/8/9, WildFly 8/9/10, JBoss AS 7, Spring Boot 1.x
 - *PHP* - Apache 2.4, NGINX 1.10
 - *Ruby* - Apache 2.4, NGINX 1.10
 - *Node.js* - NodeJS 0.x-6.x
