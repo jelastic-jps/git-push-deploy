@@ -55,3 +55,9 @@ Within the opened installation window, specify the following data:
 - **_Nodes_** - application server name (is fetched automatically upon selecting the environment)
 
 Click **Install** and wait for Jelastic to configure CI/CD pipeline for your project. Once your application is deployed, all the further changes, committed to a source repository, will be automatically delivered to your environment inside Jelastic Cloud.
+
+## Known Issues
+
+Since Jelastic 4.9.5 runs the preceding version of [Cloud Scripting](http://docs.cloudscripting.com/), you may be faced the following issues while the add-on installation:
+- If specified Git _User_ name and/or _Personal Access Token_ are incorrect, a crash report will appear. In this case, please re-run the installation and double-check your entries.
+- In some cases, the after-installation frame may be shown empty. This does not affect the add-on operability, whilst all the corresponding information is duplicated to you via email.
