@@ -58,6 +58,6 @@ Click **Install** and wait for Jelastic to configure CI/CD pipeline for your pro
 
 ## Known Issues
 
-Since Jelastic 4.9.5 runs the preceding version of [Cloud Scripting](http://docs.cloudscripting.com/), you may be faced the following issues during this add-on installation at such Platforms:
-- If specified Git _User_ name and/or _Personal Access Token_ are incorrect, a crash report will appear. In this case, please re-run the installation and double-check your entries.
-- In some cases, the after-installation frame may be shown empty. This does not affect the add-on operability, whilst all the corresponding information is duplicated to you via email.
+For Jelastic 4.9.5 version, you may face the following issues during add-on installation:
+- If the process interrupts with a crash report, recheck the specified Git _User_ name and/or _Personal Access Token_ and try again.
+- If the after-installation frame is shown empty, check your email box to find all the appropriate information sent to you via letter.
