@@ -23,7 +23,7 @@ Before applying the package, please consider the following points:
 
 - The solution is proven for use with GitHub and GitLab repositories
 - For a proper package installation, some preliminary Git repository configurations are required: 
-  - generated and remembered *Personal Access Token* that corresponds to your Git account
+  - generated and remembered *Personal Access Token* that corresponds to your [GitHub](https://github.com/jelastic-jps/git-push-deploy/wiki/GitHub-Access-Token) or [GitLab](https://github.com/jelastic-jps/git-push-deploy/wiki/GitLab-Access-Token) account
   - for integration with *Java-powered* app, the appropriate repository root should contain a **_pom.xml_** file with the following content as an obligatory basis (where *groupId*, *artifactId* and *version* values are optional):
 
 ```xml
@@ -50,7 +50,7 @@ Within the opened installation window, specify the following data:
 - **_Git Repo Url_** - HTTPS link to your application repo
 - **_Branch_** - a project branch to be used
 - **_User_** - your Git account login
-- **_Token_** - personal Git access token for webhook generation
+- **_Token_** - personal Git access token for webhook generation (can be created within [GitHub](https://github.com/jelastic-jps/git-push-deploy/wiki/GitHub-Access-Token)/[GitLab](https://github.com/jelastic-jps/git-push-deploy/wiki/GitLab-Access-Token) account settings) 
 - **_Environment name_** - target environment your application should be deployed to
 - **_Nodes_** - application server name (is fetched automatically upon selecting the environment)
 
