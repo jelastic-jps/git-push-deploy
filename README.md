@@ -40,6 +40,8 @@ Before applying the package, please consider the following points:
 ```
 - The used [Platform](https://jelastic.cloud/) should run Jelastic version 4.9.5 or higher 
 
+[![Deploy](../images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/java-memory-agent/master/manifest.jps)
+
 ## How to Integrate Git-Push-Deploy Pipeline to Jelastic Environment  
 
 To install the Git-Push-Deploy package, copy link to the **_manifest.jps_** file above and [import](https://docs.jelastic.com/environment-import) it to your Jelastic dashboard.
