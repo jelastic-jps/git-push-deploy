@@ -40,7 +40,7 @@ Before applying the package, please consider the following points:
 ```
 - The used [Platform](https://jelastic.cloud/) should run Jelastic version 4.9.5 or higher 
 
-[![Deploy](../images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/java-memory-agent/master/manifest.jps)
+[![Deploy](https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/java-memory-agent/master/manifest.jps)
 
 ## How to Integrate Git-Push-Deploy Pipeline to Jelastic Environment  
 
