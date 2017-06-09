@@ -102,7 +102,7 @@
     "actions": {
         "jps": {
             "installJps": {
-                "envName": "${env.envName}-git-push-${fn.random(100)}",
+                "shortdomain": "${env.envName}-git-push-${fn.random(100)}",
                 "jps": "${globals.basePath}/addons/${this.addon}.jps?_r=${fn.random}",
                 "settings": {
                     "gitUser": "${settings.gitUser}",
