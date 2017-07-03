@@ -40,7 +40,10 @@ for (i = 0; i < contexts.length; i++) {
 
 //create and update the project 
 resp = jelastic.env.vcs.CreateProject(p.envName, p.session, p.type, p.context, p.url, p.branch, p.keyId, p.login, p.password, p.autoupdate, p.interval, p.autoResolveConflict, p.zdt);
-if (resp.result != 0) return resp;
+if (resp.result != 0) {
+   resp.params = p;
+   return resp;
+}
 
 resp = jelastic.env.vcs.Update(p.envName, p.session, p.context);
 return resp;
