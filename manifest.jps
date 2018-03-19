@@ -15,6 +15,7 @@
       "apache2",
       "apache2-ruby",
       "apache2-python",
+      "glassfish",
       "glassfish3",
       "glassfish4",
       "jboss7",
@@ -36,7 +37,8 @@
       "tomee",
       "wildfly10",
       "wildfly",
-      "wildfly9"
+      "wildfly9",
+      "wildfly-auto-cluster"
     ]
   },
     "nodes": {
