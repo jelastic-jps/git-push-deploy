@@ -36,6 +36,7 @@
       "tomee-dockerized",
       "tomee",
       "wildfly10",
+      "wildfly11",
       "wildfly",
       "wildfly9",
       "wildfly-auto-cluster"
