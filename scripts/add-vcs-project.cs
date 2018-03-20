@@ -26,16 +26,25 @@ p = {
     autoResolveConflict: true,
     zdt: true
 }
-   
-//removing already deployed app/project in context
-//specifically for ruby -> removing all contexts (development, test and production), 
-//because ruby supports only one context at a time  
-for (i = 0; i < contexts.length; i++) {
-    resp = jelastic.env.control.RemoveApp(p.envName, p.session, contexts[i]);
-    if (resp.result != 0 && resp.result != 2313) return resp;
 
-    resp = jelastic.env.vcs.DeleteProject(p.envName, p.session, contexts[i]);
-    if (resp.result != 0 && resp.result != 2500) return resp;
+resp = jelastic.env.control.GetEnvInfo("${env.envName}", session);
+if (resp && resp.result != 0) return resp;
+
+if (resp.env && resp.env.contexts) {
+   contextsExists = resp.env.contexts.length;
+}
+   
+if (contextsExists) {
+   //removing already deployed app/project in context
+   //specifically for ruby -> removing all contexts (development, test and production), 
+   //because ruby supports only one context at a time  
+   for (i = 0; i < contexts.length; i++) {
+       resp = jelastic.env.control.RemoveApp(p.envName, p.session, contexts[i]);
+       if (resp.result != 0 && resp.result != 2313) return resp;
+
+       resp = jelastic.env.vcs.DeleteProject(p.envName, p.session, contexts[i]);
+       if (resp.result != 0 && resp.result != 2500) return resp;
+   }
 }
 
 //create and update the project 
