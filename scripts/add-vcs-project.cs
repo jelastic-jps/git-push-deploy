@@ -1,7 +1,8 @@
 //@req(user, token, url, branch, type)
 
 //git repo url normalization
-url = url.replace(/^\s+|\s+$/gm, '');
+url = url.replace(/^\s+|\s+$/gm, ''),
+   contextsExists;
 var ind = url.lastIndexOf(".git");
 if (ind == -1 || ind != url.length - 4) {
    ind = url.lastIndexOf("/");
