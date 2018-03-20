@@ -2,7 +2,7 @@
 
 //git repo url normalization
 url = url.replace(/^\s+|\s+$/gm, ''),
-   contextsExists;
+   contextsExists = "";
 var ind = url.lastIndexOf(".git");
 if (ind == -1 || ind != url.length - 4) {
    ind = url.lastIndexOf("/");
