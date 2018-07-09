@@ -15,7 +15,7 @@
     "globals": {
         "scriptName": "git_push_redeploy",
         "hooksLog": "/var/log/maven/hooks.log",
-        "baseUrl": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/scripts"
+        "baseUrl": "https://raw.githubusercontent.com/siruslan/git-push-deploy/master/scripts"
     },
     "onInstall": [
         "add-build-project",
