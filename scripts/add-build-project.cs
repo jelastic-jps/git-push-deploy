@@ -41,19 +41,6 @@ var resp = jelastic.env.build.AddProject(params.envName, params.session, params.
 if (resp.result != 0) return resp;
 projectId = resp.id;
 
-//--- temporary fix to JE-31670
-var module = "/usr/lib/jelastic/modules/maven.module";
-var host = window.location.host.replace(/cs|app/, "core");
-var cmd = ['url="https://' + host + '/JElastic/environment/build/rest/builddeploy?envName=\\$ENVIRONMENT&projectName=\\$PROJECT_NAME"', 
-  'cmd="parseArguments \\"\\$@\\"; [[ \\${SESSION:0:4} = \'lds:\' ]] && { readProjectConfig; echo \\$(curl -fsSLk \\"$url\\"); writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+deploy\\"; return 0; }"', 
-  'sed -i "/SESSION:0:/d" ' + module, 'sed -i "/doBuild()/a  $cmd" ' + module];
-
-resp = jelastic.env.control.ExecCmdById(params.envName, params.session, params.nodeId, toJSON([{
-   "command": cmd.join("\n")
-}]) + "", true, "root");
-if (resp.result != 0) return resp;
-//---
-
 var delay = getParam("delay") || 30;
 resp = jelastic.env.build.BuildDeployProject({
    envName: params.envName,
