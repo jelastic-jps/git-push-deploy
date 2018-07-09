@@ -49,7 +49,21 @@ if (contextsExists) {
 }
 
 //create and update the project 
-resp = jelastic.env.vcs.CreateProject(p.envName, p.session, p.type, p.context, p.url, p.branch, p.keyId, p.login, p.password, p.autoupdate, p.interval, p.autoResolveConflict, p.zdt);
+resp = jelastic.env.vcs.CreateProject({
+   envName: p.envName,
+   session: p.session,
+   type: p.type,
+   context: p.context,
+   url: p.url,
+   branch: p.branch,
+   keyId: p.keyId,
+   login: p.login,
+   password: p.password,
+   autoupdate: p.autoupdate,
+   interval: String(p.interval),
+   autoResolveConflict: p.autoResolveConflict,
+   zdt: p.zdt
+});
 if (resp.result != 0) {
    resp.params = p;
    return resp;
