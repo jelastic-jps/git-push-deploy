@@ -55,5 +55,11 @@ if (resp.result != 0) return resp;
 //---
 
 var delay = getParam("delay") || 30;
-resp = jelastic.env.build.BuildDeployProject(params.envName, params.session, params.nodeId, projectId, delay);
+resp = jelastic.env.build.BuildDeployProject({
+   envName: params.envName,
+   session: params.session,
+   nodeid: params.nodeId,
+   projectid: projectId, 
+   delay: delay
+});
 return resp;
