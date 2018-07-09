@@ -59,9 +59,3 @@ Within the opened installation window, specify the following data:
 Click **Install** and wait for Jelastic to configure CI/CD pipeline for your project. Once your application is deployed, all the further changes, committed to a source repository, will be automatically delivered to your environment inside Jelastic Cloud.
 
 For more information on Git-Push-Deploy package use, refer to the corresponding [article](http://blog.jelastic.com/2017/04/20/git-push-deploy-to-containers/). 
-
-## Known Issues
-
-For Jelastic 4.9.5 version, you may face the following issues during add-on installation:
-- If the process interrupts with a crash report, recheck the specified Git _User_ name and/or _Personal Access Token_ and try again.
-- If the after-installation frame is shown empty, check your email box to find all the appropriate information sent to you via letter.
