@@ -18,6 +18,8 @@ targetNodes:
   - glassfish
   - glassfish3
   - glassfish4
+  - golang
+  - javaengine
   - jboss7
   - jetty6
   - jetty8
