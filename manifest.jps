@@ -29,7 +29,6 @@ targetNodes:
   - nginx-ruby
   - nodejs
   - payara
-  - smartfox-server
   - springboot
   - tomcat
   - tomcat7
