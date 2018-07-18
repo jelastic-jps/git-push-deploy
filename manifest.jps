@@ -87,17 +87,20 @@ onInstall:
   
 actions:
   jps:
-    installJps:
-      shortdomain: ${env.envName}-git-push-${fn.random(1000)}
-      jps: /addons/${this.addon}.jps?_r=${fn.random}
-      settings:
-        gitUser: ${settings.gitUser}
-        gitRepo: ${settings.gitRepo}
-        gitToken: ${settings.gitToken}
-        gitBranch: ${settings.gitBranch}
-        deployType: ${settings.deployType}
-        targetEnv: ${env.envName}
-        basePath: ${settings.path}
-        type: ${this.type}
-      region: ${env.hardwareNodeGroup}
+    - api: env.control.GetEnvInfo
+      envName: ${env.envName}
+    - install:
+        envGroups: ${response.envGroups}
+        envName: ${env.envName}-git-push-${fn.random(1000)}
+        jps: /addons/${this.addon}.jps?_r=${fn.random}
+        settings:
+          gitUser: ${settings.gitUser}
+          gitRepo: ${settings.gitRepo}
+          gitToken: ${settings.gitToken}
+          gitBranch: ${settings.gitBranch}
+          deployType: ${settings.deployType}
+          targetEnv: ${env.envName}
+          basePath: ${settings.path}
+          type: ${this.type}
+        region: ${env.hardwareNodeGroup}
 success: /text/success.md
