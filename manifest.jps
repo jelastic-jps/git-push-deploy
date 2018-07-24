@@ -91,7 +91,7 @@ actions:
       envName: ${env.envName}
     - install:
         envGroups: ${response.envGroups}
-        envName: ${env.envName}-git-push-${fn.random(1000)}
+        envName: ${this.envName}
         jps: /addons/${this.addon}.jps?_r=${fn.random}
         settings:
           gitUser: ${settings.gitUser}
