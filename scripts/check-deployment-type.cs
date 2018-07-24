@@ -1,8 +1,8 @@
 //@req(next)
 
-nodes = jelastic.env.control.GetEnvInfo('${env.envName}', session).nodes
-addon = 'unknown'
 envName = '${env.envName}'
+nodes = jelastic.env.control.GetEnvInfo(envName, session).nodes
+addon = 'unknown'
 
 for (i = 0; i < nodes.length; i++){
   if (nodes[i].nodeGroup == 'cp') {
