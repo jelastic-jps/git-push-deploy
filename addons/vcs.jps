@@ -35,6 +35,7 @@
                 "token": "${settings.gitToken}",
                 "callbackUrl": "${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=rebuild&appid=${this.appid}",
                 "scriptName": "${globals.scriptName}",
+                "envName": "${env.envName}",                
                 "act": "${this.act}"
             }
         },
