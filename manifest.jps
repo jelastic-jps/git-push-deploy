@@ -66,41 +66,85 @@ settings:
     caption: Token
     type: string
     default: ''
-    required: 'true'
-  - name: deployType
-    type: hidden
-    values:
-      native: Certified containers - deployment via API
-      custom: Custom containers - deployment via volume mount + restart
-    showIf:
-      custom:
-      - name: deployPathCustom
-        caption: Mount Path
-        type: string
-        default: "/opt/payara/deployments"
-    default: native
-    required: 'true'
+    required: true
+
+globals:
+  scriptName: git-push-redeploy
 
 onInstall:
   script: /scripts/check-deployment-type.cs?_r=${fn.random}
-  next: jps
+  next: setup
+
+onBeforeDelete: delete-redeploy-script
+onUninstall: delete-redeploy-script
   
 actions:
-  jps:
-    - api: env.control.GetEnvInfo
-      envName: ${env.envName}
-    - install:
-        envGroups: ${response.envGroups}
-        envName: ${this.envName}
-        jps: /addons/${this.addon}.jps?_r=${fn.random}
-        settings:
-          gitUser: ${settings.gitUser}
-          gitRepo: ${settings.gitRepo}
-          gitToken: ${settings.gitToken}
-          gitBranch: ${settings.gitBranch}
-          deployType: ${settings.deployType}
-          targetEnv: ${env.envName}
-          basePath: ${settings.path}
+  setup:
+    - if ('${this.addon}' == 'maven'): 
+      - if (!nodes.build): 
+          addNodes: 
+              cloudlets: 16
+              nodeGroup: build
+              nodeType: maven3
+              displayName: Build Node
+              groupDisplayName: Build Nodes
+              metadata:
+                layer: build
+      - add-build-project
+
+    - if ('${this.addon}' == 'vcs'): 
+        add-vcs-project:
           type: ${this.type}
-        region: ${env.hardwareNodeGroup}
+        
+    - create-redeploy-script
+
+
+  create-redeploy-script:
+    script: /scripts/create-redeploy-script.cs?r_${fn.random}
+    url: ${baseUrl}/scripts/redeploy.cs
+    targetEnv: ${env.envName}
+    nodeGroup: cp
+    next: web-hook
+
+  web-hook:
+    script: /scripts/add-web-hook.cs?r_${fn.random}
+    params:
+      scriptName: ${globals.scriptName}
+      user: ${settings.gitUser}
+      repo: ${settings.gitRepo}
+      token: ${settings.gitToken}
+      callbackUrl: ${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=rebuild&appid=${this.appid}
+      envName: ${env.envName}
+      act: ${this.act}
+ 
+  add-vcs-project:
+    script: /scripts/add-vcs-project.cs?r_${fn.random}
+    params:
+      url: ${settings.gitRepo}
+      branch: ${settings.gitBranch}
+      user: ${settings.gitUser}
+      token: ${settings.gitToken}
+      type: ${this.type}
+      
+  add-build-project:
+    script: /scripts/add-build-project.cs?r_${fn.random}
+    params:
+      name: ${globals.scriptName}
+      url: ${settings.gitRepo}
+      branch: ${settings.gitBranch}
+      login: ${settings.gitUser}
+      password: ${settings.gitToken}
+      targetEnv: ${env.envName}
+      
+  delete-redeploy-script:
+    - jelastic.dev.scripting.DeleteScript:
+        name: ${env.envName}-${globals.scriptName}
+    - web-hook:
+        act: delete
+    - if (nodes.build): 
+        api: env.control.RemoveNode
+        nodeid: ${nodes.build.master.id}
+        
 success: /text/success.md
+
+
