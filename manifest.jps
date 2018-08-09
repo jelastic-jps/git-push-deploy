@@ -15,6 +15,7 @@ targetNodes:
   - apache2
   - apache2-ruby
   - apache2-python
+  - apache-ruby
   - glassfish
   - glassfish3
   - glassfish4
@@ -27,6 +28,7 @@ targetNodes:
   - nginxphp-dockerized
   - nginxphp
   - nginx-ruby
+  - nginxruby
   - nodejs
   - payara
   - springboot
