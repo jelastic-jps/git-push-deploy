@@ -39,27 +39,19 @@ if (!isNaN(projectId)) {
 //add and build new project 
 var resp = jelastic.env.build.AddProject(params.envName, params.session, params.nodeId, params.name, params.type, params.url, params.keyId, params.login, params.password, params.env, params.context, params.branch, params.autoupdate, params.interval, params.autoResolveConflict);
 if (resp.result != 0) return resp;
-projectId = resp.id;
 
-//--- temporary fix to JE-31670
-var module = "/usr/lib/jelastic/modules/maven.module";
-var host = window.location.host.replace(/cs|app/, "core");
-var cmd = ['url="https://' + host + '/JElastic/environment/build/rest/builddeploy?envName=\\$ENVIRONMENT&projectName=\\$PROJECT_NAME"', 
-  'cmd="parseArguments \\"\\$@\\"; [[ \\${SESSION:0:4} = \'lds:\' ]] && { readProjectConfig; echo \\$(curl -fsSLk \\"$url\\"); writeJSONResponseOut \\"result=>0\\" \\"message=>redirect->build+deploy\\"; return 0; }"', 
-  'sed -i "/SESSION:0:/d" ' + module, 'sed -i "/doBuild()/a  $cmd" ' + module];
+//github triggers first build automatically after we add a webhook 
+//calling build action manually for non-github repos
+if (url.indexOf("github.com") == -1) {
+   projectId = resp.id;
+   var delay = getParam("delay") || 30;
+   resp = jelastic.env.build.BuildDeployProject({
+      envName: params.envName,
+      session: params.session,
+      nodeid: params.nodeId,
+      projectid: projectId, 
+      delay: delay
+   });
+}
 
-resp = jelastic.env.control.ExecCmdById(params.envName, params.session, params.nodeId, toJSON([{
-   "command": cmd.join("\n")
-}]) + "", true, "root");
-if (resp.result != 0) return resp;
-//---
-
-var delay = getParam("delay") || 30;
-resp = jelastic.env.build.BuildDeployProject({
-   envName: params.envName,
-   session: params.session,
-   nodeid: params.nodeId,
-   projectid: projectId, 
-   delay: delay
-});
 return resp;

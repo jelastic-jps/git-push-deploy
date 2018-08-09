@@ -1,127 +1,152 @@
-{
-    "jpsType": "update",
-    "jpsVersion": "0.99",
-    "id": "git-push-deploy",
-    "name": "Git-Push-Deploy Add-On",
-    "homepage": "https://github.com/jelastic-jps/git-push-deploy",
-    "description": {
-      	"text": "<span>Simple <b>CI/CD Pipeline</b> to automatically pull and deploy application code from source GitHub/GitLab repository upon commit.</span><div>Can be applied to any certified Java, PHP, Ruby, Python or Node.js application server.</div> <div class='warning-lower' style='color:#b7c3da'><b>Note</b> that the already deployed projects within chosen server ROOT will be rewritten</div><span>In order to generate <em>Personal Access Token</em> to your Git account, refer to the appropriate instruction based on used Git service:</span><ul><li><a href=\"https://github.com/jelastic-jps/git-push-deploy/wiki/GitHub-Access-Token/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">for GitHub</a></li><li><a href=\"https://github.com/jelastic-jps/git-push-deploy/wiki/GitLab-Access-Token/\" target=\"_blank\" rel=\"noopener noreferrer nofollow\">for GitLab</a></li></ul>",
-        "short": "Simple CI/CD pipeline for Git projects."
-        },
-    "logo": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/ci-cd-icon.png",
-    "targetNodes": {
-    "nodeType": [
-      "apache",
-      "apache2",
-      "apache2-ruby",
-      "apache2-python",
-      "glassfish",
-      "glassfish3",
-      "glassfish4",
-      "jboss7",
-      "jetty6",
-      "jetty8",
-      "jetty9",
-      "nginxphp-dockerized",
-      "smartfox-server",
-      "nginxphp",
-      "nginx-ruby",
-      "nodejs",
-      "springboot",
-      "tomcat",
-      "tomcat7",
-      "tomcat85",
-      "tomcat6",
-      "tomcat9",
-      "tomee-dockerized",
-      "tomee",
-      "wildfly10",
-      "wildfly11",
-      "wildfly",
-      "wildfly9",
-      "wildfly-auto-cluster"
-    ]
-  },
-    "nodes": {
-        "count": 1,
-        "cloudlets": 8,
-        "nodeGroup": "build",
-        "nodeType": "maven3"
-    },
-    "engine": "java8",
-    "settings": {
-        "fields": [{
-            "name": "gitRepo",
-            "caption": "Git Repo Url",
-            "type": "string",
-            "default": "",
-            "required": "true",
-            "regex": "^https?:\\/\\/.+$",
-            "regexText": "Incorrect URL. HTTPS link to Git repository is required."
-        }, {
-            "name": "gitBranch",
-            "caption": "Branch",
-            "type": "string",
-            "default": "master",
-            "required": "true"
-        }, {
-            "name": "gitUser",
-            "caption": "User",
-            "type": "string",
-            "default": "",
-            "required": "true"
-        }, {
-            "name": "gitToken",
-            "caption": "Token",
-            "type": "string",
-            "default": "",
-            "required": "true"
-        }, {
-            "name": "deployType",
-            "type": "hidden",
-            "values": {
-                "native": "Certified containers - deployment via API",
-                "custom": "Custom containers - deployment via volume mount + restart"
-            },
-            "showIf": {
-                "custom": [{
-                    "name": "deployPathCustom",
-                    "caption": "Mount Path",
-                    "type": "string",
-                    "default": "/opt/payara/deployments"
-                }]
-            },
-            "default": "native",
-            "required": "true"
-        }]
-    },
-    "globals": {
-        "basePath": "https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master"
-    },
-    "onInstall": {
-        "script": "${globals.basePath}/scripts/check-deployment-type.cs?_r=${fn.random}",
-        "next": "jps"
-    },
-    "actions": {
-        "jps": {
-            "installJps": {
-                "shortdomain": "${env.envName}-git-push-${fn.random(100)}",
-                "jps": "${globals.basePath}/addons/${this.addon}.jps?_r=${fn.random}",
-                "settings": {
-                    "gitUser": "${settings.gitUser}",
-                    "gitRepo": "${settings.gitRepo}",
-                    "gitToken": "${settings.gitToken}",
-                    "gitBranch": "${settings.gitBranch}",
-                    "deployType": "${settings.deployType}",
-                    "targetEnv": "${env.envName}",
-                    "basePath": "${settings.path}",
-                    "type": "${this.type}"
-                },
-                "region": "${env.hardwareNodeGroup}"
-            }
-        }
-    },
-    "success": {
-        "text": "<h3>CI/CD pipeline has been successfully integrated!</h3><p>Open your target environment URL <b><a href=\"${env.protocol}://${env.domain}\" target=\"_blank\">${env.protocol}://${env.domain}</a></b> to access your application.</p></br><p>If something does not work as expected, please check the logs for more details or submit a question to <a href=\"https://stackoverflow.com/questions/tagged/jelastic\" target=\"_blank\">Jelastic community</a>.</p>"
-    }
-}
+---
+type: update
+id: git-push-deploy
+name: Git-Push-Deploy Add-On
+homepage: https://jelastic.com/blog/git-push-deploy-to-containers/
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master
+description:
+  text: /text/description.md
+  short: Simple CI/CD pipeline for Git projects.
+logo: https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/ci-cd-icon.png
+
+targetNodes:
+  nodeType:
+  - apache
+  - apache2
+  - apache2-ruby
+  - apache2-python
+  - apache-ruby
+  - glassfish
+  - glassfish3
+  - glassfish4
+  - golang
+  - javaengine
+  - jboss7
+  - jetty6
+  - jetty8
+  - jetty9
+  - nginxphp-dockerized
+  - nginxphp
+  - nginx-ruby
+  - nginxruby
+  - nodejs
+  - payara
+  - springboot
+  - tomcat
+  - tomcat7
+  - tomcat85
+  - tomcat6
+  - tomcat9
+  - tomee-dockerized
+  - tomee
+  - wildfly10
+  - wildfly11
+  - wildfly
+  - wildfly9
+  - wildfly-auto-cluster
+  
+settings:
+  fields:
+  - name: gitRepo
+    caption: Git Repo Url
+    type: string
+    default: ''
+    required: 'true'
+    regex: "^https?:\\/\\/.+$"
+    regexText: Incorrect URL. HTTPS link to Git repository is required.
+  - name: gitBranch
+    caption: Branch
+    type: string
+    default: master
+    required: 'true'
+  - name: gitUser
+    caption: User
+    type: string
+    default: ''
+    required: 'true'
+  - name: gitToken
+    caption: Token
+    type: string
+    default: ''
+    required: true
+
+globals:
+  scriptName: git-push-redeploy
+
+onInstall:
+  script: /scripts/check-deployment-type.cs?_r=${fn.random}
+  next: setup
+
+onBeforeDelete: delete-redeploy-script
+onUninstall: delete-redeploy-script
+  
+actions:
+  setup:
+    - if ('${this.addon}' == 'maven'): 
+      - if (!nodes.build): 
+          addNodes: 
+              cloudlets: 16
+              nodeGroup: build
+              nodeType: maven3
+              displayName: Build Node
+              groupDisplayName: Build Nodes
+              metadata:
+                layer: build
+      - add-build-project
+
+    - if ('${this.addon}' == 'vcs'): 
+        add-vcs-project:
+          type: ${this.type}
+        
+    - create-redeploy-script
+
+
+  create-redeploy-script:
+    script: /scripts/create-redeploy-script.cs?r_${fn.random}
+    url: ${baseUrl}/scripts/redeploy.cs
+    targetEnv: ${env.envName}
+    nodeGroup: cp
+    next: web-hook
+
+  web-hook:
+    script: /scripts/add-web-hook.cs?r_${fn.random}
+    params:
+      scriptName: ${globals.scriptName}
+      user: ${settings.gitUser}
+      repo: ${settings.gitRepo}
+      token: ${settings.gitToken}
+      callbackUrl: ${this.host}/${env.envName}-${globals.scriptName}?token=${this.token}&action=rebuild&appid=${this.appid}
+      envName: ${env.envName}
+      act: ${this.act}
+ 
+  add-vcs-project:
+    script: /scripts/add-vcs-project.cs?r_${fn.random}
+    params:
+      url: ${settings.gitRepo}
+      branch: ${settings.gitBranch}
+      user: ${settings.gitUser}
+      token: ${settings.gitToken}
+      type: ${this.type}
+      
+  add-build-project:
+    script: /scripts/add-build-project.cs?r_${fn.random}
+    params:
+      name: ${globals.scriptName}
+      url: ${settings.gitRepo}
+      branch: ${settings.gitBranch}
+      login: ${settings.gitUser}
+      password: ${settings.gitToken}
+      targetEnv: ${env.envName}
+      
+  delete-redeploy-script:
+    - jelastic.dev.scripting.DeleteScript:
+        name: ${env.envName}-${globals.scriptName}
+    - web-hook:
+        act: delete
+    - if (nodes.build): 
+        api: env.control.RemoveNode
+        nodeid: ${nodes.build.master.id}
+        
+success: /text/success.md
+
+
