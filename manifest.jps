@@ -3,7 +3,7 @@ type: update
 id: git-push-deploy
 name: Git-Push-Deploy Add-On
 homepage: https://jelastic.com/blog/git-push-deploy-to-containers/
-baseUrl: https://raw.githubusercontent.com/siruslan/git-push-deploy/master
+baseUrl: https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master
 description:
   text: /text/description.md
   short: Simple CI/CD pipeline for Git projects.
