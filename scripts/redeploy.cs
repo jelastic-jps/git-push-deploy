@@ -25,7 +25,14 @@ if (token == "${TOKEN}") {
             if (certified) {
                 if (build){                    
                     //resp = jelastic.env.build.BuildProject(buildEnv, signature, nodeId, projectId);
-                    resp = jelastic.env.build.BuildDeployProject(buildEnv, signature, nodeId, projectId, delay);
+                    var params = {
+                        envName: buildEnv, 
+                        session: signature, 
+                        nodeid: nodeId, 
+                        projectid: projectId, 
+                        delay: delay
+                    }
+                    resp = jelastic.env.build.BuildDeployProject(params);
                 } else {
                     resp = jelastic.env.vcs.Update(targetEnv, signature, 'ROOT', delay);
                 }

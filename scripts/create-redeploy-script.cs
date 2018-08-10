@@ -4,6 +4,8 @@
 import com.hivext.api.core.utils.Transport;
 import com.hivext.api.utils.Random;
 
+var buildEnv = "${env.envName}";
+
 //reading script from URL
 var scriptBody = new Transport().get(url)
 
@@ -14,10 +16,8 @@ scriptBody = scriptBody.replace("${TOKEN}", token);
 targetEnv = targetEnv.toString().split(".")[0];
 scriptBody = scriptBody.replace("${TARGET_ENV}", targetEnv);
 scriptBody = scriptBody.replace("${NODE_GROUP}", nodeGroup.toString());
-var buildEnv = "${env.envName}";
 scriptBody = scriptBody.replace("${BUILD_ENV}", buildEnv);
 scriptBody = scriptBody.replace("${BUILD_ENV_APPID}", "${env.appid}");
-scriptBody = scriptBody.replace("${BUILD_NODE_ID}", "${nodes.build.first.id}");
 scriptBody = scriptBody.replace("${UID}", user.uid.toString());
 
 //getting master node     
@@ -39,16 +39,32 @@ scriptBody = scriptBody.replace("${CERTIFIED}", certified.toString());
 scriptBody = scriptBody.replace("${BUILD}", build.toString());
 
 if (build) {
+   
+   //getting build node id and project id
+   var nodeId = parseInt("${nodes.build.first.id}", 10);
    var projectId = parseInt("${nodes.build.first.customitem.projects[0].id}", 10);
    var projectName = "${nodes.build.first.customitem.projects[0].name}";
-   if (isNaN(projectId)) {
-      var project = jelastic.env.control.GetEnvInfo(buildEnv, session).nodes[0].customitem.projects[0];
-      projectId = project.id;
-      projectName = project.name;
-   }
 
-   scriptBody = scriptBody.replace("${PROJECT_NAME}", projectName.toString());
+   if (isNaN(nodeId)) {
+      var resp = jelastic.env.control.GetEnvInfo(buildEnv, session);
+      if (resp.result != 0) return resp;
+      var nodes = resp.nodes;   
+      for (var i = 0; i < nodes.length; i++) {
+          if (nodes[i].nodeGroup == "build") {
+              nodeId = nodes[i].id;
+              var projects = nodes[i].customitem.projects;
+              if (projects) {
+                 projectId = projects[0].id;
+                 projectName = projects[0].name;
+              }
+              break;
+          }
+      }   
+   }   
+   
+   scriptBody = scriptBody.replace("${BUILD_NODE_ID}", nodeId.toString());
    scriptBody = scriptBody.replace("${PROJECT_ID}", projectId.toString());
+   scriptBody = scriptBody.replace("${PROJECT_NAME}", projectName.toString());
 }
 
 var scriptName = "${env.envName}-${globals.scriptName}"; 
