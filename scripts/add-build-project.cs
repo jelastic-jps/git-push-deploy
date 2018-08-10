@@ -10,12 +10,29 @@ if (ind == -1 || ind != url.length - 4) {
    url += ".git";
 }
 
+var nodeId = parseInt("${nodes.build.first.id}", 10);
+var projectId = parseInt("${nodes.build.first.customitem.projects[0].id}", 10);
+
+if (isNaN(nodeId)) {
+   var resp = jelastic.env.control.GetEnvInfo("test-tomcat", session);
+   if (resp.result != 0) return resp;
+   var nodes = resp.nodes;   
+   for (var i = 0; i < nodes.length; i++) {
+       if (nodes[i].nodeGroup == "build") {
+           nodeId = nodes[i].id;
+           var projects = nodes[i].customitem.projects;
+           if (projects) projectId = projects[0].id;
+           break;
+       }
+   }   
+}
+
 targetEnv = targetEnv.toString().split(".")[0];
 var params = {
    name: name,
    envName: "${env.envName}",
    env: targetEnv,
-   nodeId: "${nodes.build.first.id}",
+   nodeId: nodeId,
    session: session,
    type: "git",
    context: "ROOT",
@@ -30,7 +47,6 @@ var params = {
 }
 
 //remove the old project
-var projectId = parseInt("${nodes.build.first.customitem.projects[0].id}", 10);
 if (!isNaN(projectId)) {
    var resp = jelastic.env.build.RemoveProject(params.envName, params.session, params.nodeId, projectId);
    if (resp.result != 0) return resp;
