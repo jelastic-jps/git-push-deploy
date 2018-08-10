@@ -12,9 +12,10 @@ if (ind == -1 || ind != url.length - 4) {
 
 var nodeId = parseInt("${nodes.build.first.id}", 10);
 var projectId = parseInt("${nodes.build.first.customitem.projects[0].id}", 10);
+var envName = "${env.envName}"; 
 
 if (isNaN(nodeId)) {
-   var resp = jelastic.env.control.GetEnvInfo("test-tomcat", session);
+   var resp = jelastic.env.control.GetEnvInfo(envName, session);
    if (resp.result != 0) return resp;
    var nodes = resp.nodes;   
    for (var i = 0; i < nodes.length; i++) {
@@ -30,7 +31,7 @@ if (isNaN(nodeId)) {
 targetEnv = targetEnv.toString().split(".")[0];
 var params = {
    name: name,
-   envName: "${env.envName}",
+   envName: envName,
    env: targetEnv,
    nodeId: nodeId,
    session: session,
