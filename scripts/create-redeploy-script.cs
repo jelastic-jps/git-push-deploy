@@ -76,15 +76,8 @@ var resp = jelastic.dev.scripting.CreateScript(scriptName, 'js', scriptBody);
 if (resp.result != 0) return resp;
 
 //get app host
-var version = jelastic.system.service.GetVersion().version.split("-").shift();
-var host,
-    domain = window.location.host;
-if (compareVersions(version, '4.10') == -1){
-   host = 'http://' + domain;
-} else {
-   host = 'https://' + domain.replace('app.', 'cs.');
-}
-if (window.location.host) 
+var host = 'https://' + window.location.host.replace('app.', 'cs.');
+
 return {
     result: 0,
     onAfterReturn : {
@@ -98,12 +91,3 @@ return {
         }
     }
 }
-
-
-function compareVersions(a, b) {
-  a = a.split("."), b = b.split(".")
-  for (var i = 0, l = Math.max(a.length, b.length); i < l; i++) {x = parseInt(a[i], 10) || 0; y = parseInt(b[i], 10) || 0; if (x != y) return x > y ? 1 : -1 }
-  return 0;
-}
-
-
