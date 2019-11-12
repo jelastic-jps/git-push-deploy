@@ -14,6 +14,7 @@ targetNodes:
   - apache
   - apache2
   - apache2-ruby
+  - apache-python
   - apache2-python
   - apache-ruby
   - glassfish
