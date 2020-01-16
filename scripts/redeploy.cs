@@ -34,7 +34,13 @@ if (token == "${TOKEN}") {
                     }
                     resp = jelastic.env.build.BuildDeployProject(params);
                 } else {
-                    resp = jelastic.env.vcs.Update(targetEnv, signature, 'ROOT', delay);
+                    var params = {
+                        envName: targetEnv,
+                        session: signature,
+                        context: 'ROOT',
+                        delay: delay
+                    }
+                    resp = jelastic.env.vcs.Update(params);                    
                 }
             } else {
                 if (build) {
