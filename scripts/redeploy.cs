@@ -9,7 +9,8 @@ if (token == "${TOKEN}") {
         delay = getParam("delay") || 30,
         UID = ${UID},
         certified = ${CERTIFIED},
-        build = ${BUILD};
+        build = ${BUILD}, 
+        context = "${CONTEXT}";    
 
     if (action == 'redeploy') {
         if (certified) {
@@ -37,7 +38,7 @@ if (token == "${TOKEN}") {
                     var params = {
                         envName: targetEnv,
                         session: signature,
-                        context: 'ROOT',
+                        context: context,
                         delay: delay
                     }
                     resp = jelastic.env.vcs.Update(params);                    
