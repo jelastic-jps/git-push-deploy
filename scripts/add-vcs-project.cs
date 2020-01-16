@@ -22,10 +22,10 @@ p = {
     password: token,
     keyId: null,
     context: contexts[0],
-    autoupdate: true,
+    autoupdate: false,
     interval: 1,
     autoResolveConflict: true,
-    zdt: true
+    zdt: false
 }
 
 resp = jelastic.env.control.GetEnvInfo("${env.envName}", session);
