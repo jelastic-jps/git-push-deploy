@@ -26,17 +26,20 @@ var resp = jelastic.env.control.GetEnvInfo(targetEnv, session);
 if (resp.result != 0) return resp;
 var nodes = resp.nodes;
 var build = false;
+var context = 'ROOT';
 for (var i = 0; i < nodes.length; i++) {
    if (nodes[i].nodeGroup == nodeGroup) {
        type = nodes[i].engineType || (nodes[i].activeEngine || {}).type
        certified = type ? true : false;
        if (type == "java") build = true;
+       if (type == "ruby") context = ["development", "test", "production"][0];
        break;
    }
 }
 
 scriptBody = scriptBody.replace("${CERTIFIED}", certified.toString());
 scriptBody = scriptBody.replace("${BUILD}", build.toString());
+scriptBody = scriptBody.replace("${CONTEXT}", context);
 
 if (build) {
    
