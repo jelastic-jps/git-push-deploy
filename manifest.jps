@@ -44,7 +44,10 @@ targetNodes:
   - wildfly11
   - wildfly
   - wildfly9
-  - wildfly-auto-cluster
+  - wildfly-auto-cluster 
+  - litespeedphp
+  - lemp
+  - llsmp
   
 settings:
   fields:
@@ -149,5 +152,3 @@ actions:
         nodeid: ${nodes.build.master.id}
         
 success: /text/success.md
-
-
