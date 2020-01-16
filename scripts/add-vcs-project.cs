@@ -69,5 +69,11 @@ if (resp.result != 0) {
    return resp;
 }
 
-resp = jelastic.env.vcs.Update(p.envName, p.session, p.context);
+var params = {
+   envName: p.envName,
+   session: p.session,
+   context: p.context,
+   delay: getParam("delay") || 30
+}
+resp = jelastic.env.vcs.Update(params);  
 return resp;
