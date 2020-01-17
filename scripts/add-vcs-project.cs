@@ -69,11 +69,15 @@ if (resp.result != 0) {
    return resp;
 }
 
-var params = {
-   envName: p.envName,
-   session: p.session,
-   context: p.context,
-   delay: getParam("delay") || 30
+//github triggers first update automatically after we add a webhook 
+//calling update action manually for non-github repos
+if (url.indexOf("github.com") == -1) {
+   var params = {
+      envName: p.envName,
+      session: p.session,
+      context: p.context,
+      delay: getParam("delay") || 30
+   }
+   resp = jelastic.env.vcs.Update(params);  
 }
-resp = jelastic.env.vcs.Update(params);  
 return resp;
