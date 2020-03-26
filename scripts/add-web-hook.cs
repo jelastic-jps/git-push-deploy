@@ -46,7 +46,7 @@ var hooks = eval("(" + resp.response + ")");
 //Clear previous hooks
 for (var i = 0; i < hooks.length; i++) {
     var url = IS_GITHUB ? hooks[i].config.url : hooks[i].url;
-    if (url.indexOf(envName + '-' + scriptName) != -1) {
+    if (url && url.indexOf(envName + '-' + scriptName) != -1) {
         var del = new DeleteMethod(gitApiUrl + "/" + hooks[i].id);
         //Authentication for GitLab
         if (!IS_GITHUB) del.addRequestHeader("PRIVATE-TOKEN", token);
