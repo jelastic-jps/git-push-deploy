@@ -1,5 +1,5 @@
----
 type: update
+version: 1.7
 id: git-push-deploy
 name: Git-Push-Deploy Add-On
 homepage: https://jelastic.com/blog/git-push-deploy-to-containers/
