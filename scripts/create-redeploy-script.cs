@@ -79,7 +79,7 @@ var resp = jelastic.dev.scripting.CreateScript(scriptName, 'js', scriptBody);
 if (resp.result != 0) return resp;
 
 //get app host
-var host = 'https://' + window.location.host.replace('app.', 'cs.');
+var host = 'https://' + window.location.host.replace(/^app\.|^appstore\./, 'cs.');
 
 return {
     result: 0,
