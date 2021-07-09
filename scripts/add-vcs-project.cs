@@ -7,7 +7,7 @@ var ind = url.lastIndexOf(".git");
 if (ind == -1 || ind != url.length - 4) {
    ind = url.lastIndexOf("/");
    if (ind > -1 && ind == url.length - 1) url = url.substring(0, ind);
-   url += ".git";
+   url = toNative(url + ".git");
 }
 
 contexts = type == "ruby" ? ["development", "test", "production"] : ["ROOT"];
