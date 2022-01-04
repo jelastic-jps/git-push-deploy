@@ -35,7 +35,7 @@ Before applying the package, please consider the following points:
 </project>
 ```
 
-[![Deploy](https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/deploy-to-jelastic.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/java-memory-agent/master/manifest.jps)
+[![Deploy](https://jelastic.com/getithosted/button.png)](https://jelastic.com/install-application/?manifest=https://raw.githubusercontent.com/jelastic-jps/java-memory-agent/master/manifest.jps)
 
 ## How to Integrate Git-Push-Deploy Pipeline to Jelastic Environment  
 
