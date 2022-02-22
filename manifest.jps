@@ -9,6 +9,8 @@ description:
   short: Simple CI/CD pipeline for Git projects.
 logo: https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/ci-cd-icon.png
 
+targetEditions: any
+
 targetNodes:
   nodeType:
   - apache
