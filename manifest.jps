@@ -9,7 +9,7 @@ description:
   short: Simple CI/CD pipeline for Git projects.
 logo: https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/images/ci-cd-icon.png
 
-targetEditions: any
+targetEditions: [ "devops", "wordpress", "lite_do", "lite_vultr", "lite_gc", "ultimate", "light", "business" ]
 
 targetNodes:
   nodeType:
