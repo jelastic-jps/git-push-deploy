@@ -15,6 +15,7 @@ contexts = type == "ruby" ? ["development", "test", "production"] : ["ROOT"];
 p = {
     session: session,
     envName: "${env.envName}",
+    nodeGroup: "${targetNodes.nodeGroup}",
     type: "git",
     url: url,
     branch: branch,
@@ -51,6 +52,7 @@ if (contextsExists) {
 //create and update the project 
 resp = jelastic.env.vcs.CreateProject({
    envName: p.envName,
+   nodeGroup: p.nodeGroup,
    session: p.session,
    type: p.type,
    context: p.context,
