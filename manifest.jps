@@ -145,7 +145,13 @@ actions:
       targetEnv: ${env.envName}
       
   delete-redeploy-script:
+    - script: |
+        return {
+          result: 0,
+          appid: ${fn.compareEngine(8.4-1)} >= 1 ? "${env.appid}" : appid
+        }
     - jelastic.dev.scripting.DeleteScript:
+        appid: ${response.appid}
         name: ${env.envName}-${globals.scriptName}
     - web-hook:
         act: delete
