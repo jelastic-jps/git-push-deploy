@@ -6,9 +6,6 @@ import com.hivext.api.utils.Random;
 
 var buildEnv = "${env.envName}";
 var appidValue = (${fn.compareEngine(8.4-1)} >= 1) ? "${env.appid}" : appid;
-//TEST
-appidValue = "${env.appid}";
-//TEST
 
 //reading script from URL
 var scriptBody = new Transport().get(url)
@@ -79,7 +76,6 @@ var scriptName = "${env.envName}-${globals.scriptName}";
 jelastic.dev.scripting.DeleteScript(scriptName);
 
 //create a new script 
-api.marketplace.console.WriteLog("appidValue->" + appidValue);
 var resp = jelastic.dev.scripting.CreateScript(appidValue, session, scriptName, 'js', scriptBody);
 if (resp.result != 0) return resp;
 
