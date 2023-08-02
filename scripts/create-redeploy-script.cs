@@ -6,6 +6,9 @@ import com.hivext.api.utils.Random;
 
 var buildEnv = "${env.envName}";
 var appidValue = (${fn.compareEngine(8.4-1)} >= 1) ? "${env.appid}" : appid;
+//TEST
+appidValue = "${env.appid}";
+//TEST
 
 //reading script from URL
 var scriptBody = new Transport().get(url)
