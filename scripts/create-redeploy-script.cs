@@ -76,7 +76,7 @@ var scriptName = "${env.envName}-${globals.scriptName}";
 jelastic.dev.scripting.DeleteScript(scriptName);
 
 //create a new script 
-api.marketplace.console.Writelog("appidValue->" + appidValue);
+api.marketplace.console.WriteLog("appidValue->" + appidValue);
 var resp = jelastic.dev.scripting.CreateScript(appidValue, session, scriptName, 'js', scriptBody);
 if (resp.result != 0) return resp;
 
