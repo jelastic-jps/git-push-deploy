@@ -5,7 +5,7 @@ import com.hivext.api.core.utils.Transport;
 import com.hivext.api.utils.Random;
 
 var buildEnv = "${env.envName}";
-var appidValue = (${fn.compareEngine(8.4-1)} >= 1) ? "${env.appid}" : appid;
+var appidValue = api.dev.apps.CreatePersistence ? "${env.appid}" : appid;
 
 //reading script from URL
 var scriptBody = new Transport().get(url)
@@ -73,7 +73,7 @@ if (build) {
 
 var scriptName = "${env.envName}-${globals.scriptName}"; 
 //delete the script if it exists already
-jelastic.dev.scripting.DeleteScript(scriptName);
+jelastic.dev.scripting.DeleteScript(appidValue, session, scriptName);
 
 //create a new script 
 var resp = jelastic.dev.scripting.CreateScript(appidValue, session, scriptName, 'js', scriptBody);
