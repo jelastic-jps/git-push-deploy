@@ -148,7 +148,7 @@ actions:
     - script: |
         return {
           result: 0,
-          appid: ${fn.compareEngine(8.4-1)} >= 1 ? "${env.appid}" : appid
+          appid: api.dev.apps.CreatePersistence ? "${env.appid}" : appid
         }
     - jelastic.dev.scripting.DeleteScript:
         appid: ${response.appid}
