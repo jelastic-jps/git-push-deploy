@@ -146,10 +146,10 @@ actions:
       
   delete-redeploy-script:
     - script: |
-        return {
-          result: 0,
-          appid: api.dev.apps.CreatePersistence ? "${env.appid}" : appid
-        }
+        return api.dev.scripting.DeleteScript({
+          appid: api.dev.apps.CreatePersistence ? "${env.appid}" : appid,
+          name: "${env.envName}-${globals.scriptName}"
+        });
     - jelastic.dev.scripting.DeleteScript:
         appid: ${response.appid}
         name: ${env.envName}-${globals.scriptName}
