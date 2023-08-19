@@ -5,7 +5,7 @@ import com.hivext.api.core.utils.Transport;
 import com.hivext.api.utils.Random;
 
 var buildEnv = "${env.envName}";
-var appidValue = api.dev.apps.CreatePersistence ? "${env.appid}" : appid;
+var targetAppid = api.dev.apps.CreatePersistence ? "${env.appid}" : appid;
 
 //reading script from URL
 var scriptBody = new Transport().get(url)
