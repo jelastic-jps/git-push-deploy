@@ -76,7 +76,7 @@ var scriptName = "${env.envName}-${globals.scriptName}";
 api.dev.scripting.DeleteScript(targetAppid, session, scriptName);
 
 //create a new script 
-var resp = jelastic.dev.scripting.CreateScript(appidValue, session, scriptName, 'js', scriptBody);
+var resp = jelastic.dev.scripting.CreateScript(targetAppid, session, scriptName, 'js', scriptBody);
 if (resp.result != 0) return resp;
 
 //get app host
