@@ -151,7 +151,6 @@ actions:
           name: "${env.envName}-${globals.scriptName}"
         });
     - jelastic.dev.scripting.DeleteScript:
-        appid: ${response.appid}
         name: ${env.envName}-${globals.scriptName}
     - web-hook:
         act: delete
