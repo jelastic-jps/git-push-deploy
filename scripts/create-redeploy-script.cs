@@ -73,7 +73,7 @@ if (build) {
 
 var scriptName = "${env.envName}-${globals.scriptName}"; 
 //delete the script if it exists already
-jelastic.dev.scripting.DeleteScript(appidValue, session, scriptName);
+api.dev.scripting.DeleteScript(targetAppid, session, scriptName);
 
 //create a new script 
 var resp = jelastic.dev.scripting.CreateScript(appidValue, session, scriptName, 'js', scriptBody);
