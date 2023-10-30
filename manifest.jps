@@ -150,8 +150,6 @@ actions:
           appid: api.dev.apps.CreatePersistence ? "${env.appid}" : appid,
           name: "${env.envName}-${globals.scriptName}"
         });
-    - jelastic.dev.scripting.DeleteScript:
-        name: ${env.envName}-${globals.scriptName}
     - web-hook:
         act: delete
     - if (nodes.build): 
