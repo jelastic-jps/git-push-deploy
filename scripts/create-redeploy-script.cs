@@ -6,6 +6,7 @@ import com.hivext.api.utils.Random;
 
 var buildEnv = "${env.envName}";
 var targetAppid = api.dev.apps.CreatePersistence ? "${env.appid}" : appid;
+api.marketplace.console.WriteLog("CreatePersistence-----");
 
 //reading script from URL
 var scriptBody = new Transport().get(url)
