@@ -80,6 +80,8 @@ if (url.indexOf("github.com") == -1) {
       context: p.context,
       delay: getParam("delay") || 30
    }
-   resp = jelastic.env.vcs.Update(params);  
+   resp = jelastic.env.vcs.Update(params);
+   api.marketplace.console.WriteLog("Update resp->" + resp);
 }
+api.marketplace.console.WriteLog("Update resp2->" + resp);
 return resp;
