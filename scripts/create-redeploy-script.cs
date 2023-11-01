@@ -88,7 +88,7 @@ return {
         call : {
             procedure : next,
             params : {
-                appid : appid,
+                appid : targetAppid,
                 host : host,
                 token : token
             }
