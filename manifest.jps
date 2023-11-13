@@ -145,8 +145,11 @@ actions:
       targetEnv: ${env.envName}
       
   delete-redeploy-script:
-    - jelastic.dev.scripting.DeleteScript:
-        name: ${env.envName}-${globals.scriptName}
+    - script: |
+        return api.dev.scripting.DeleteScript({
+          appid: api.dev.apps.CreatePersistence ? "${env.appid}" : appid,
+          name: "${env.envName}-${globals.scriptName}"
+        });
     - web-hook:
         act: delete
     - if (nodes.build): 
