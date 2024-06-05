@@ -34,7 +34,7 @@ Before applying the package, please consider the following points:
 </project>
 ```
 
-[![Deploy to Cloud](deploy-to-cloud.png)](https://www.virtuozzo.com/install/?manifest=https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/manifest.jps)
+[![Deploy to Cloud](images/deploy-to-cloud.png)](https://www.virtuozzo.com/install/?manifest=https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master/manifest.jps)
 
 
 ## How to Integrate Git-Push-Deploy Pipeline to PaaS Environment  
