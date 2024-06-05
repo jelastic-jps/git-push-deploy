@@ -41,7 +41,7 @@ Before applying the package, please consider the following points:
 
 To install the Git-Push-Deploy package, copy link to the **_manifest.jps_** file above and [import](https://www.virtuozzo.com/application-platform-docs/environment-import/) it to your application platform dashboard.
 
-![git-push-deploy-installation](images/git-push-deploy-installation.png)
+![install git-push-deploy](images/install-git-push-deploy.png)
 
 Within the opened installation window, specify the following data:
 
