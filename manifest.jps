@@ -2,7 +2,7 @@ type: update
 version: 1.7
 id: git-push-deploy
 name: Git-Push-Deploy Add-On
-homepage: https://jelastic.com/blog/git-push-deploy-to-containers/
+homepage: https://www.virtuozzo.com/application-platform-docs/git-push-deploy/
 baseUrl: https://raw.githubusercontent.com/jelastic-jps/git-push-deploy/master
 description:
   text: /text/description.md
