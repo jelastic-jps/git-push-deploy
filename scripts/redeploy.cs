@@ -35,6 +35,17 @@ if (token == "${TOKEN}") {
                     }
                     resp = jelastic.env.build.BuildDeployProject(params);
                 } else {
+                    // Resolve context dynamically (handles ROOT -> ROOT2 rename in dashboard)
+                    var envInfo = jelastic.env.control.GetEnvInfo(targetEnv, signature);
+                    if (envInfo.result == 0 && envInfo.nodeGroups) {
+                        for (var i = 0; i < envInfo.nodeGroups.length; i++) {
+                            var ng = envInfo.nodeGroups[i];
+                            if (ng.name == nodeGroup && ng.deployments && ng.deployments.length > 0) {
+                                context = ng.deployments[0].context;
+                                break;
+                            }
+                        }
+                    }
                     var params = {
                         envName: targetEnv,
                         session: signature,
