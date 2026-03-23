@@ -19,7 +19,7 @@ if (token == "${TOKEN}") {
         try {
             var webhookData = eval("(" + body + ")");
             ref = webhookData.ref || "";
-        } catch(e) {}
+        } catch(e) { ref = ""; }
     }
 
     if (branch && ref) {
