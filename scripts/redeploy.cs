@@ -11,13 +11,21 @@ if (token == "${TOKEN}") {
         certified = ${CERTIFIED},
         build = ${BUILD}, 
         context = "${CONTEXT}",
-        branch = "${BRANCH}";
+        body = getParam("body") || "",
+        branch = "${BRANCH}",
+        ref = "";
 
-    var ref = getParam("ref") || "";
+    if (body) {
+        try {
+            var webhookData = eval("(" + body + ")");
+            ref = webhookData.ref || "";
+        } catch(e) {}
+    }
+
     if (branch && ref) {
-        var pushedBranch = ref.replace(/^refs\/heads\//, "");
+        var pushedBranch = ref.replace(new RegExp("^refs/heads/"), "");
         if (pushedBranch != branch) {
-            return {result: 0, type: "info", message: "Skipping: push to [" + pushedBranch + "] does not match the target branch [" + branch + "]"};
+            return {result: 0};
         }
     }
 
