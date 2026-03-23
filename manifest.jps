@@ -112,6 +112,7 @@ actions:
     url: ${baseUrl}/scripts/redeploy.cs
     targetEnv: ${env.envName}
     nodeGroup: cp
+    branch: ${settings.gitBranch}
     next: web-hook
 
   web-hook:

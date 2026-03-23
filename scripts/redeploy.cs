@@ -10,7 +10,16 @@ if (token == "${TOKEN}") {
         UID = ${UID},
         certified = ${CERTIFIED},
         build = ${BUILD}, 
-        context = "${CONTEXT}";    
+        context = "${CONTEXT}",
+        branch = "${BRANCH}";
+
+    var ref = getParam("ref") || "";
+    if (branch && ref) {
+        var pushedBranch = ref.replace(/^refs\/heads\//, "");
+        if (pushedBranch != branch) {
+            return {result: 0, type: "info", message: "Skipping: push to [" + pushedBranch + "] does not match the target branch [" + branch + "]"};
+        }
+    }
 
     if (action == 'redeploy') {
         if (certified) {
