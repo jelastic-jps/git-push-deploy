@@ -10,7 +10,24 @@ if (token == "${TOKEN}") {
         UID = ${UID},
         certified = ${CERTIFIED},
         build = ${BUILD}, 
-        context = "${CONTEXT}";    
+        context = "${CONTEXT}",
+        body = getParam("body") || "",
+        branch = "${BRANCH}",
+        ref = "";
+
+    if (body) {
+        try {
+            var webhookData = eval("(" + body + ")");
+            ref = webhookData.ref || "";
+        } catch(e) { ref = ""; }
+    }
+
+    if (branch && ref) {
+        var pushedBranch = ref.replace(new RegExp("^refs/heads/"), "");
+        if (pushedBranch != branch) {
+            return {result: 0};
+        }
+    }
 
     if (action == 'redeploy') {
         if (certified) {

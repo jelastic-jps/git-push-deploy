@@ -1,5 +1,5 @@
 //@auth
-//@req(url, next, targetEnv, nodeGroup)
+//@req(url, next, targetEnv, nodeGroup, branch)
 
 import com.hivext.api.core.utils.Transport;
 import com.hivext.api.utils.Random;
@@ -40,6 +40,7 @@ for (var i = 0; i < nodes.length; i++) {
 scriptBody = scriptBody.replace("${CERTIFIED}", certified.toString());
 scriptBody = scriptBody.replace("${BUILD}", build.toString());
 scriptBody = scriptBody.replace("${CONTEXT}", context);
+scriptBody = scriptBody.replace("${BRANCH}", branch.toString());
 
 if (build) {
    
