@@ -1,7 +1,7 @@
 //@req(token, action)
 if (token == "${TOKEN}") {
     var targetEnv = "${TARGET_ENV}",
-        nodeGroup = "${NODE_GROUP}", 
+        nodeGroup = "${NODE_GROUP}",
         buildNodeId = "${BUILD_NODE_ID}",
         envName = "${BUILD_ENV}",
         envAppid = "${BUILD_ENV_APPID}",
@@ -9,8 +9,47 @@ if (token == "${TOKEN}") {
         delay = getParam("delay") || 30,
         UID = ${UID},
         certified = ${CERTIFIED},
-        build = ${BUILD}, 
-        context = "${CONTEXT}";    
+        build = ${BUILD},
+        context = "${CONTEXT}";
+
+    function getRepoFromWebhook() {
+        var r = getParam("repository.clone_url") || getParam("repository.git_url") ||
+            getParam("repository.html_url") || getParam("project.git_http_url") ||
+            getParam("repository.url");
+        if (r) return r;
+        var p = getParam("payload");
+        if (p) {
+            try {
+                var j = typeof p == "string" ? JSON.parse(p) : p;
+                var repo = j.repository || j.project;
+                if (repo) return repo.clone_url || repo.git_url || repo.html_url || repo.git_http_url || repo.url;
+            } catch (e) {}
+        }
+        return null;
+    }
+    function normalizeUrl(u) {
+        return (u || "").replace(/\.git$/i, "").replace(/\/+$/, "").toLowerCase();
+    }
+    function findContextsByRepo(envName, session, nodeGroup, repoUrl) {
+        var resp = jelastic.env.control.GetEnvInfo(envName, session);
+        if (resp.result != 0 || !resp.nodeGroups) return [];
+        var norm = normalizeUrl(repoUrl);
+        var contexts = [];
+        for (var g = 0; g < resp.nodeGroups.length; g++) {
+            if (resp.nodeGroups[g].name != nodeGroup || !resp.nodeGroups[g].deployments) continue;
+            var depl = resp.nodeGroups[g].deployments;
+            for (var d = 0; d < depl.length; d++) {
+                if (depl[d].type == "GIT" && depl[d].archivename &&
+                    normalizeUrl(depl[d].archivename) == norm && depl[d].context) {
+                    contexts.push(depl[d].context);
+                }
+            }
+        }
+        return contexts;
+    }
+    var repoUrl = getRepoFromWebhook();
+    var contexts = repoUrl ? findContextsByRepo(envName, signature, nodeGroup, repoUrl) : [];
+    if (!contexts.length) contexts = [context];
 
     if (action == 'redeploy') {
         if (certified) {
@@ -35,13 +74,17 @@ if (token == "${TOKEN}") {
                     }
                     resp = jelastic.env.build.BuildDeployProject(params);
                 } else {
-                    var params = {
-                        envName: targetEnv,
-                        session: signature,
-                        context: context,
-                        delay: delay
+                    var lastResp;
+                    for (var c = 0; c < contexts.length; c++) {
+                        lastResp = jelastic.env.vcs.Update({
+                            envName: targetEnv,
+                            session: signature,
+                            context: contexts[c],
+                            delay: delay
+                        });
+                        if (lastResp.result != 0) return lastResp;
                     }
-                    resp = jelastic.env.vcs.Update(params);                    
+                    resp = lastResp || {result: 0};
                 }
             } else {
                 if (build) {
